@@ -1,0 +1,92 @@
+.RPP_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 480px;
+    width: 1050px;
+    border: 0.3px solid rgb(227, 226, 226);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.RPP_illustration {
+    width: 50%;
+    height: 100%;
+    background-color: #f0f3ff;
+    border-right: 0.1px solid rgb(227, 226, 226);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.RPP_illustration img {
+    height: 60%;
+}
+
+.RPP_form_container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 0.1px solid rgb(227, 226, 226);
+}
+
+.RpP_mainc{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: center;
+    height: 80%;
+    width: 75%;
+    gap: 2px;
+}
+
+.RpP_mainc h2 {
+    font-style: italic;
+    width: 100%;
+    font-size: 24px;
+}
+
+.RpP_mainc p {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    color: #888;
+}
+
+.RpP_mainc label {
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.RpP_mainc input[type="email"],
+.RpP_mainc input[type="password"] {
+    width: 94%;
+    padding:11px;
+    padding-bottom: 16px;
+    padding-top: 16px;
+    background-color: #e9e9e9;
+    margin-bottom: 10px;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    letter-spacing: 0.7px;
+    outline-color: #007bff;
+}
+
+.RpP_mainc button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #6c63ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.RpP_mainc button:hover {
+    background-color: #5753d9;
+}
