@@ -86,6 +86,18 @@ const Login = () => {
             }
             Setinputinitial({ Username: '', Password: '' });
     }
+    const googleclick=()=>{
+      toast("sorry for inconvenience", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      })
+    }
   return (
     <>
       <div className="login_main">
@@ -115,7 +127,7 @@ const Login = () => {
         
                         <div className="log_or_divider">Or Login with</div>
                         <div className='log_g_cen'>
-                            <button type="button" className="google-button">
+                            <button type="button" className="google-button" onClick={googleclick}>
                                 <img src="https://www.google.com/favicon.ico" alt="Google icon" /> Continue with Google
                             </button>
                         </div>
