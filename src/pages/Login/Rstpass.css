@@ -62,8 +62,8 @@
 
 .RpP_mainc input[type="email"],
 .RpP_mainc input[type="password"] {
-    width: 94%;
-    padding:11px;
+    width: 96.5%;
+    padding-left:11px;
     padding-bottom: 16px;
     padding-top: 16px;
     background-color: #e9e9e9;
@@ -89,4 +89,43 @@
 
 .RpP_mainc button:hover {
     background-color: #5753d9;
+}
+
+
+
+@media (max-width: 800px) {
+    .RPP_container {
+        height: auto;
+        width: 100%;
+        border: 0;
+        box-shadow: 0 0 0;
+    }
+    .RPP_illustration {
+        display: none;
+    }
+    .RPP_form_container {
+        border: 0;
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .RpP_mainc h2 {
+        font-size: 25px;
+    }
+    
+    .RpP_mainc p {
+        font-size: 13px;
+    }
+
+    .RpP_mainc input[type="email"],
+    .RpP_mainc input[type="password"] {
+    width: 95%;
+    }
+}
+@media (max-width: 350px) {
+    .RPP_form_container {
+        border: 0;
+        width: 98%;
+    }
 }
