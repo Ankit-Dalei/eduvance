@@ -36,7 +36,7 @@ const Login = () => {
             return;
         }
 
-        if (Password.trim()=="") {
+        if (Password.trim()==="") {
             toast("Password cannot be null", {
                 position: "top-right",
                 autoClose: 3000,
