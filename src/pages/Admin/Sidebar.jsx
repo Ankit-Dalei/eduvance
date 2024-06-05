@@ -108,7 +108,7 @@ const Sidebar = ({ children }) => {
           >
             <ul className={`${isCollapsed ? "space-y-4" : "space-y-2"}`}>
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl">
-                <Link to="/" className="px-[0.5rem]">
+                <Link to="/home" className="px-[0.5rem]">
                   <FaHome className="inline-block w-6 h-6 mr-2 -mt-2" />
                   {isCollapsed ? "" : "Home"}
                 </Link>
@@ -120,31 +120,31 @@ const Sidebar = ({ children }) => {
                 </Link>
               </li>
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl">
-                <a href="" className="px-[0.5rem]">
+                <Link to="/manage" className="px-[0.5rem]">
                   <MdManageAccounts className="inline-block w-6 h-6 mr-2 -mt-2" />
                 
                   
                     {isCollapsed ? "" : "Management"}
                 
-                </a>
+                </Link>
               </li>
               <li className={`mb-2 hover:bg-purple-500  py-2 rounded-2xl`}>
-                <a href="" className="px-[0.5rem]">
+                <Link to="/campus" className="px-[0.5rem]">
                   <BiBuildingHouse className="inline-block w-6 h-6 mr-2 -mt-2" />
                   {isCollapsed ? "" : " Campus"}
-                </a>
+                </Link>
               </li>
               <li className="mb-2  hover:bg-purple-500  py-2 rounded-2xl">
-                <a href="" className="px-[0.5rem]">
+                <Link to={'/report'} className="px-[0.5rem]">
                   <HiOutlineDocumentReport className="inline-block w-6 h-6 mr-2 -mt-2" />
                   {isCollapsed ? "" : "  Reports"}
-                </a>
+                </Link>
               </li>
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl">
-                <a href="" className="px-[0.5rem]">
+                <Link to={'/setting'} className="px-[0.5rem]">
                   <IoSettingsOutline className="inline-block w-6 h-6 mr-2 -mt-2" />
                   {isCollapsed ? "" : "Setting"}
-                </a>
+                </Link>
               </li>
               <li className="mb-2  py-2 rounded-2xl fixed bottom-16">
                 <a href="" className="px-[0.5rem]">
