@@ -4,7 +4,7 @@ import { CiEdit } from "react-icons/ci";
 import { Button, Modal, Tooltip } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { MdDelete } from "react-icons/md";
-
+import { Checkbox, Label,  TextInput } from "flowbite-react";
 const userData = [
   {
     "USER NAME": "John Doe",
@@ -39,6 +39,13 @@ const userData = [
 ];
 
 const List = () => {
+  const [openModal1, setOpenModal1] = useState(false);
+  const [email, setEmail] = useState('');
+
+  function onCloseModal() {
+    setOpenModal1(false);
+    setEmail('');
+  }
   const [checkedItems, setCheckedItems] = useState(
     userData.reduce((acc, user, index) => {
       acc[index] = false;
@@ -198,7 +205,7 @@ const List = () => {
                   <td className="px-6 py-4">{user["CREATED AT"]}</td>
                   <td className="px-6 py-4 space-x-1">
                     <span className="cursor-pointer py-1 px-2 rounded-md bg-[#90FEA8]">
-                      <CiEdit className="inline-block w-6 h-6 -mt-1" />
+                      <CiEdit className="inline-block w-6 h-6 -mt-1"  onClick={() => setOpenModal1(true)}/>
                     </span>
                     <span className="cursor-pointer py-1 px-2 rounded-md bg-[#F46F6F]">
                       <MdDelete
@@ -235,6 +242,37 @@ const List = () => {
               </div>
             </Modal.Body>
           </Modal>
+          <Modal show={openModal1} size="md" onClose={onCloseModal} popup>
+        <Modal.Header />
+        <Modal.Body>
+          <div className="space-y-6">
+            <h3 className="text-xl font-medium text-gray-900 dark:text-white">Update here</h3>
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="email" value="Your email" />
+              </div>
+              <TextInput
+                id="email"
+                placeholder="name@company.com"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="password" value="Your password" />
+              </div>
+              <TextInput id="password" type="password" required />
+            </div>
+            
+            <div className="w-full">
+              <Button >Update!!</Button>
+            </div>
+          
+          </div>
+        </Modal.Body>
+      </Modal>
         </div>
       </div>
     </Sidebar>

@@ -4,16 +4,24 @@ import { FaHome } from "react-icons/fa";
 import { HiOutlineDocumentReport } from "react-icons/hi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdManageAccounts, MdOutlinePermContactCalendar } from "react-icons/md";
+import { LuBuilding2 } from "react-icons/lu";
+import { TbBuildingEstate } from "react-icons/tb";
 import { PiPlus } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { Avatar, Dropdown } from "flowbite-react";
 import { RxCross2 } from "react-icons/rx";
 import { FaBarsStaggered } from "react-icons/fa6";
-// import 'antd/dist/antd.css';
+import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
 const Sidebar = ({ children }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-   const [openModal, setOpenModal] = useState(true);
+   const [openModal, setOpenModal] = useState(false);
 
+   const [email, setEmail] = useState('');
+
+   function onCloseModal() {
+     setOpenModal(false);
+     setEmail('');
+   }
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
@@ -23,7 +31,7 @@ const Sidebar = ({ children }) => {
     <div className="p-10">
       <div className="w-[94%] fixed h-[90vh] bg-purple-100 rounded-3xl p-9">
         <div className="flex justify-between">
-          <h1 className="text-3xl text-black  font-serif mt-4">Eduvance</h1>
+          <h1 className="text-3xl text-black  font-serif mt-4 ml-10">Eduvance</h1>
           <span className="cursor-pointer relative top-5 left-8"onClick={toggleSidebar} >
             {!isCollapsed ? (
               <FaBarsStaggered className="inline-block w-6 h-6 mr-2 -mt-2 text-black" />
@@ -60,7 +68,7 @@ const Sidebar = ({ children }) => {
                 <input
                   type="search"
                   id="default-search"
-                  class=" block w-[80%] px-4 py-3 ps-10 text-[15px] text-black border border-gray-300 border-none outline-none bg-gray-200 focus:ring-purple-300- focus:border-purple-300 rounded-full "
+                  class=" block w-[80%] px-4 py-3 ps-10 text-[15px] text-black border border-gray-300 border-none outline-none bg-gray-300 focus:ring-purple-300- focus:border-purple-300 rounded-full "
                   placeholder="Enter login or full name"
                   required
                 />
@@ -70,9 +78,10 @@ const Sidebar = ({ children }) => {
           <div className="relative right-12">
             <button
               type="button"
+              onClick={() => setOpenModal(true)} 
               class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-2 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
             >
-              <PiPlus className="inline-block w-4 h-4 mr-2 -mt-2 text-white" onClick={() => setOpenModal(true)} />
+              <PiPlus className="inline-block w-4 h-4 mr-2 -mt-2 text-white space-x-2" />
               Create Role
             </button>
     
@@ -110,7 +119,7 @@ const Sidebar = ({ children }) => {
               isCollapsed ? "w-5" : "w-64"
             } `}
           >
-            <ul className={`${isCollapsed ? "space-y-4" : "space-y-2"}`}>
+            <ul className={`${isCollapsed ? "space-y-4" : "space-y-2"} flex flex-col justify-center items-start`}>
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl">
                 <Link to="/home" className="px-[0.5rem]">
                   <FaHome className="inline-block w-6 h-6 mr-2 -mt-2" />
@@ -132,7 +141,7 @@ const Sidebar = ({ children }) => {
                 
                 </Link>
               </li>
-              <li className={`mb-2 hover:bg-purple-500  py-2 rounded-2xl`}>
+              <li className={`mb-2 hover:bg-purple-500  py-2 rounded-2xl `}>
                 <Link to="/campus" className="px-[0.5rem]">
                   <BiBuildingHouse className="inline-block w-6 h-6 mr-2 -mt-2" />
                   {isCollapsed ? "" : " Campus"}
@@ -159,9 +168,32 @@ const Sidebar = ({ children }) => {
               </li>
             </ul>
           </div>
+          <div className="absolute top-0">
+        
+      </div>
           <div className="w-full bg-white m-10 p-10 rounded-3xl mt-20  mb-16 overflow-hidden overflow-y-auto sm:overflow-auto">
             {children}
           </div>
+            <Modal show={openModal} size="md" onClose={onCloseModal}>
+        <Modal.Header />
+        <Modal.Body  >
+          <div className="space-y-6 text-center text-ellipsis">
+            <h3 className="text-xl font-medium text-gray-900 dark:text-white">Want to Create Role for?</h3>
+            <div className="flex flex-col space-y-3 ">
+             <button className="mx-16 py-3 bg-gray-300 rounded-2xl">
+             <LuBuilding2 className="inline-block w-6 h-6 mr-2 -mt-2" />
+              Management</button>
+             <button className="mx-16 py-3 bg-gray-300 rounded-2xl">
+             <BiBuildingHouse className="inline-block w-6 h-6 mr-2 -mt-2" />
+              University</button>
+             <button className="mx-16 py-3 bg-gray-300 rounded-2xl">
+             <TbBuildingEstate className="inline-block w-6 h-6 mr-2 -mt-2" />
+              Campus</button>
+            </div>
+           
+          </div>
+        </Modal.Body>
+      </Modal>
         </aside>
       </div>
     </div>
