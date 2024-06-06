@@ -36,54 +36,9 @@ const userData = [
     ROLE: "Admin",
     "CREATED AT": "2024-05-12T11:10:00Z",
   },
-  {
-    "USER NAME": "David Harris",
-    LOGIN: "dharris",
-    ROLE: "User",
-    "CREATED AT": "2024-06-01T10:25:00Z",
-  },
-  {
-    "USER NAME": "Emily Clark",
-    LOGIN: "eclark",
-    ROLE: "Moderator",
-    "CREATED AT": "2024-06-15T13:00:00Z",
-  },
-  {
-    "USER NAME": "Frank Wright",
-    LOGIN: "fwright",
-    ROLE: "User",
-    "CREATED AT": "2024-07-20T09:30:00Z",
-  },
-  {
-    "USER NAME": "Grace Lee",
-    LOGIN: "glee",
-    ROLE: "Admin",
-    "CREATED AT": "2024-08-05T15:00:00Z",
-  },
-  {
-    "USER NAME": "Henry Turner",
-    LOGIN: "hturner",
-    ROLE: "User",
-    "CREATED AT": "2024-08-10T08:45:00Z",
-  },
-  {
-    "USER NAME": "Irene Adams",
-    LOGIN: "iadams",
-    ROLE: "Moderator",
-    "CREATED AT": "2024-09-01T14:20:00Z",
-  },
-  {
-    "USER NAME": "Jack White",
-    LOGIN: "jwhite",
-    ROLE: "User",
-    "CREATED AT": "2024-09-15T12:35:00Z",
-  },
-  {
-    "USER NAME": "Karen Nelson",
-    LOGIN: "knelson",
-    ROLE: "Admin",
-    "CREATED AT": "2024-10-01T11:50:00Z",
-  },
+
+
+
 ];
 const List = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -243,7 +198,7 @@ const List = () => {
                       id="default-checkbox"
                       type="checkbox"
                       value=""
-                      class="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded "
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded flex flex-col float-start"
                     />
                     {user["USER NAME"]}
                   </th>
