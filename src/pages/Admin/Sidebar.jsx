@@ -9,8 +9,11 @@ import { Link } from "react-router-dom";
 import { Avatar, Dropdown } from "flowbite-react";
 import { RxCross2 } from "react-icons/rx";
 import { FaBarsStaggered } from "react-icons/fa6";
+// import 'antd/dist/antd.css';
 const Sidebar = ({ children }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+   const [openModal, setOpenModal] = useState(true);
+
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
@@ -20,8 +23,8 @@ const Sidebar = ({ children }) => {
     <div className="p-10">
       <div className="w-[94%] fixed h-[90vh] bg-purple-100 rounded-3xl p-9">
         <div className="flex justify-between">
-          <h1 className="text-3xl text-black  font-serif">Eduvance</h1>
-          <span className="cursor-pointer"onClick={toggleSidebar} >
+          <h1 className="text-3xl text-black  font-serif mt-4">Eduvance</h1>
+          <span className="cursor-pointer relative top-5 left-8"onClick={toggleSidebar} >
             {!isCollapsed ? (
               <FaBarsStaggered className="inline-block w-6 h-6 mr-2 -mt-2 text-black" />
             ) : (
@@ -69,9 +72,10 @@ const Sidebar = ({ children }) => {
               type="button"
               class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-2 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
             >
-              <PiPlus className="inline-block w-4 h-4 mr-2 -mt-2 text-white" />
+              <PiPlus className="inline-block w-4 h-4 mr-2 -mt-2 text-white" onClick={() => setOpenModal(true)} />
               Create Role
             </button>
+    
           </div>
           <div className="relative right-14">
             <Dropdown
@@ -116,7 +120,7 @@ const Sidebar = ({ children }) => {
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl">
                 <Link to="/list" className="px-[0.5rem]">
                   <MdOutlinePermContactCalendar className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  {isCollapsed ? "" : "Employee"}
+                  {isCollapsed ? "" : "University"}
                 </Link>
               </li>
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl">
