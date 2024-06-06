@@ -5,6 +5,7 @@ import { Button, Modal, Tooltip } from "flowbite-react";
 import { useState } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { MdDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
 const userData = [
   {
     "USER NAME": "John Doe",
@@ -74,18 +75,18 @@ const List = () => {
               class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg p-2 mt-2 dark:bg-neutral-800 dark:border dark:border-neutral-700 mb-10"
               aria-labelledby="hs-dropdown-custom-icon-trigger"
             >
-              <a
+              <Link
                 class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700"
                 href="#"
               >
                 Newsletter
-              </a>
-              <a
+              </Link>
+              <Link
                 class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700"
                 href="#"
               >
                 Purchases
-              </a>
+              </Link>
             </div>
           </div>
           <div className="flex space-x-3 items-center">
@@ -96,7 +97,7 @@ const List = () => {
               <nav aria-label="Page navigation example">
                 <ul class="flex items-center -space-x-px h-8 text-sm">
                   <li>
-                    <a
+                    <Link
                       href="#"
                       class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
@@ -116,27 +117,27 @@ const List = () => {
                           d="M5 1 1 5l4 4"
                         />
                       </svg>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link
                       href="#"
                       class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       1
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link
                       href="#"
                       class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       2
-                    </a>
+                    </Link>
                   </li>
 
                   <li>
-                    <a
+                    <Link
                       href="#"
                       class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
@@ -156,7 +157,7 @@ const List = () => {
                           d="m1 9 4-4-4-4"
                         />
                       </svg>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </nav>

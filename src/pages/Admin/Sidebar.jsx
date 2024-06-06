@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BiBuildingHouse, BiLogOut } from "react-icons/bi";
-import { FaBars, FaHome } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
 import { HiOutlineDocumentReport } from "react-icons/hi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdManageAccounts, MdOutlinePermContactCalendar } from "react-icons/md";
@@ -147,11 +147,11 @@ const Sidebar = ({ children }) => {
                 </Link>
               </li>
               <li className="mb-2  py-2 rounded-2xl fixed bottom-16">
-                <a href="" className="px-[0.5rem]">
+                <Link className="px-[0.5rem]">
                   <BiLogOut
                    className="inline-block w-6 h-6 mr-2 -mt-2 " />
                   {isCollapsed ? "" : "Logout"}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
