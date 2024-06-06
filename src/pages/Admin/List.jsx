@@ -36,18 +36,7 @@ const userData = [
     ROLE: "Admin",
     "CREATED AT": "2024-05-12T11:10:00Z",
   },
-  {
-    "USER NAME": "David Harris",
-    LOGIN: "dharris",
-    ROLE: "User",
-    "CREATED AT": "2024-06-01T10:25:00Z",
-  },
-  {
-    "USER NAME": "Emily Clark",
-    LOGIN: "eclark",
-    ROLE: "Moderator",
-    "CREATED AT": "2024-06-15T13:00:00Z",
-  },
+
 
 
 ];
