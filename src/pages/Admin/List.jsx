@@ -5,7 +5,6 @@ import { Button, Modal, Tooltip } from "flowbite-react";
 import { useState } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { MdDelete } from "react-icons/md";
-import { Link } from "react-router-dom";
 const userData = [
   {
     "USER NAME": "John Doe",
