@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { Avatar, Dropdown } from "flowbite-react";
 import { RxCross2 } from "react-icons/rx";
 import { FaBarsStaggered } from "react-icons/fa6";
-import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
+import { Modal } from "flowbite-react";
 const Sidebar = ({ children }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
    const [openModal, setOpenModal] = useState(false);
@@ -31,7 +31,7 @@ const Sidebar = ({ children }) => {
     <div className="p-10">
       <div className="w-[94%] fixed h-[90vh] bg-purple-100 rounded-3xl p-9">
         <div className="flex justify-between">
-          <h1 className="text-3xl text-black  font-serif mt-4 ml-10">Eduvance</h1>
+          <h1 className="text-3xl text-black  font-serif mt-2 ml-10">Eduvance</h1>
           <span className="cursor-pointer relative top-5 left-8"onClick={toggleSidebar} >
             {!isCollapsed ? (
               <FaBarsStaggered className="inline-block w-6 h-6 mr-2 -mt-2 text-black" />
