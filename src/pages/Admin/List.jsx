@@ -77,7 +77,7 @@ const List = () => {
     <Sidebar>
       <div className="-mt-7 mb-3">
         <div className="flex justify-between">
-          <Tooltip content={`${!selectAll?"Select users":"disable all users"}`} placement="right-end">
+          <Tooltip content={`${!selectAll?"Select all users":"disable all users"}`} placement="right-end">
             <input
               id="select-all-checkbox"
               type="checkbox"

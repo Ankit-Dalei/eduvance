@@ -16,11 +16,13 @@ const Login = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setInputInitial({ ...inputInitial, [name]: value });
+
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { Username, Password } = inputInitial;
+        navigate('/home')
 
         if (!Username) {
             toast('Email cannot be empty', {
