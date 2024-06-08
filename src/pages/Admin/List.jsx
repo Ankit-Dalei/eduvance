@@ -226,7 +226,7 @@ const List = () => {
           {selectedRowKeys.length ? `Selected ${selectedRowKeys.length} items` : ''}
         </span>
       </div>
-      <Table rowSelection={rowSelection} columns={columns} dataSource={data} pagination={{ pageSize: 4 }} />
+      <Table rowSelection={rowSelection} columns={columns} dataSource={data} pagination={{ pageSize: 5 }} />
 
       <Modal
         title="Edit Record"
