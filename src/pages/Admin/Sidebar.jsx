@@ -171,7 +171,7 @@ const Sidebar = ({ children }) => {
           <div className="absolute top-0">
         
       </div>
-          <div className="w-full bg-white m-10 p-10 rounded-3xl mt-20  mb-16 overflow-hidden ">
+          <div className="w-full bg-white m-10 p-10 rounded-3xl mt-20  mb-16 overflow-hidden h-auto ">
             {children}
           </div>
             <Modal show={openModal} size="md" onClose={onCloseModal}>

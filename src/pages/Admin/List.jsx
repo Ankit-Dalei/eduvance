@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Table, Modal, Form, Input, Space } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import * as XLSX from 'xlsx'; // Importing xlsx library
 import Sidebar from './Sidebar';
 
 const List = () => {
@@ -145,6 +146,13 @@ const List = () => {
     setData(filteredData);
   };
 
+  const exportToExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "User Data");
+    XLSX.writeFile(workbook, "user_data.xlsx");
+  };
+
   const rowSelection = {
     selectedRowKeys,
     onChange: onSelectChange,
@@ -204,14 +212,15 @@ const List = () => {
     <Sidebar>
       <div style={{ marginBottom: 16 }}>
         <Input
-          placeholder="Search by name"
-          className='bg-gray-300 rounded-xl'
-          value={searchText}
-          onChange={handleSearch}
-          style={{ width: 600, marginRight: 16 }}
+           placeholder="Search by name"
+           className='bg-gray-300 rounded-xl'
+           value={searchText}
+           onChange={handleSearch}
+           style={{ width: 600, marginRight: 16 }}
         />
-        <Button type="primary" onClick={start} disabled={!selectedRowKeys.length} loading={loading}>
-          Import Pdf
+       
+        <Button type="primary" onClick={exportToExcel} style={{ marginLeft: 16 }} disabled={!selectedRowKeys.length} loading={loading}>
+          Export to Excel
         </Button>
         <span style={{ marginLeft: 8 }}>
           {selectedRowKeys.length ? `Selected ${selectedRowKeys.length} items` : ''}
@@ -224,6 +233,7 @@ const List = () => {
         visible={isEditModalVisible}
         onOk={handleEditOk}
         onCancel={handleEditCancel}
+        okText="Update"
       >
         <Form form={form} layout="vertical">
           <Form.Item name="USER NAME" label="User Name" rules={[{ required: true, message: 'Please input the user name!' }]}>
