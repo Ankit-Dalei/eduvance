@@ -75,7 +75,7 @@ const Sidebar = ({ children }) => {
               </div>
             </form>
           </div>
-          <div className="relative right-12">
+          <div className="relative right-16">
             <button
               type="button"
               onClick={() => setOpenModal(true)} 
