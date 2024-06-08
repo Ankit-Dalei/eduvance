@@ -1,280 +1,221 @@
-import React, { useState } from "react";
-import Sidebar from "./Sidebar";
-import { CiEdit } from "react-icons/ci";
-import { Button, Modal, Tooltip } from "flowbite-react";
-import { HiOutlineExclamationCircle } from "react-icons/hi";
-import { MdDelete } from "react-icons/md";
-import { Checkbox, Label,  TextInput } from "flowbite-react";
-const userData = [
-  {
-    "USER NAME": "John Doe",
-    LOGIN: "jdoe",
-    ROLE: "Admin",
-    "CREATED AT": "2024-01-15T08:30:00Z",
-  },
-  {
-    "USER NAME": "Jane Smith",
-    LOGIN: "jsmith",
-    ROLE: "User",
-    "CREATED AT": "2024-02-20T12:45:00Z",
-  },
-  {
-    "USER NAME": "Alice Johnson",
-    LOGIN: "ajohnson",
-    ROLE: "Moderator",
-    "CREATED AT": "2024-03-10T09:00:00Z",
-  },
-  {
-    "USER NAME": "Bob Brown",
-    LOGIN: "bbrown",
-    ROLE: "User",
-    "CREATED AT": "2024-04-05T14:20:00Z",
-  },
-  {
-    "USER NAME": "Charlie Davis",
-    LOGIN: "cdavis",
-    ROLE: "Admin",
-    "CREATED AT": "2024-05-12T11:10:00Z",
-  },
-];
+import React, { useState } from 'react';
+import { Button, Table, Modal, Form, Input } from 'antd';
+import Sidebar from './Sidebar';
 
 const Campus = () => {
-  const [openModal1, setOpenModal1] = useState(false);
-  const [email, setEmail] = useState('');
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
+  const [currentRecord, setCurrentRecord] = useState(null);
+  const [form] = Form.useForm();
+  const [searchText, setSearchText] = useState('');
 
-  function onCloseModal() {
-    setOpenModal1(false);
-    setEmail('');
-  }
-  const [checkedItems, setCheckedItems] = useState(
-    userData.reduce((acc, user, index) => {
-      acc[index] = false;
-      return acc;
-    }, {})
-  );
-  const [selectAll, setSelectAll] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
+  const initialData = [
+    {
+      "USER NAME": "John Doe",
+      LOGIN: "jdoe",
+      ROLE: "Admin",
+      "CREATED AT": "2024-01-15T08:30:00Z",
+    },
+    {
+      "USER NAME": "Jane Smith",
+      LOGIN: "jsmith",
+      ROLE: "User",
+      "CREATED AT": "2024-02-20T12:45:00Z",
+    },
+    {
+      "USER NAME": "Alice Johnson",
+      LOGIN: "ajohnson",
+      ROLE: "Moderator",
+      "CREATED AT": "2024-03-10T09:00:00Z",
+    },
+    {
+      "USER NAME": "Bob Brown",
+      LOGIN: "bbrown",
+      ROLE: "User",
+      "CREATED AT": "2024-04-05T14:20:00Z",
+    },
+    {
+      "USER NAME": "Charlie Davis",
+      LOGIN: "cdavis",
+      ROLE: "Admin",
+      "CREATED AT": "2024-05-12T11:10:00Z",
+    },
+    {
+      "USER NAME": "Alice Johnson",
+      LOGIN: "ajohnson",
+      ROLE: "Moderator",
+      "CREATED AT": "2024-03-10T09:00:00Z",
+    },
+    {
+      "USER NAME": "Bob Brown",
+      LOGIN: "bbrown",
+      ROLE: "User",
+      "CREATED AT": "2024-04-05T14:20:00Z",
+    },
+    {
+      "USER NAME": "Charlie Davis",
+      LOGIN: "cdavis",
+      ROLE: "Admin",
+      "CREATED AT": "2024-05-12T11:10:00Z",
+    },
+    {
+      "USER NAME": "Alice Johnson",
+      LOGIN: "ajohnson",
+      ROLE: "Moderator",
+      "CREATED AT": "2024-03-10T09:00:00Z",
+    },
+    {
+      "USER NAME": "Bob Brown",
+      LOGIN: "bbrown",
+      ROLE: "User",
+      "CREATED AT": "2024-04-05T14:20:00Z",
+    },
+    {
+      "USER NAME": "Charlie Davis",
+      LOGIN: "cdavis",
+      ROLE: "Admin",
+      "CREATED AT": "2024-05-12T11:10:00Z",
+    },
+  ];
 
-  const handleCheckboxChange = (index) => {
-    setCheckedItems((prev) => {
-      const newState = { ...prev, [index]: !prev[index] };
-      setSelectAll(Object.values(newState).every((item) => item));
-      return newState;
+  const [data, setData] = useState(initialData);
+
+  const start = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setSelectedRowKeys([]);
+      setLoading(false);
+    }, 1000);
+  };
+
+  const showEditModal = record => {
+    setCurrentRecord(record);
+    setIsEditModalVisible(true);
+    form.setFieldsValue(record);
+  };
+
+  const handleEditOk = () => {
+    form.validateFields().then(values => {
+      console.log('Updated values:', values);
+      setIsEditModalVisible(false);
     });
   };
 
-  const handleSelectAllChange = () => {
-    const newSelectAll = !selectAll;
-    setSelectAll(newSelectAll);
-    const newCheckedItems = Object.keys(checkedItems).reduce((acc, key) => {
-      acc[key] = newSelectAll;
-      return acc;
-    }, {});
-    setCheckedItems(newCheckedItems);
+  const handleEditCancel = () => {
+    setIsEditModalVisible(false);
   };
+
+  const showDeleteConfirm = record => {
+    setCurrentRecord(record);
+    setIsDeleteModalVisible(true);
+  };
+
+  const handleDeleteOk = () => {
+    console.log('Deleted record:', currentRecord);
+    setIsDeleteModalVisible(false);
+  };
+
+  const handleDeleteCancel = () => {
+    setIsDeleteModalVisible(false);
+  };
+
+  const onSelectChange = newSelectedRowKeys => {
+    console.log('selectedRowKeys changed: ', newSelectedRowKeys);
+    setSelectedRowKeys(newSelectedRowKeys);
+  };
+  const handleSearch = e => {
+    const value = e.target.value.toLowerCase();
+    setSearchText(value);
+    const filteredData = initialData.filter(item => item['USER NAME'] && item['USER NAME'].toLowerCase().includes(value));
+    setData(filteredData);
+  };
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: onSelectChange,
+  };
+  const hasSelected = selectedRowKeys.length > 0;
+
+  const columns = [
+    {
+      title: 'USER NAME',
+      dataIndex: 'USER NAME',
+    },
+    {
+      title: 'Role',
+      dataIndex: 'ROLE',
+    },
+    {
+      title: 'LOGIN',
+      dataIndex: 'LOGIN',
+    },
+    {
+      title: 'CREATED AT',
+      dataIndex: 'CREATED AT',
+    },
+    {
+      title: 'Action',
+      dataIndex: 'action',
+      render: (_, record) => (
+        <>
+          <Button onClick={() => showEditModal(record)} style={{ marginRight: 8 }}>
+            Edit
+          </Button>
+          <Button onClick={() => showDeleteConfirm(record)} danger>
+            Delete
+          </Button>
+        </>
+      ),
+    },
+  ];
 
   return (
     <Sidebar>
-      <div className="-mt-7 mb-3">
-        <div className="flex justify-between">
-          <Tooltip content={`${!selectAll?"Select users":"disable all users"}`} placement="right-end">
-            <input
-              id="select-all-checkbox"
-              type="checkbox"
-              checked={selectAll}
-              onChange={handleSelectAllChange}
-              className="w-4 h-4 mt-3 text-blue-600 bg-gray-100 border-gray-300 rounded flex flex-col float-start"
-            />
-          </Tooltip>
-          <div className="flex space-x-3 items-center">
-            <Tooltip content="Active User" placement="top">
-              <span className="text-gray-500 font-semibold">
-                1-50 of 10000
-              </span>
-            </Tooltip>
-            <Tooltip content="Move the Pages" placement="top">
-              <nav aria-label="Page navigation example">
-                <ul className="flex items-center -space-x-px h-8 text-sm">
-                  <li>
-                    <a
-                      href="#"
-                      className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      <span className="sr-only">Previous</span>
-                      <svg
-                        className="w-2.5 h-2.5 rtl:rotate-180"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 6 10"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M5 1 1 5l4 4"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      1
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      2
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      <span className="sr-only">Next</span>
-                      <svg
-                        className="w-2.5 h-2.5 rtl:rotate-180"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 6 10"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="m1 9 4-4-4-4"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </Tooltip>
-          </div>
-        </div>
-
-        <div className="overflow-x-auto shadow rounded-lg overflow-hidden mt-2 text-center">
-          <table className="min-w-full leading-relaxed">
-            <thead className="text-xs text-white uppercase bg-purple-500 rounded-2xl">
-              <tr className="table-fixed">
-                <th scope="col" className="px-6 py-3">
-                  User Name
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Login
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Role
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Created At
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {userData.map((user, index) => (
-                <tr key={index} className="bg-white border-b text-black">
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-                  >
-                    <input
-                      id={`checkbox-${index}`}
-                      type="checkbox"
-                      checked={checkedItems[index]}
-                      onChange={() => handleCheckboxChange(index)}
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded flex flex-col float-start"
-                    />
-                    {user["USER NAME"]}
-                  </th>
-                  <td className="px-6 py-4">{user.LOGIN}</td>
-                  <td className="px-6 py-4">{user.ROLE}</td>
-                  <td className="px-6 py-4">{user["CREATED AT"]}</td>
-                  <td className="px-6 py-4 space-x-1">
-                    <span className="cursor-pointer py-1 px-2 rounded-md bg-[#90FEA8]">
-                      <CiEdit className="inline-block w-6 h-6 -mt-1"  onClick={() => setOpenModal1(true)}/>
-                    </span>
-                    <span className="cursor-pointer py-1 px-2 rounded-md bg-[#F46F6F]">
-                      <MdDelete
-                        className="inline-block w-6 h-6 -mt-1"
-                        onClick={() => setOpenModal(true)}
-                      />
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <Modal
-            show={openModal}
-            size="md"
-            onClose={() => setOpenModal(false)}
-            popup
-          >
-            <Modal.Header />
-            <Modal.Body>
-              <div className="text-center">
-                <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
-                <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                  Are you sure you want to delete this user?
-                </h3>
-                <div className="flex justify-center gap-4">
-                  <Button color="failure" onClick={() => setOpenModal(false)}>
-                    {"Yes, I'm sure"}
-                  </Button>
-                  <Button color="gray" onClick={() => setOpenModal(false)}>
-                    No, cancel
-                  </Button>
-                </div>
-              </div>
-            </Modal.Body>
-          </Modal>
-          <Modal show={openModal1} size="md" onClose={onCloseModal} popup>
-        <Modal.Header />
-        <Modal.Body>
-          <div className="space-y-6">
-            <h3 className="text-xl font-medium text-gray-900 dark:text-white">Update here</h3>
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="email" value="Your email" />
-              </div>
-              <TextInput
-                id="email"
-                placeholder="name@company.com"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                required
-              />
-            </div>
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="password" value="Your password" />
-              </div>
-              <TextInput id="password" type="password" required />
-            </div>
-            
-            <div className="w-full">
-              <Button >Update!!</Button>
-            </div>
-          
-          </div>
-        </Modal.Body>
-      </Modal>
-        </div>
+      <div style={{ marginBottom: 16 }}>
+        <Input
+          placeholder="Search by name"
+         className='bg-gray-300 rounded-3xl '
+          value={searchText}
+          onChange={handleSearch}
+          style={{ width: 600, marginRight: 16,backgroundColor:'' }}
+        />
+        <Button type="primary" onClick={start} disabled={!hasSelected} loading={loading}>
+          Reload
+        </Button>
+        <span style={{ marginLeft: 8 }}>
+          {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
+        </span>
       </div>
+      <Table rowSelection={rowSelection} columns={columns} dataSource={data} pagination={{ pageSize: 4 }} />
+
+      <Modal
+        title="Edit Record"
+        visible={isEditModalVisible}
+        onOk={handleEditOk}
+        onCancel={handleEditCancel}
+      >
+        <Form form={form} layout="vertical">
+          <Form.Item name="name" label="Name" rules={[{ required: true, message: 'Please input the name!' }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item name="age" label="Age" rules={[{ required: true, message: 'Please input the age!' }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item name="address" label="Address" rules={[{ required: true, message: 'Please input the address!' }]}>
+            <Input />
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      <Modal
+        title="Delete Record"
+        visible={isDeleteModalVisible}
+        onOk={handleDeleteOk}
+        onCancel={handleDeleteCancel}
+      >
+        <p>Are you sure you want to delete this record?</p>
+      </Modal>
     </Sidebar>
   );
 };

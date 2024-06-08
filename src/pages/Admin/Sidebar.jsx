@@ -119,20 +119,20 @@ const Sidebar = ({ children }) => {
               isCollapsed ? "w-5" : "w-64"
             } `}
           >
-            <ul className={`${isCollapsed ? "space-y-4" : "space-y-2"} flex flex-col justify-center items-start`}>
-              <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl">
+            <ul className={` flex flex-col justify-center items-start`}>
+              <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl  ">
                 <Link to="/home" className="px-[0.5rem]">
                   <FaHome className="inline-block w-6 h-6 mr-2 -mt-2" />
                   {isCollapsed ? "" : "Home"}
                 </Link>
               </li>
-              <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl">
+              <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to="/list" className="px-[0.5rem]">
                   <MdOutlinePermContactCalendar className="inline-block w-6 h-6 mr-2 -mt-2" />
                   {isCollapsed ? "" : "University"}
                 </Link>
               </li>
-              <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl">
+              <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to="/manage" className="px-[0.5rem]">
                   <MdManageAccounts className="inline-block w-6 h-6 mr-2 -mt-2" />
                 
@@ -141,19 +141,19 @@ const Sidebar = ({ children }) => {
                 
                 </Link>
               </li>
-              <li className={`mb-2 hover:bg-purple-500  py-2 rounded-2xl `}>
+              <li className={`mb-2 hover:bg-purple-500  py-2 rounded-2xl  `}>
                 <Link to="/campus" className="px-[0.5rem]">
                   <BiBuildingHouse className="inline-block w-6 h-6 mr-2 -mt-2" />
                   {isCollapsed ? "" : " Campus"}
                 </Link>
               </li>
-              <li className="mb-2  hover:bg-purple-500  py-2 rounded-2xl">
+              <li className="mb-2  hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to={'/report'} className="px-[0.5rem]">
                   <HiOutlineDocumentReport className="inline-block w-6 h-6 mr-2 -mt-2" />
                   {isCollapsed ? "" : "  Reports"}
                 </Link>
               </li>
-              <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl">
+              <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to={'/setting'} className="px-[0.5rem]">
                   <IoSettingsOutline className="inline-block w-6 h-6 mr-2 -mt-2" />
                   {isCollapsed ? "" : "Setting"}
@@ -171,7 +171,7 @@ const Sidebar = ({ children }) => {
           <div className="absolute top-0">
         
       </div>
-          <div className="w-full bg-white m-10 p-10 rounded-3xl mt-20  mb-16 overflow-hidden overflow-y-auto sm:overflow-auto">
+          <div className="w-full bg-white m-10 p-10 rounded-3xl mt-20  mb-16 overflow-hidden ">
             {children}
           </div>
             <Modal show={openModal} size="md" onClose={onCloseModal}>
