@@ -119,7 +119,7 @@ const Sidebar = ({ children }) => {
               isCollapsed ? "w-5" : "w-64"
             } `}
           >
-            <ul className={` flex flex-col justify-center items-start`}>
+            <ul className={` flex flex-col justify-center items-start -mt-10`}>
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl  ">
                 <Link to="/home" className="px-[0.5rem]">
                   <FaHome className="inline-block w-6 h-6 mr-2 -mt-2" />
@@ -171,7 +171,7 @@ const Sidebar = ({ children }) => {
           <div className="absolute top-0">
         
       </div>
-          <div className="w-full bg-white m-10 p-10 rounded-3xl mt-20  mb-16 overflow-hidden h-auto ">
+          <div className="w-full bg-white m-10 p-10 rounded-3xl mt-10  mb-16 overflow-hidden h-[90%] ">
             {children}
           </div>
             <Modal show={openModal} size="md" onClose={onCloseModal}>
