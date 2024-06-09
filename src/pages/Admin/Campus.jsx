@@ -164,6 +164,7 @@ const Campus = () => {
     const hours = now.getHours().toString().padStart(2, '0');
     const minutes = now.getMinutes().toString().padStart(2, '0');
     const seconds = now.getSeconds().toString().padStart(2, '0');
+    
     const currentTime = `${hours}:${minutes}:${seconds}`;
     XLSX.writeFile(workbook, `${currentTime}_user_data.xlsx`);
   };
@@ -225,7 +226,7 @@ const Campus = () => {
 
   return (
     <Sidebar>
-      <div style={{ marginBottom: 16 }}>
+      <div style={{ marginBottom: 2 }} className='-mt-5'>
         <Input
           placeholder="Search by name"
           className='bg-gray-300 rounded-xl'
@@ -241,7 +242,7 @@ const Campus = () => {
           {selectedRowKeys.length ? `Selected ${selectedRowKeys.length} items` : ''}
         </span>
       </div>
-      <Table rowSelection={rowSelection} columns={columns} dataSource={data} pagination={{ pageSize: 5 }} />
+      <Table rowSelection={rowSelection} columns={columns} dataSource={data} pagination={{ pageSize: 7 }} className='overflow-auto' />
 
       <Modal
         title="Edit Record"

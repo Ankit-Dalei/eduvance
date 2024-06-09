@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { Avatar, Dropdown, Modal } from "flowbite-react";
 import { RxCross2 } from "react-icons/rx";
 import { FaBarsStaggered } from "react-icons/fa6";
+import { Tooltip } from "antd";
 
 const Sidebar = ({ children }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -38,9 +39,9 @@ const Sidebar = ({ children }) => {
 
   return (
     <div className="p-10">
-      <div className="w-[94%] fixed h-[90vh] bg-purple-100 rounded-3xl p-9">
-        <div className="flex justify-between">
-          <h1 className="text-3xl text-black  font-serif mt-2 ml-10">Eduvance</h1>
+      <div className="w-[94%] fixed h-[94vh] bg-purple-100 rounded-3xl p-9 -mt-3 mr-10">
+        <div className="flex justify-between -mt-6 mb-3 items-center">
+          <div className="flex relative left-[17%]">
           <span className="cursor-pointer relative top-5 left-8" onClick={toggleSidebar}>
             {!isCollapsed ? (
               <FaBarsStaggered className="inline-block w-6 h-6 mr-2 -mt-2 text-black" />
@@ -48,53 +49,21 @@ const Sidebar = ({ children }) => {
               <RxCross2 className="inline-block w-6 h-6 mr-2 -mt-2 text-black font-extrabold" />
             )}
           </span>
-          <div className="w-[70%] relative left-10">
-            <form>
-              <label
-                htmlFor="default-search"
-                className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-              >
-                Search
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0  start-0 flex items-center ps-3 pointer-events-none">
-                  <svg
-                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                    />
-                  </svg>
-                </div>
-                <input
-                  type="search"
-                  id="default-search"
-                  className="block w-[80%] px-4 py-3 ps-10 text-[15px] text-black border border-gray-300 border-none outline-none bg-gray-300 focus:ring-purple-300 focus:border-purple-300 rounded-full"
-                  placeholder="Enter login or full name"
-                  required
-                />
-              </div>
-            </form>
+          <h1 className="text-3xl text-black  font-serif mt-3 ml-10 hidden md:inline-block">Eduvance</h1>
           </div>
-          <div className="relative right-16 flex items-center">
+      
+          <div className="flex items-center space-x-4 mr-8">
+            <Tooltip title="Add the Roles">
             <button
               type="button"
               onClick={() => setOpenModal(true)}
-              className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-2 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+              className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm p-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
             >
-              <PiPlus className="inline-block w-4 h-4 mr-2 -mt-1 text-white space-x-2" />
-              Create Role
+              <PiPlus className="inline-block w-5 h-5 text-white space-x-2" />
+             
             </button>
-          </div>
-          <div className="relative right-14">
+            </Tooltip>
+            <div className="">
             <Dropdown
               label={
                 <Avatar
@@ -119,57 +88,72 @@ const Sidebar = ({ children }) => {
               </div>
             </Dropdown>
           </div>
+          </div>
+        
         </div>
         <aside className="h-[100%] w-[100%] px-4 flex justify-between ">
-          <div className={`mt-24 transition-all duration-300 ${isCollapsed ? "w-5" : "w-64"} `}>
-            <ul className={` flex flex-col justify-center items-start -mt-10`}>
-              <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl  ">
+          <div className={`mt-24 transition-all duration-300 ${isCollapsed ? "w-10" : "w-64"} `}>
+          <ul className={` flex flex-col  -mt-20 space-y-3`}>
+          <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to="/home" className="px-[0.5rem]">
                   <FaHome className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  {isCollapsed ? "" : "Home"}
+                  
+                    {isCollapsed ? "" : " Home"}
+                    
                 </Link>
               </li>
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to="/list" className="px-[0.5rem]">
                   <MdOutlinePermContactCalendar className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  {isCollapsed ? "" : "University"}
+                  
+                  {isCollapsed ? "" : " University"}
+                  
                 </Link>
               </li>
+              
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to="/manage" className="px-[0.5rem]">
                   <MdManageAccounts className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  {isCollapsed ? "" : "Management"}
+                  
+                  {isCollapsed ? "" : " Management"}
+                    
                 </Link>
               </li>
               <li className={`mb-2 hover:bg-purple-500  py-2 rounded-2xl  `}>
                 <Link to="/campus" className="px-[0.5rem]">
                   <BiBuildingHouse className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  {isCollapsed ? "" : " Campus"}
+                  
+                   {isCollapsed ? "" : "  Campus"} 
                 </Link>
               </li>
               <li className="mb-2  hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to={'/report'} className="px-[0.5rem]">
                   <HiOutlineDocumentReport className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  {isCollapsed ? "" : "  Reports"}
+                  
+                   {isCollapsed ? "" : "   Reports "}
                 </Link>
               </li>
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to={'/setting'} className="px-[0.5rem]">
                   <IoSettingsOutline className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  {isCollapsed ? "" : "Setting"}
+                  
+                   {isCollapsed ? "" : " Setting"} 
                 </Link>
               </li>
-              <li className="mb-2  py-2 rounded-2xl fixed bottom-16">
+              <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl relative -bottom-64">
                 <Link className="px-[0.5rem]">
                   <BiLogOut className="inline-block w-6 h-6 mr-2 -mt-2 " />
-                  {isCollapsed ? "" : "Logout"}
-                </Link>
+                  
+                   {isCollapsed ? "" : " Logout"}
+                 </Link>
               </li>
+              
             </ul>
+
           </div>
           <div className="absolute top-0">
           </div>
-          <div className="w-full bg-white m-10 p-10 rounded-3xl mt-10  mb-16 overflow-hidden h-[90%] ">
+          <div className="w-[96%] bg-white p-10 rounded-3xl overflow-hidden h-[98%] ml-3">
             {children}
           </div>
           <Modal show={openModal} size="md" onClose={onCloseModal}>
