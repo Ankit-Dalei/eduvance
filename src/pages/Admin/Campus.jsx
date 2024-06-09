@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Button, Table, Modal, Form, Input, Space, Row, Col, Typography } from 'antd';
+import { Button, Table, Modal, Form, Input, Space, Row, Col, Typography, Select } from 'antd';
 import { EditOutlined, DeleteOutlined, UserOutlined, LockOutlined, SafetyOutlined } from '@ant-design/icons';
 import * as XLSX from 'xlsx'; // Importing xlsx library
 import Sidebar from './Sidebar';
+import { Option } from 'antd/es/mentions';
 
 const Campus = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
@@ -264,8 +265,12 @@ const Campus = () => {
          
           <Row>
             <Col span={24}>
-              <Form.Item name="ROLE" label="Role" rules={[{ required: true, message: 'Please input the role!' }]}>
-                <Input prefix={<SafetyOutlined />} placeholder="Enter role" />
+            <Form.Item name="ROLE" label="Role" rules={[{ required: true, message: 'Please select a role!' }]}>
+                <Select placeholder="Select a role" prefix={<SafetyOutlined />}>
+                  <Option value="Admin">Admin</Option>
+                  <Option value="Teacher">Teacher</Option>
+                  <Option value="Student">Student</Option>
+                </Select>
               </Form.Item>
             </Col>
           </Row>
