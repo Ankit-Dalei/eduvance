@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Table, Modal, Form, Input, Space } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Button, Table, Modal, Form, Input, Space, Row, Col, Typography } from 'antd';
+import { EditOutlined, DeleteOutlined, UserOutlined, LockOutlined, SafetyOutlined } from '@ant-design/icons';
 import * as XLSX from 'xlsx'; // Importing xlsx library
 import Sidebar from './Sidebar';
 
@@ -12,6 +12,7 @@ const Campus = () => {
   const [currentRecord, setCurrentRecord] = useState(null);
   const [form] = Form.useForm();
   const [searchText, setSearchText] = useState('');
+  const [isUpdating, setIsUpdating] = useState(false); 
 
   const initialData = [
     {
@@ -112,6 +113,14 @@ const Campus = () => {
   const handleEditOk = () => {
     form.validateFields().then(values => {
       console.log('Updated values:', values);
+      setIsEditModalVisible(false);
+    });
+  };
+  const handleUpdate = () => {
+    setIsUpdating(true); // Set updating state to true
+    form.validateFields().then(values => {
+      console.log('Updated values:', values);
+      setIsUpdating(false); // Set updating state to false after operation
       setIsEditModalVisible(false);
     });
   };
@@ -226,25 +235,40 @@ const Campus = () => {
           {selectedRowKeys.length ? `Selected ${selectedRowKeys.length} items` : ''}
         </span>
       </div>
-      <Table rowSelection={rowSelection} columns={columns} dataSource={data} pagination={{ pageSize: 4 }} />
+      <Table rowSelection={rowSelection} columns={columns} dataSource={data} pagination={{ pageSize: 5 }} />
 
       <Modal
         title="Edit Record"
         visible={isEditModalVisible}
-        onOk={handleEditOk}
-        okText="Update"
+        onOk={handleUpdate}
         onCancel={handleEditCancel}
+        confirmLoading={isUpdating}
+        okText="Update" 
       >
         <Form form={form} layout="vertical">
-          <Form.Item name="USER NAME" label="User Name" rules={[{ required: true, message: 'Please input the user name!' }]}>
-            <Input />
-          </Form.Item>
-          <Form.Item name="LOGIN" label="Login" rules={[{ required: true, message: 'Please input the login!' }]}>
-            <Input />
-          </Form.Item>
-          <Form.Item name="ROLE" label="Role" rules={[{ required: true, message: 'Please input the role!' }]}>
-            <Input />
-          </Form.Item>
+          <Row >
+            <Col span={24}>
+              <Form.Item name="USER NAME" label="User Name" rules={[{ required: true, message: 'Please input the user name!' }]}>
+                <Input prefix={<UserOutlined />} placeholder="Enter user name" />
+              </Form.Item>
+            </Col>
+            </Row>
+            <Row>
+            <Col span={24}>
+              <Form.Item name="LOGIN" label="Login" rules={[{ required: true, message: 'Please input the login!' }]}>
+                <Input prefix={<LockOutlined />} placeholder="Enter login" />
+              </Form.Item>
+            </Col>
+            </Row>
+        
+         
+          <Row>
+            <Col span={24}>
+              <Form.Item name="ROLE" label="Role" rules={[{ required: true, message: 'Please input the role!' }]}>
+                <Input prefix={<SafetyOutlined />} placeholder="Enter role" />
+              </Form.Item>
+            </Col>
+          </Row>
         </Form>
       </Modal>
 
