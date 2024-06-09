@@ -160,7 +160,12 @@ const Campus = () => {
     const worksheet = XLSX.utils.json_to_sheet(data);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "User Data");
-    XLSX.writeFile(workbook, "user_data.xlsx");
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    const currentTime = `${hours}:${minutes}:${seconds}`;
+    XLSX.writeFile(workbook, `${currentTime}_user_data.xlsx`);
   };
 
   const rowSelection = {
