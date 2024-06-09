@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Button, Table, Modal, Form, Input, Space, Row, Col, Typography, Select } from 'antd';
+import { Button, Table, Modal, Form, Input, Select, Space, Row, Col, notification } from 'antd';
 import { EditOutlined, DeleteOutlined, UserOutlined, LockOutlined, SafetyOutlined } from '@ant-design/icons';
-import * as XLSX from 'xlsx'; // Importing xlsx library
+import * as XLSX from 'xlsx'; 
 import Sidebar from './Sidebar';
-import { Option } from 'antd/es/mentions';
+const { Option } = Select;
 
 const Campus = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
@@ -13,7 +13,7 @@ const Campus = () => {
   const [currentRecord, setCurrentRecord] = useState(null);
   const [form] = Form.useForm();
   const [searchText, setSearchText] = useState('');
-  const [isUpdating, setIsUpdating] = useState(false); 
+  const [isUpdating, setIsUpdating] = useState(false);
 
   const initialData = [
     {
@@ -111,18 +111,18 @@ const Campus = () => {
     form.setFieldsValue(record);
   };
 
-  const handleEditOk = () => {
-    form.validateFields().then(values => {
-      console.log('Updated values:', values);
-      setIsEditModalVisible(false);
-    });
-  };
   const handleUpdate = () => {
-    setIsUpdating(true); // Set updating state to true
     form.validateFields().then(values => {
+      setIsUpdating(true); 
       console.log('Updated values:', values);
-      setIsUpdating(false); // Set updating state to false after operation
+      setIsUpdating(false); 
       setIsEditModalVisible(false);
+    }).catch(errorInfo => {
+      notification.error({
+        message: 'Validation Error',
+        description: 'Please fill all the fields correctly.',
+        placement: 'topRight',
+      });
     });
   };
 
@@ -222,14 +222,14 @@ const Campus = () => {
     <Sidebar>
       <div style={{ marginBottom: 16 }}>
         <Input
-           placeholder="Search by name"
-           className='bg-gray-300 rounded-xl'
-           value={searchText}
-           onChange={handleSearch}
-           style={{ width: 600, marginRight: 16 }}
+          placeholder="Search by name"
+          className='bg-gray-300 rounded-xl'
+          value={searchText}
+          onChange={handleSearch}
+          style={{ width: 600, marginRight: 16 }}
         />
-       
-        <Button type="primary" onClick={exportToExcel} style={{ marginLeft: 16 }} disabled={!selectedRowKeys.length} loading={loading}>
+   
+        <Button type="dashed" onClick={exportToExcel} style={{ marginLeft: 16 }} disabled={!selectedRowKeys.length} loading={loading}>
           Export to Excel
         </Button>
         <span style={{ marginLeft: 8 }}>
@@ -241,31 +241,27 @@ const Campus = () => {
       <Modal
         title="Edit Record"
         visible={isEditModalVisible}
-        onOk={handleUpdate}
+        onOk={handleUpdate} 
         onCancel={handleEditCancel}
-        confirmLoading={isUpdating}
+        confirmLoading={isUpdating} 
         okText="Update" 
       >
         <Form form={form} layout="vertical">
-          <Row >
-            <Col span={24}>
+          <Row gutter={16}>
+            <Col span={12}>
               <Form.Item name="USER NAME" label="User Name" rules={[{ required: true, message: 'Please input the user name!' }]}>
                 <Input prefix={<UserOutlined />} placeholder="Enter user name" />
               </Form.Item>
             </Col>
-            </Row>
-            <Row>
-            <Col span={24}>
+            <Col span={12}>
               <Form.Item name="LOGIN" label="Login" rules={[{ required: true, message: 'Please input the login!' }]}>
                 <Input prefix={<LockOutlined />} placeholder="Enter login" />
               </Form.Item>
             </Col>
-            </Row>
-        
-         
-          <Row>
-            <Col span={24}>
-            <Form.Item name="ROLE" label="Role" rules={[{ required: true, message: 'Please select a role!' }]}>
+          </Row>
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item name="ROLE" label="Role" rules={[{ required: true, message: 'Please select a role!' }]}>
                 <Select placeholder="Select a role" prefix={<SafetyOutlined />}>
                   <Option value="Admin">Admin</Option>
                   <Option value="Teacher">Teacher</Option>
