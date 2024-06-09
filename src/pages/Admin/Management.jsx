@@ -53,27 +53,20 @@ const Management = () => {
     },
     {
       key: 6,
-      "USER NAME": "Alice Johnson",
-      LOGIN: "ajohnson",
-      ROLE: "Moderator",
-      "CREATED AT": "2024-03-10T09:00:00Z",
+      "USER NAME": "John Doe",
+      LOGIN: "jdoe",
+      ROLE: "Admin",
+      "CREATED AT": "2024-01-15T08:30:00Z",
     },
     {
       key: 7,
-      "USER NAME": "Bob Brown",
-      LOGIN: "bbrown",
+      "USER NAME": "Jane Smith",
+      LOGIN: "jsmith",
       ROLE: "User",
-      "CREATED AT": "2024-04-05T14:20:00Z",
+      "CREATED AT": "2024-02-20T12:45:00Z",
     },
     {
       key: 8,
-      "USER NAME": "Charlie Davis",
-      LOGIN: "cdavis",
-      ROLE: "Admin",
-      "CREATED AT": "2024-05-12T11:10:00Z",
-    },
-    {
-      key: 9,
       "USER NAME": "Alice Johnson",
       LOGIN: "ajohnson",
       ROLE: "Moderator",
@@ -85,17 +78,17 @@ const Management = () => {
       LOGIN: "bbrown",
       ROLE: "User",
       "CREATED AT": "2024-04-05T14:20:00Z",
-    },
-    {
-      key: 11,
-      "USER NAME": "Charlie Davis",
-      LOGIN: "cdavis",
-      ROLE: "Admin",
-      "CREATED AT": "2024-05-12T11:10:00Z",
-    },
+    }
   ];
 
   const [data, setData] = useState(initialData);
+  const [filteredInfo, setFilteredInfo] = useState({});
+  const [sortedInfo, setSortedInfo] = useState({});
+  const [pagination, setPagination] = useState({
+    current: 1,
+    pageSize: 7,
+    total: initialData.length,
+  });
 
   const start = () => {
     setLoading(true);
@@ -109,6 +102,31 @@ const Management = () => {
     setCurrentRecord(record);
     setIsEditModalVisible(true);
     form.setFieldsValue(record);
+  };
+
+  const handleChange = (pagination, filters) => {
+    console.log('Various parameters', pagination, filters);
+    setFilteredInfo(filters);
+    setPagination({
+      ...pagination,
+      current: pagination.current,
+    });
+  };
+
+  const clearFilters = () => {
+    setFilteredInfo({});
+  };
+
+  const clearAll = () => {
+    setFilteredInfo({});
+    setSortedInfo({});
+  };
+
+  const setAgeSort = () => {
+    setSortedInfo({
+      order: 'descend',
+      columnKey: 'age',
+    });
   };
 
   const handleUpdate = () => {
@@ -154,10 +172,15 @@ const Management = () => {
     setSearchText(value);
     const filteredData = initialData.filter(item => item['USER NAME'] && item['USER NAME'].toLowerCase().includes(value));
     setData(filteredData);
+    setPagination({
+      ...pagination,
+      total: filteredData.length,
+    });
   };
 
   const exportToExcel = () => {
-    const worksheet = XLSX.utils.json_to_sheet(data);
+    const selectedData = data.filter(item => selectedRowKeys.includes(item.key));
+    const worksheet = XLSX.utils.json_to_sheet(selectedData);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "User Data");
     const now = new Date();
@@ -201,8 +224,25 @@ const Management = () => {
       dataIndex: 'USER NAME',
     },
     {
-      title: 'Role',
+      title: 'ROLE',
       dataIndex: 'ROLE',
+      key: 'ROLE',
+      filters: [
+        {
+          text: 'Admin',
+          value: 'Admin',
+        },
+        {
+          text: 'User',
+          value: 'User',
+        },
+        {
+          text: 'Moderator',
+          value: 'Moderator',
+        },
+      ],
+      filteredValue: filteredInfo.ROLE || null,
+      onFilter: (value, record) => record.ROLE.includes(value),
     },
     {
       title: 'LOGIN',
@@ -242,7 +282,25 @@ const Management = () => {
           {selectedRowKeys.length ? `Selected ${selectedRowKeys.length} items` : ''}
         </span>
       </div>
-      <Table rowSelection={rowSelection} columns={columns} dataSource={data} pagination={{ pageSize: 7 }} className='overflow-auto' />
+      <Table
+        rowSelection={rowSelection}
+        columns={columns}
+        dataSource={data}
+        pagination={{
+          current: pagination.current,
+          pageSize: pagination.pageSize,
+          total: pagination.total,
+          onChange: (page, pageSize) => {
+            setPagination({
+              ...pagination,
+              current: page,
+              pageSize: pageSize,
+            });
+          },
+        }}
+        className='overflow-auto'
+        onChange={handleChange}
+      />
 
       <Modal
         title="Edit Record"
@@ -270,8 +328,8 @@ const Management = () => {
               <Form.Item name="ROLE" label="Role" rules={[{ required: true, message: 'Please select a role!' }]}>
                 <Select placeholder="Select a role" prefix={<SafetyOutlined />}>
                   <Option value="Admin">Admin</Option>
-                  <Option value="Teacher">Teacher</Option>
-                  <Option value="Student">Student</Option>
+                  <Option value="User">User</Option>
+                  <Option value="Moderator">Moderator</Option>
                 </Select>
               </Form.Item>
             </Col>
