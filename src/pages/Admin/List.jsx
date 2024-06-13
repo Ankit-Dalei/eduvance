@@ -269,13 +269,13 @@ const List = () => {
       <div style={{ marginBottom: 2 }} className='-mt-5'>
         <Input
           placeholder="Search by name"
-          className='bg-gray-300 rounded-xl'
+          className='bg-gray-300 rounded-xl w-[150px] xl:w-[53%] mr-16'
           value={searchText}
           onChange={handleSearch}
-          style={{ width: 600, marginRight: 16 }}
+          
         />
    
-        <Button type="dashed" onClick={exportToExcel} style={{ marginLeft: 16 }} disabled={!selectedRowKeys.length} loading={loading}>
+        <Button className='mt-2' type="primary" onClick={exportToExcel} style={{ marginLeft: 16 }} disabled={!selectedRowKeys.length} loading={loading}>
           Export to Excel
         </Button>
         <span style={{ marginLeft: 8 }}>

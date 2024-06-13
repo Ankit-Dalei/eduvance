@@ -38,11 +38,11 @@ const Sidebar = ({ children }) => {
   };
 
   return (
-    <div className="p-10">
-      <div className="w-[94%] fixed h-[94vh] bg-purple-100 rounded-3xl p-9 -mt-3 mr-10">
-        <div className="flex justify-between -mt-6 mb-3 items-center">
+    <div className="xl:p-10">
+      <div className="w-[94%] fixed xl:h-[94vh] h-[100vh] bg-purple-100 rounded-3xl xl:p-9 -mt-3 mr-10">
+        <div className="flex justify-between  mb-3 items-center mt-3 xl:-mt-6">
           <div className="flex relative left-[17%]">
-          <span className="cursor-pointer relative top-5 left-8" onClick={toggleSidebar}>
+          <span className="cursor-pointer relative top-5 left-8 hidden xl:inline-block" onClick={toggleSidebar}>
             {!isCollapsed ? (
               <FaBarsStaggered className="inline-block w-6 h-6 mr-2 -mt-2 text-black" />
             ) : (
@@ -52,7 +52,7 @@ const Sidebar = ({ children }) => {
           <h1 className="text-3xl text-black  font-serif mt-3 ml-10 hidden md:inline-block">Eduvance</h1>
           </div>
       
-          <div className="flex items-center space-x-4 mr-8">
+          <div className="flex items-center space-x-4 mr-8 mt-10 xl:mt-0">
             <Tooltip title="Add the Roles">
             <button
               type="button"
@@ -91,22 +91,31 @@ const Sidebar = ({ children }) => {
           </div>
         
         </div>
-        <aside className="h-[100%] w-[100%] px-4 flex justify-between ">
-          <div className={`mt-24 transition-all duration-300 ${isCollapsed ? "w-10" : "w-64"} `}>
-          <ul className={` flex flex-col  -mt-20 space-y-3`}>
+        <aside className="h-[100%] w-[100%] px-4 flex justify-between mt-10">
+          <div className={`mt-24 transition-all duration-300 ${isCollapsed ? "w-10" : "w-64"}`} >
+          <ul className={` flex flex-col   -mt-20 space-y-3 w-1 xl:w-auto`}>
           <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to="/home" className="px-[0.5rem]">
                   <FaHome className="inline-block w-6 h-6 mr-2 -mt-2" />
+                  <span className="xl:inline-block hidden">
+                  {isCollapsed ? "" : " Home"}
+
+                  </span>
                   
-                    {isCollapsed ? "" : " Home"}
+                    
+                      
                     
                 </Link>
               </li>
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to="/list" className="px-[0.5rem]">
                   <MdOutlinePermContactCalendar className="inline-block w-6 h-6 mr-2 -mt-2" />
+                  <span className="xl:inline-block hidden">
                   
                   {isCollapsed ? "" : " University"}
+                  </span>
+
+                  
                   
                 </Link>
               </li>
@@ -114,37 +123,50 @@ const Sidebar = ({ children }) => {
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to="/manage" className="px-[0.5rem]">
                   <MdManageAccounts className="inline-block w-6 h-6 mr-2 -mt-2" />
+                  <span className="xl:inline-block hidden">
                   
                   {isCollapsed ? "" : " Management"}
+                  </span>
                     
                 </Link>
               </li>
               <li className={`mb-2 hover:bg-purple-500  py-2 rounded-2xl  `}>
                 <Link to="/campus" className="px-[0.5rem]">
                   <BiBuildingHouse className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  
+                  <span className="xl:inline-block hidden">
+
                    {isCollapsed ? "" : "  Campus"} 
+                   </span>
                 </Link>
               </li>
               <li className="mb-2  hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to={'/report'} className="px-[0.5rem]">
                   <HiOutlineDocumentReport className="inline-block w-6 h-6 mr-2 -mt-2" />
+                  <span className="xl:inline-block hidden">
                   
                    {isCollapsed ? "" : "   Reports "}
+                   </span>
+                   
                 </Link>
               </li>
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to={'/setting'} className="px-[0.5rem]">
                   <IoSettingsOutline className="inline-block w-6 h-6 mr-2 -mt-2" />
+                  <span className="xl:inline-block hidden">
                   
                    {isCollapsed ? "" : " Setting"} 
+                   </span>
+                   
                 </Link>
               </li>
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl relative -bottom-64">
                 <Link className="px-[0.5rem]">
                   <BiLogOut className="inline-block w-6 h-6 mr-2 -mt-2 " />
-                  
-                   {isCollapsed ? "" : " Logout"}
+                  <span className="xl:inline-block hidden">
+                  {isCollapsed ? "" : " Logout"}
+
+                  </span>
+                   
                  </Link>
               </li>
               
@@ -153,7 +175,10 @@ const Sidebar = ({ children }) => {
           </div>
           <div className="absolute top-0">
           </div>
-          <div className="w-[96%] bg-white p-10 rounded-3xl overflow-hidden h-[98%] ml-3">
+        <div className="w-[250%] xl:w-[100%] bg-white p-12 xl:overflow-hidden overflow-y-auto xl:h-[98%] h-[80%] ml-3 xl:-mt-8 md:rounded-xl">
+
+
+
             {children}
           </div>
           <Modal show={openModal} size="md" onClose={onCloseModal}>
@@ -172,6 +197,7 @@ const Sidebar = ({ children }) => {
                     }}
                   >
                     <LuBuilding2 className="inline-block w-6 h-6 mr-2 -mt-2" />
+                  
                     Management
                   </button>
                   <button
@@ -182,6 +208,7 @@ const Sidebar = ({ children }) => {
                     }}
                   >
                     <BiBuildingHouse className="inline-block w-6 h-6 mr-2 -mt-2" />
+                 
                     University
                   </button>
                   <button
@@ -192,6 +219,7 @@ const Sidebar = ({ children }) => {
                     }}
                   >
                     <TbBuildingEstate className="inline-block w-6 h-6 mr-2 -mt-2" />
+                   
                     Campus
                   </button>
                 </div>
