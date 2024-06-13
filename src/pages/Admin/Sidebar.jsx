@@ -20,11 +20,11 @@ const Sidebar = ({ children }) => {
   const [campusModal, setCampusModal] = useState(false);
   const [universityModal, setUniversityModal] = useState(false);
 
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
   function onCloseModal() {
     setOpenModal(false);
-    setEmail('');
+    setEmail("");
   }
 
   function closeAllModals() {
@@ -42,143 +42,169 @@ const Sidebar = ({ children }) => {
       <div className="w-[94%] fixed xl:h-[94vh] h-[100vh] bg-purple-100 rounded-3xl xl:p-9 -mt-3 mr-10">
         <div className="flex justify-between  mb-3 items-center mt-3 xl:-mt-6">
           <div className="flex relative left-[17%]">
-          <span className="cursor-pointer relative top-5 left-8 hidden xl:inline-block" onClick={toggleSidebar}>
-            {!isCollapsed ? (
-              <FaBarsStaggered className="inline-block w-6 h-6 mr-2 -mt-2 text-black" />
-            ) : (
-              <RxCross2 className="inline-block w-6 h-6 mr-2 -mt-2 text-black font-extrabold" />
-            )}
-          </span>
-          <h1 className="text-3xl text-black  font-serif mt-3 ml-10 hidden md:inline-block">Eduvance</h1>
+            <span
+              className="cursor-pointer relative top-5 left-8 hidden xl:inline-block"
+              onClick={toggleSidebar}
+            >
+              {!isCollapsed ? (
+                <FaBarsStaggered className="inline-block w-6 h-6 mr-2 -mt-2 text-black" />
+              ) : (
+                <RxCross2 className="inline-block w-6 h-6 mr-2 -mt-2 text-black font-extrabold" />
+              )}
+            </span>
+            <h1 className="text-3xl text-black  font-serif mt-3 ml-10 hidden md:inline-block">
+              Eduvance
+            </h1>
           </div>
-      
+
           <div className="flex items-center space-x-4 mr-8 mt-10 xl:mt-0">
             <Tooltip title="Add the Roles">
-            <button
-              type="button"
-              onClick={() => setOpenModal(true)}
-              className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm p-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-            >
-              <PiPlus className="inline-block w-5 h-5 text-white space-x-2" />
-             
-            </button>
+              <button
+                type="button"
+                onClick={() => setOpenModal(true)}
+                className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm p-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+              >
+                <PiPlus className="inline-block w-5 h-5 text-white space-x-2" />
+              </button>
             </Tooltip>
             <div className="">
-            <Dropdown
-              label={
-                <Avatar
-                  alt="User settings"
-                  img="https://static.vecteezy.com/system/resources/thumbnails/043/900/719/small/user-profile-icon-illustration-vector.jpg"
-                  rounded
-                />
-              }
-              arrowIcon={false}
-              inline
-            >
-              <div>
-                <Dropdown.Header>
-                  <span className="block text-sm">Bikash Malu</span>
-                  <span className="block truncate text-sm font-medium">
-                    bikashmalu1@gmail.com
-                  </span>
-                </Dropdown.Header>
-                <Dropdown.Item>Edit profile</Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item>Logout</Dropdown.Item>
-              </div>
-            </Dropdown>
+              <Dropdown
+                label={
+                  <Avatar
+                    alt="User settings"
+                    img="https://static.vecteezy.com/system/resources/thumbnails/043/900/719/small/user-profile-icon-illustration-vector.jpg"
+                    rounded
+                  />
+                }
+                arrowIcon={false}
+                inline
+              >
+                <div>
+                  <Dropdown.Header>
+                    <span className="block text-sm">Bikash Malu</span>
+                    <span className="block truncate text-sm font-medium">
+                      bikashmalu1@gmail.com
+                    </span>
+                  </Dropdown.Header>
+                  <Dropdown.Item>Edit profile</Dropdown.Item>
+                  <Dropdown.Divider />
+                  <Dropdown.Item>Logout</Dropdown.Item>
+                </div>
+              </Dropdown>
+            </div>
           </div>
-          </div>
-        
         </div>
         <aside className="h-[100%] w-[100%] px-4 flex justify-between mt-10">
-          <div className={`mt-24 transition-all duration-300 ${isCollapsed ? "w-10" : "w-64"}`} >
-          <ul className={` flex flex-col   -mt-20 space-y-3 w-1 xl:w-auto`}>
-          <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
+          <div
+            className={`mt-24 transition-all duration-300 ${
+              isCollapsed ? "w-10" : "w-64"
+            }`}
+          >
+            <ul className={` flex flex-col   -mt-20 space-y-3 w-1 xl:w-auto`}>
+              <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to="/home" className="px-[0.5rem]">
                   <FaHome className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  <span className="xl:inline-block hidden">
-                  {isCollapsed ? "" : " Home"}
-
-                  </span>
-                  
-                    
-                      
-                    
+                  {!isCollapsed ? (
+                    <>
+                      <span className="xl:inline-block hidden">
+                        {isCollapsed ? "" : " Home"}
+                      </span>
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </Link>
               </li>
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to="/list" className="px-[0.5rem]">
                   <MdOutlinePermContactCalendar className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  <span className="xl:inline-block hidden">
-                  
-                  {isCollapsed ? "" : " University"}
-                  </span>
-
-                  
-                  
+                  {!isCollapsed ? (
+                    <>
+                      <span className="xl:inline-block hidden">
+                        {isCollapsed ? "" : "University"}
+                      </span>
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </Link>
               </li>
-              
+
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to="/manage" className="px-[0.5rem]">
                   <MdManageAccounts className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  <span className="xl:inline-block hidden">
-                  
-                  {isCollapsed ? "" : " Management"}
-                  </span>
-                    
+                  {!isCollapsed ? (
+                    <>
+                      <span className="xl:inline-block hidden">
+                        {isCollapsed ? "" : "Management"}
+                      </span>
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </Link>
               </li>
               <li className={`mb-2 hover:bg-purple-500  py-2 rounded-2xl  `}>
                 <Link to="/campus" className="px-[0.5rem]">
                   <BiBuildingHouse className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  <span className="xl:inline-block hidden">
 
-                   {isCollapsed ? "" : "  Campus"} 
-                   </span>
+                  {!isCollapsed ? (
+                    <>
+                      <span className="xl:inline-block hidden">
+                        {isCollapsed ? "" : "Campus"}
+                      </span>
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </Link>
               </li>
               <li className="mb-2  hover:bg-purple-500  py-2 rounded-2xl ">
-                <Link to={'/report'} className="px-[0.5rem]">
+                <Link to={"/report"} className="px-[0.5rem]">
                   <HiOutlineDocumentReport className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  <span className="xl:inline-block hidden">
-                  
-                   {isCollapsed ? "" : "   Reports "}
-                   </span>
-                   
+                  {!isCollapsed ? (
+                    <>
+                      <span className="xl:inline-block hidden">
+                        {isCollapsed ? "" : "Report"}
+                      </span>
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </Link>
               </li>
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
-                <Link to={'/setting'} className="px-[0.5rem]">
+                <Link to={"/setting"} className="px-[0.5rem]">
                   <IoSettingsOutline className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  <span className="xl:inline-block hidden">
-                  
-                   {isCollapsed ? "" : " Setting"} 
-                   </span>
-                   
+                  {!isCollapsed ? (
+                    <>
+                      <span className="xl:inline-block hidden">
+                        {isCollapsed ? "" : "Setting"}
+                      </span>
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </Link>
               </li>
-              <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl relative -bottom-64">
+              <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl relative -bottom-56">
                 <Link className="px-[0.5rem]">
                   <BiLogOut className="inline-block w-6 h-6 mr-2 -mt-2 " />
-                  <span className="xl:inline-block hidden">
-                  {isCollapsed ? "" : " Logout"}
-
-                  </span>
-                   
-                 </Link>
+                  {!isCollapsed ? (
+                    <>
+                      <span className="xl:inline-block hidden">
+                        {isCollapsed ? "" : "Logout"}
+                      </span>
+                    </>
+                  ) : (
+                    ""
+                  )}
+                </Link>
               </li>
-              
             </ul>
-
           </div>
-          <div className="absolute top-0">
-          </div>
-        <div className="w-[250%] xl:w-[100%] bg-white p-12 xl:overflow-hidden overflow-y-auto xl:h-[98%] h-[80%] ml-3 xl:-mt-8 md:rounded-xl">
-
-
-
+          <div className="absolute top-0"></div>
+          <div className="w-[250%] xl:w-[100%] bg-white p-12 xl:overflow-hidden overflow-y-auto xl:h-[98%] h-[80%] ml-3 xl:-mt-8 md:rounded-xl">
             {children}
           </div>
           <Modal show={openModal} size="md" onClose={onCloseModal}>
@@ -197,7 +223,6 @@ const Sidebar = ({ children }) => {
                     }}
                   >
                     <LuBuilding2 className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  
                     Management
                   </button>
                   <button
@@ -208,7 +233,6 @@ const Sidebar = ({ children }) => {
                     }}
                   >
                     <BiBuildingHouse className="inline-block w-6 h-6 mr-2 -mt-2" />
-                 
                     University
                   </button>
                   <button
@@ -219,7 +243,6 @@ const Sidebar = ({ children }) => {
                     }}
                   >
                     <TbBuildingEstate className="inline-block w-6 h-6 mr-2 -mt-2" />
-                   
                     Campus
                   </button>
                 </div>
@@ -229,13 +252,14 @@ const Sidebar = ({ children }) => {
 
           {/* Management Modal */}
           <Modal show={managementModal} size="md" onClose={closeAllModals}>
-            <Modal.Header>
-              Create Management Role
-            </Modal.Header>
+            <Modal.Header>Create Management Role</Modal.Header>
             <Modal.Body>
               <form>
                 <div className="mb-4">
-                  <label htmlFor="managementName" className="block text-gray-700">
+                  <label
+                    htmlFor="managementName"
+                    className="block text-gray-700"
+                  >
                     Name:
                   </label>
                   <input
@@ -245,7 +269,10 @@ const Sidebar = ({ children }) => {
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="managementLocation" className="block text-gray-700">
+                  <label
+                    htmlFor="managementLocation"
+                    className="block text-gray-700"
+                  >
                     Location:
                   </label>
                   <input
@@ -255,7 +282,10 @@ const Sidebar = ({ children }) => {
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="managementState" className="block text-gray-700">
+                  <label
+                    htmlFor="managementState"
+                    className="block text-gray-700"
+                  >
                     State:
                   </label>
                   <input
@@ -276,9 +306,7 @@ const Sidebar = ({ children }) => {
 
           {/* Campus Modal */}
           <Modal show={campusModal} size="md" onClose={closeAllModals}>
-            <Modal.Header>
-              Create Campus Role
-            </Modal.Header>
+            <Modal.Header>Create Campus Role</Modal.Header>
             <Modal.Body>
               <form>
                 <div className="mb-4">
@@ -292,7 +320,10 @@ const Sidebar = ({ children }) => {
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="campusLocation" className="block text-gray-700">
+                  <label
+                    htmlFor="campusLocation"
+                    className="block text-gray-700"
+                  >
                     Location:
                   </label>
                   <input
@@ -323,13 +354,14 @@ const Sidebar = ({ children }) => {
 
           {/* University Modal */}
           <Modal show={universityModal} size="md" onClose={closeAllModals}>
-            <Modal.Header>
-              Create University Role
-            </Modal.Header>
+            <Modal.Header>Create University Role</Modal.Header>
             <Modal.Body>
               <form>
                 <div className="mb-4">
-                  <label htmlFor="universityName" className="block text-gray-700">
+                  <label
+                    htmlFor="universityName"
+                    className="block text-gray-700"
+                  >
                     Name:
                   </label>
                   <input
@@ -339,7 +371,10 @@ const Sidebar = ({ children }) => {
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="universityLocation" className="block text-gray-700">
+                  <label
+                    htmlFor="universityLocation"
+                    className="block text-gray-700"
+                  >
                     Location:
                   </label>
                   <input
@@ -349,7 +384,10 @@ const Sidebar = ({ children }) => {
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="universityState" className="block text-gray-700">
+                  <label
+                    htmlFor="universityState"
+                    className="block text-gray-700"
+                  >
                     State:
                   </label>
                   <input
