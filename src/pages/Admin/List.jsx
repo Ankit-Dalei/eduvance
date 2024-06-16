@@ -113,22 +113,7 @@ const List = () => {
     });
   };
 
-  const clearFilters = () => {
-    setFilteredInfo({});
-  };
-
-  const clearAll = () => {
-    setFilteredInfo({});
-    setSortedInfo({});
-  };
-
-  const setAgeSort = () => {
-    setSortedInfo({
-      order: 'descend',
-      columnKey: 'age',
-    });
-  };
-
+ 
   const handleUpdate = () => {
     form.validateFields().then(values => {
       setIsUpdating(true); 
@@ -269,7 +254,7 @@ const List = () => {
       <div style={{ marginBottom: 2 }} className='-mt-5'>
         <Input
           placeholder="Search by name"
-          className='bg-gray-300 rounded-xl w-[200px] xl:w-[53%] mr-16'
+          className='bg-gray-300 rounded-xl w-[200px] xl:w-[53%] mr-16 mb-2'
           value={searchText}
           onChange={handleSearch}
           

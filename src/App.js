@@ -9,6 +9,7 @@ import Management from './pages/Admin/Management';
 import Campus from './pages/Admin/Campus';
 import Report from './pages/Admin/Report';
 import Setting from './pages/Admin/Setting';
+import Demo from './pages/Admin/Demo';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/campus' element={<Campus/>}/>
           <Route path='/report' element={<Report/>}/>
           <Route path='/setting' element={<Setting/>}/>
+          <Route path='/demo' element={<Demo/>}/>
         
         </Routes>
       </BrowserRouter>

@@ -4,8 +4,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../Service/LogAuth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const Login = () => {
+    const onChange=()=>{
+        alert('bikash')
+    }
     const navigate = useNavigate();
     const [inputInitial, setInputInitial] = useState({
         Username: '',
@@ -155,8 +159,13 @@ const Login = () => {
                                     </label>
                                     <div className="login_forgot_password"><Link to='/ForgotPassword'>Forgot password?</Link></div>
                                 </div>
+                                
+                                <ReCAPTCHA className='flex justify-center space-y-10'
+          sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+          onChange={onChange}
+        />
 
-                                <button className="log_signin_button" onClick={handleSubmit}>Sign in</button>
+                                <button className="log_signin_button mt-2" onClick={handleSubmit} >Sign in</button>
 
                                 <div className="log_or_divider">Or Login with</div>
                                 <div className='log_g_cen'>

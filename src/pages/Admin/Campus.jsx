@@ -269,7 +269,7 @@ const Campus = () => {
       <div style={{ marginBottom: 2 }} className='-mt-5'>
         <Input
           placeholder="Search by name"
-          className='bg-gray-300 rounded-xl w-[200px] xl:w-[53%] mr-16'
+          className='bg-gray-300 rounded-xl w-[200px] xl:w-[53%] mr-16 mb-2'
           value={searchText}
           onChange={handleSearch}
           
