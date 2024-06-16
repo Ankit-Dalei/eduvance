@@ -39,7 +39,7 @@ const Sidebar = ({ children }) => {
 
   return (
     <div className="xl:p-10">
-      <div className="w-[94%] fixed xl:h-[94vh] h-[100vh] bg-purple-100 rounded-3xl xl:p-9 -mt-3 mr-10">
+      <div className="w-[94%] max-w-[100%] fixed xl:h-[94vh] h-[100vh] bg-purple-100 rounded-3xl xl:p-9 -mt-3 mr-10">
         <div className="flex justify-between  mb-3 items-center mt-3 xl:-mt-6">
           <div className="flex relative left-[17%]">
             <span
@@ -97,7 +97,7 @@ const Sidebar = ({ children }) => {
         <aside className="h-[100%] w-[100%] px-4 flex justify-between mt-10">
           <div
             className={`mt-24 transition-all duration-300 ${
-              isCollapsed ? "w-10" : "w-64"
+              isCollapsed ? "w-10" : "w-56"
             }`}
           >
             <ul className={` flex flex-col   -mt-20 space-y-3 w-1 xl:w-auto`}>
@@ -188,7 +188,7 @@ const Sidebar = ({ children }) => {
                 </Link>
               </li>
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl relative -bottom-56">
-                <Link className="px-[0.5rem]">
+                <Link className="px-[0.5rem]" to={'/'}>
                   <BiLogOut className="inline-block w-6 h-6 mr-2 -mt-2 " />
                   {!isCollapsed ? (
                     <>
