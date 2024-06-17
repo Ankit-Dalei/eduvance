@@ -10,6 +10,10 @@ import Campus from './pages/Admin/Campus';
 import Report from './pages/Admin/Report';
 import Setting from './pages/Admin/Setting';
 import Demo from './pages/Admin/Demo';
+import Sidebar from './pages/Teacher/SideBar';
+import Layout from './pages/Teacher/Layout';
+import Dashboard from './pages/Teacher/Dashboard';
+import THome from './pages/Teacher/THome';
 
 function App() {
   return (
@@ -27,6 +31,10 @@ function App() {
           <Route path='/report' element={<Report/>}/>
           <Route path='/setting' element={<Setting/>}/>
           <Route path='/demo' element={<Demo/>}/>
+          {/* teacher */}
+          <Route path='/teacher' element={<Layout/>}/>
+          <Route path='/teacher/dashboard' element={<Dashboard/>}/>
+          <Route path='/teacher/home' element={<THome/>}/>
         
         </Routes>
       </BrowserRouter>
