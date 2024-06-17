@@ -50,7 +50,7 @@ const Sidebar = () => {
       <div
         className={`${
           open ? "w-56" : "w-20"
-        } bg-[#121212] h-[100%] p-5 pt-8 relative duration-300 rounded-md`}
+        } bg-[#121212] h-[100%] p-5 pt-8 relative duration-300 `}
       >
         <IoIosArrowBack
           size={25}
