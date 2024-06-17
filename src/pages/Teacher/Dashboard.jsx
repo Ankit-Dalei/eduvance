@@ -348,7 +348,7 @@ const Dashboard = () => {
        
       </div>
       <hr />
-      <Alert color="info" onDismiss={() => alert('Alert dismissed!')} className='mt-2 w-[20%] xl:w-[100%] '>
+      <Alert color="info" onDismiss={() => alert('Alert dismissed!')} className='mt-2 w-[40%] xl:w-[100%] '>
       <span className="font-medium">Info alert!</span> Change a few things up and try submitting again.
     </Alert>
     </div>

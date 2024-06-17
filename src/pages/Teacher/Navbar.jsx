@@ -6,7 +6,7 @@ import { BiHome, BiUser, BiCog } from 'react-icons/bi';
 const Navigation = () => {
   return (
     <div>
-    <nav className='w-[50%] md:w-[100%] h-24 border-b-2 flex md:justify-between items-center px-2 rounded-md bg-gray-100 space-x-14 xl:space-x-0'>
+    <nav className=' md:w-[100%] h-24 border-b-2 flex justify-between items-center px-2 rounded-md bg-gray-100 space-x-14 xl:space-x-0'>
       <div className='text-2xl xl:text-3xl font-bold'>
         Eduvance
       </div>
