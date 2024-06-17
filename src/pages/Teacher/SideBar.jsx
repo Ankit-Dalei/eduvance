@@ -30,7 +30,6 @@ const Sidebar = () => {
   );
 
   const Menus = [
-    
     { title: "Home", icon: <BiHome size={20} />, path: "/teacher/home" },
     { title: "Dashboard", icon: <MdDashboard size={20} />, path: "/teacher/dashboard" },
     {
@@ -85,26 +84,29 @@ const Sidebar = () => {
                 Menu.gap ? "mt-9" : "mt-2"
               } ${index === 0 && "bg-light-white"}`}
             >
-              <span>{Menu.icon}</span>
               {Menu.dropdown ? (
                 <Dropdown overlay={Menu.dropdown} trigger={['click']}>
-                  <span
-                    className={`flex items-center gap-x-4 ${
+                  <div className="flex items-center gap-x-4 w-full">
+                    <span>{Menu.icon}</span>
+                    <span className={`flex justify-between items-center w-full ${
                       !open && "hidden"
-                    } origin-left duration-200`}
-                  >
-                    {Menu.title}
-                    <IoIosArrowDown className="ml-9" />
-                  </span>
+                    } origin-left duration-200`}>
+                      {Menu.title}
+                      <IoIosArrowDown className="ml-2" />
+                    </span>
+                  </div>
                 </Dropdown>
               ) : (
                 <Link
                   to={Menu.path || "#"}
-                  className={`flex items-center gap-x-4 ${
-                    !open && "hidden"
-                  } origin-left duration-200`}
+                  className="flex items-center gap-x-4 w-full"
                 >
-                  {Menu.title}
+                  <span>{Menu.icon}</span>
+                  <span className={`flex justify-between items-center w-full ${
+                    !open && "hidden"
+                  } origin-left duration-200`}>
+                    {Menu.title}
+                  </span>
                 </Link>
               )}
             </li>
