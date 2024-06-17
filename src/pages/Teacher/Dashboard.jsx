@@ -348,11 +348,11 @@ const Dashboard = () => {
        
       </div>
       <hr />
-      <Alert color="info" onDismiss={() => alert('Alert dismissed!')} className='mt-2 w-[40%] xl:w-[100%] '>
+      <Alert color="info" onDismiss={() => alert('Alert dismissed!')} className='mt-2 w-[20%] xl:w-[100%] '>
       <span className="font-medium">Info alert!</span> Change a few things up and try submitting again.
     </Alert>
     </div>
-    <div style={{ marginBottom: '' }} className=''>
+    <div style={{ marginBottom: '' }} className='flex flex-col md:flex-row'>
         <Input
           placeholder="Search by name"
           className='bg-gray-100 rounded-xl w-[200px] xl:w-[35%] mr-16 mb-2 -p-5'
@@ -360,14 +360,15 @@ const Dashboard = () => {
           onChange={handleSearch}
           
         />
-   
-        <Button className='mt-2' type="dashed" onClick={exportToExcel} style={{ marginLeft: 16 }} disabled={!selectedRowKeys.length} loading={loading}>
+    
+        <Button className='mt-2 w-[12%]' type="dashed" onClick={exportToExcel} style={{ marginLeft: 16 }} disabled={!selectedRowKeys.length} loading={loading}>
           Export to Excel
         </Button>
         <span style={{ marginLeft: 8 }}>
           {selectedRowKeys.length ? `Selected ${selectedRowKeys.length} items` : ''}
         </span>
       </div>
+      <div className="w-[50%] xl:w-[100%] overflow-x-auto">
       <Table
         rowSelection={rowSelection}
         columns={columns}
@@ -384,9 +385,11 @@ const Dashboard = () => {
             });
           },
         }}
-        className='sm:overflow-x-auto'
         onChange={handleChange}
+        scroll={{ x: 800 }} // Adjust this value as needed to control the scroll width
       />
+    </div>
+  
 
       <Modal
         title="Edit Record"
