@@ -349,13 +349,21 @@ const Dashboard = () => {
         </Modal>
 
         <Modal
-          title="Confirm Delete"
-          visible={isDeleteModalVisible}
-          onOk={handleDeleteOk}
-          onCancel={handleDeleteCancel}
-        >
-          <p>Are you sure you want to delete this user?</p>
-        </Modal>
+      title="Confirm Delete"
+      visible={isDeleteModalVisible}
+      onCancel={handleDeleteCancel}
+      footer={[
+        <Button key="cancel" onClick={handleDeleteCancel}>
+          Cancel
+        </Button>,
+        <Button key="delete" type="primary" danger onClick={handleDeleteOk}>
+          Delete
+        </Button>,
+      ]}
+    >
+      <p>Are you sure you want to delete?</p>
+    </Modal>
+
       </div>
     </Layout>
   );
