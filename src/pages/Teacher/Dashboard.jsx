@@ -54,6 +54,34 @@ const Dashboard = () => {
       ROLE: "Admin",
       "CREATED AT": "2024-05-12T11:10:00Z",
     },
+    {
+      key: 6,
+      "USER NAME": "Jane Smith",
+      LOGIN: "jsmith",
+      ROLE: "User",
+      "CREATED AT": "2024-02-20T12:45:00Z",
+    },
+    {
+      key: 7,
+      "USER NAME": "Alice Johnson",
+      LOGIN: "ajohnson",
+      ROLE: "Moderator",
+      "CREATED AT": "2024-03-10T09:00:00Z",
+    },
+    {
+      key: 8,
+      "USER NAME": "Bob Brown",
+      LOGIN: "bbrown",
+      ROLE: "User",
+      "CREATED AT": "2024-04-05T14:20:00Z",
+    },
+    {
+      key: 9,
+      "USER NAME": "Charlie Davis",
+      LOGIN: "cdavis",
+      ROLE: "Admin",
+      "CREATED AT": "2024-05-12T11:10:00Z",
+    },
     // Add more data as needed
   ];
 
@@ -225,7 +253,7 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <div className="p-4 md:p-7">
+      <div className="p-2 md:p-7">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
           {Array.from({ length: 8 }).map((_, index) => (
             <div
