@@ -8,7 +8,7 @@ const Navigation = () => {
       <div className="text-xl md:text-2xl lg:text-3xl font-bold">
         Eduvance
       </div>
-      <div className="hidden md:hidden xl:block text-sm md:text-2xl text-gray-500 font-semibold">
+      <div className="hidden  xl:block text-sm md:text-2xl text-gray-500 font-semibold">
         Welcome To Teacher Dashboard
       </div>
       <div className="flex items-center space-x-4">

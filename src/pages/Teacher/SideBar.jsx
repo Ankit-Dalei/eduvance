@@ -9,7 +9,7 @@ import { MdDashboard } from "react-icons/md";
 import { SiConfluence } from "react-icons/si";
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(window.innerWidth >= 640);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
 
   useEffect(() => {
@@ -65,14 +65,16 @@ const Sidebar = () => {
           open ? "w-56" : "w-20"
         } bg-[#121212] h-screen p-5 pt-8 relative duration-300`}
       >
-        <IoIosArrowBack
-          size={25}
-          color="white"
-          className={`absolute cursor-pointer right-1 top-9 w-7 border-dark-purple border-2 rounded-full ${
-            !open && "rotate-180"
-          }`}
-          onClick={() => setOpen(!open)}
-        />
+        {!isMobile && (
+          <IoIosArrowBack
+            size={25}
+            color="white"
+            className={`absolute cursor-pointer right-1 top-9 w-7 border-dark-purple border-2 rounded-full ${
+              !open && "rotate-180"
+            }`}
+            onClick={() => setOpen(!open)}
+          />
+        )}
         <div className="flex gap-x-4 items-center">
           <SiConfluence
             color="white"
@@ -107,7 +109,7 @@ const Sidebar = () => {
                       } origin-left duration-200`}
                     >
                       {Menu.title}
-                      <IoIosArrowDown className="ml-2" />
+                      {!isMobile && <IoIosArrowDown className="ml-2" />}
                     </span>
                   </div>
                 </Dropdown>
