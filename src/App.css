@@ -22,3 +22,13 @@
 .custom-dropdown-menu .ant-dropdown-menu-item:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
+.custom-ok-button {
+  background-color: #4CAF50 !important; /* Custom color */
+  border-color: #4CAF50 !important;
+  color: white !important;
+}
+
+.custom-ok-button:hover, .custom-ok-button:focus {
+  background-color: #45a049 !important; /* Custom hover color */
+  border-color: #45a049 !important;
+}

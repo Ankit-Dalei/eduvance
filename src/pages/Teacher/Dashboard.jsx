@@ -306,12 +306,13 @@ const Dashboard = () => {
         </div>
 
         <Modal
-          title="Edit User"
-          visible={isEditModalVisible}
-          onOk={handleUpdate}
-          confirmLoading={isUpdating}
-          onCancel={handleEditCancel}
-        >
+  title="Edit User"
+  visible={isEditModalVisible}
+  onOk={handleUpdate}
+  confirmLoading={isUpdating}
+  onCancel={handleEditCancel}
+  okButtonProps={{ className: 'custom-ok-button' }}
+>
           <Form form={form} layout="vertical" name="editUserForm">
             <Form.Item
               name="USER NAME"
