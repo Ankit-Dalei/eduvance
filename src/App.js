@@ -14,7 +14,7 @@ import Sidebar from './pages/Teacher/SideBar';
 import Layout from './pages/Teacher/Layout';
 import Dashboard from './pages/Teacher/Dashboard';
 import THome from './pages/Teacher/THome';
-
+console.log("hello")
 function App() {
   return (
     <>
