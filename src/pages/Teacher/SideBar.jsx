@@ -62,14 +62,14 @@ const Sidebar = () => {
     <div className="flex">
       <div
         className={`${
-          open ? "w-56" : "w-20"
-        } bg-[#121212] h-screen p-5 pt-8 relative duration-300`}
+          open ? "w-56" : "w-16"
+        } bg-[#121212] h-screen p-3 pt-8 relative duration-300`}
       >
         {!isMobile && (
           <IoIosArrowBack
             size={25}
-            color="white"
-            className={`absolute cursor-pointer right-1 top-9 w-7 border-dark-purple border-2 rounded-full ${
+            color="gray"
+            className={`absolute cursor-pointer  top-9 w-7 border-dark-purple border-2 rounded-full -right-2 text-gray-500  border-slate-500 ${
               !open && "rotate-180"
             }`}
             onClick={() => setOpen(!open)}
