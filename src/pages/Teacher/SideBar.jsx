@@ -1,9 +1,7 @@
 import { Dropdown, Menu } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BiHome } from "react-icons/bi";
-import { BsDashLg } from "react-icons/bs";
-import { FaBarsStaggered } from "react-icons/fa6";
 import { GoRepoPush } from "react-icons/go";
 import { IoIosArrowBack, IoIosArrowDown } from "react-icons/io";
 import { IoLogOutOutline, IoSettingsOutline } from "react-icons/io5";
@@ -12,6 +10,21 @@ import { SiConfluence } from "react-icons/si";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+      if (window.innerWidth < 640) {
+        setOpen(false);
+      } else {
+        setOpen(true);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const settingsMenu = (
     <Menu>
@@ -46,11 +59,11 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="flex rounded-md">
+    <div className="flex">
       <div
         className={`${
           open ? "w-56" : "w-20"
-        } bg-[#121212] h-[100%] p-5 pt-8 relative duration-300 `}
+        } bg-[#121212] h-screen p-5 pt-8 relative duration-300`}
       >
         <IoIosArrowBack
           size={25}
@@ -85,12 +98,14 @@ const Sidebar = () => {
               } ${index === 0 && "bg-light-white"}`}
             >
               {Menu.dropdown ? (
-                <Dropdown overlay={Menu.dropdown} trigger={['click']}>
+                <Dropdown overlay={Menu.dropdown} trigger={["click"]}>
                   <div className="flex items-center gap-x-4 w-full">
                     <span>{Menu.icon}</span>
-                    <span className={`flex justify-between items-center w-full ${
-                      !open && "hidden"
-                    } origin-left duration-200`}>
+                    <span
+                      className={`flex justify-between items-center w-full ${
+                        !open && "hidden"
+                      } origin-left duration-200`}
+                    >
                       {Menu.title}
                       <IoIosArrowDown className="ml-2" />
                     </span>
@@ -102,9 +117,11 @@ const Sidebar = () => {
                   className="flex items-center gap-x-4 w-full"
                 >
                   <span>{Menu.icon}</span>
-                  <span className={`flex justify-between items-center w-full ${
-                    !open && "hidden"
-                  } origin-left duration-200`}>
+                  <span
+                    className={`flex justify-between items-center w-full ${
+                      !open && "hidden"
+                    } origin-left duration-200`}
+                  >
                     {Menu.title}
                   </span>
                 </Link>
