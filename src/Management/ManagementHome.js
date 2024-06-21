@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ManagementHome = () => {
+const Managementhome = () => {
   return (
     <div>ManagementHome</div>
   )
 }
 
-export default ManagementHome
+export default Managementhome
