@@ -13,8 +13,9 @@ import Demo from './pages/Admin/Demo';
 import Layout from './pages/Teacher/Layout';
 import Dashboard from './pages/Teacher/Dashboard';
 import THome from './pages/Teacher/THome';
-import Managementlayout from './Management/Managementlayout';
-import Managementhome from './Management/Managementhome';
+import Managementlayout from './pages/Management/Managementlayout';
+import Managementhome from './pages/Management/ManagementNavigation/Managementhome';
+
 console.log("hello")
 function App() {
   return (
