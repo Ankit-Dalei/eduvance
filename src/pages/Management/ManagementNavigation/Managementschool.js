@@ -2,9 +2,11 @@ import React from 'react'
 
 const Managementschool = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+      <div className={`h-screen`}>
+        
+      </div>
+    </>
   )
 }
 

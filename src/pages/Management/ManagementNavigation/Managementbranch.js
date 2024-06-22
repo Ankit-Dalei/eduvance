@@ -2,9 +2,7 @@ import React from 'react'
 
 const Managementbranch = () => {
   return (
-    <div>
-      
-    </div>
+    <>Branch</>
   )
 }
 

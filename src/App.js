@@ -15,8 +15,13 @@ import Dashboard from './pages/Teacher/Dashboard';
 import THome from './pages/Teacher/THome';
 import Managementlayout from './pages/Management/Managementlayout';
 import Managementhome from './pages/Management/ManagementNavigation/Managementhome';
+import Managementschool from './pages/Management/ManagementNavigation/Managementschool';
+import Managementbranch from './pages/Management/ManagementNavigation/Managementbranch';
+import Managementcourse from './pages/Management/ManagementNavigation/Managementcourse';
+import Managementteacher from './pages/Management/ManagementNavigation/Managementteacher';
+import Managementstudent from './pages/Management/ManagementNavigation/Managementstudent';
+import Managementsection from './pages/Management/ManagementNavigation/Managementsection';
 
-console.log("hello")
 function App() {
   return (
     <>
@@ -36,6 +41,13 @@ function App() {
           {/* management */}
           <Route path='/Management' element={<Managementlayout/>}>
             <Route index element={<Managementhome/>}/>
+            <Route path='Home' element={<Managementhome/>}/>
+            <Route path='School' element={<Managementschool/>}/>
+            <Route path='Branch' element={<Managementbranch/>}/>
+            <Route path='Course' element={<Managementcourse/>}/>
+            <Route path='Teacher' element={<Managementteacher/>}/>
+            <Route path='Student' element={<Managementstudent/>}/>
+            <Route path='Section' element={<Managementsection/>}/>
           </Route>
           {/* teacher */}
           <Route path='/teacher' element={<Layout/>}/>

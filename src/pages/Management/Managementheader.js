@@ -1,19 +1,23 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEllipsisVertical,faBell,faPlus,faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBell,faPlus,faBars } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux'
+import { changestate } from '../../Redux/sidebar';
+
 
 const Managementheader = () => {
+  const dispatch = useDispatch()
     return (
         <>
-          <div className={` h-full flex justify-between items-center flex-row w-[95%] overflow-hidden xl:w-[100%] xl:justify-start `}>
-            <div className={`h-full w-[20%]  flex justify-start items-center md:w-[30%] xl:w-[3%] xl:justify-center `}><FontAwesomeIcon icon={faBars} size="xl" className={`text-white`}/></div>
-            <h1 className={`h-2/3 w-[50%]  text-2xl flex justify-center items-center text-white md:w-[40%] xl:w-[63%] xl:justify-start `}>Eduvance</h1>
-            <div className={`h-full w-[20%] flex justify-between items-center flex-row md:w-[30%] xl:w-[25%] xl:ml-[7%] `}>
-            <FontAwesomeIcon icon={faBell} size="xl" className={`text-white`}/>
-            <div className={`hidden md:block md:bg-slate-200 md:p-2 rounded-lg`}><FontAwesomeIcon icon={faPlus} size="xl" className={`text-black`}/> Create role</div>
-            <div className={`h-[30px] w-[30px] rounded-[50%] md:h-[40px] md:w-[40px]`}>
-              <img src='./Images/management.png' alt=''className='rounded-[50%]'/>
-            </div>
+          <div className={` lg:h-full lg:w-full lg:flex lg:justify-center lg:items-center lg:flex-row`}>
+            <div className={` lg:h-full lg:w-[3%] lg:flex lg:justify-start lg:items-center`}><FontAwesomeIcon icon={faBars} size="xl" className={`text-black`} onClick={()=>dispatch(changestate())}/></div>
+            <h1 className={` lg:h-full lg:w-[73%] lg:flex lg:justify-start lg:items-center lg:text-2xl lg:font-sans`}>Eduvance</h1>
+            <div className={` lg:h-full lg:w-[20%] lg:flex lg:justify-between lg:items-center`}>
+              <FontAwesomeIcon icon={faBell} size="xl" className={`text-black`}/>
+              <div className={`lg:bg-gray-800 lg:p-2 lg:rounded-lg lg:text-white`}><FontAwesomeIcon icon={faPlus} size="xl" className={`text-white`}/> Create role</div>
+              <div className={`lg:h-[40px] lg:w-[40px] lg:rounded-[50%]`}>
+                <img src='./Images/management.png' alt=''className='rounded-[50%]'/>
+              </div>
             </div>
           </div>
         </>
