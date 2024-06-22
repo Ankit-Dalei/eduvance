@@ -14,7 +14,9 @@ const Table = () => {
             </form>
             <button className={` lg:bg-gray-800 lg:p-1 lg:flex lg:justify-center lg:items-center lg:w-[100px] lg:rounded-3xl lg:text-white hover:bg-slate-300 hover:text-slate-900`}>Export</button>
           </div>
-          <div className={`bg-slate-400 lg:h-[70%] lg:w-[100%]`}></div>
+          <div className={`bg-slate-400 lg:h-[70%] lg:w-[100%]`}>
+            
+          </div>
           <div className={`lg:h-[15%] lg:w-[100%] lg:flex lg:justify-end lg:items-center`}>
             <div className={`lg:h-[100%] lg:w-[50%] lg:flex lg:justify-end lg:items-center`}>
                 <p>1 - 10 of 7800</p>
