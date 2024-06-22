@@ -21,6 +21,7 @@ import Managementcourse from './pages/Management/ManagementNavigation/Management
 import Managementteacher from './pages/Management/ManagementNavigation/Managementteacher';
 import Managementstudent from './pages/Management/ManagementNavigation/Managementstudent';
 import Managementsection from './pages/Management/ManagementNavigation/Managementsection';
+import Managementnotify from './pages/Management/Managementnotify';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
             <Route path='Teacher' element={<Managementteacher/>}/>
             <Route path='Student' element={<Managementstudent/>}/>
             <Route path='Section' element={<Managementsection/>}/>
+            <Route path='notification' element={<Managementnotify/>}/>
           </Route>
           {/* teacher */}
           <Route path='/teacher' element={<Layout/>}/>
