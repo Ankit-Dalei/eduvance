@@ -1,11 +1,11 @@
 import React from 'react'
 import Table from '../Table';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { usersData } from '../../../Data/data';
 
 const Managementschool = () => {
   return (
     <>
-      <Table Searchicon={faMagnifyingGlass}/>
+      <Table tableHeadId={'Serial Id'} tableHeadName={'Username'} tableHeadcol={'Email Id'} tableHeadAction={'Action'} actionsEdit={'Edit'} actionsDelete={'Delete'} actionsCourse={'Course'} data={usersData}/>
     </>
   )
 }
