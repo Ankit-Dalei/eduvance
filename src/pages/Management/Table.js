@@ -1,11 +1,50 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass, faChevronRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 const Table = (props) => {
   const {actionsCourse,actionsDelete,actionsEdit,tableHeadAction,tableHeadcol,tableHeadName,tableHeadId,data}=props
-  console.log(data)
+  const totalentries=data.length
+  const [initialindex,setinitialindex]=useState(0)
+  const [initialindexpre,setinitialindexpre]=useState(0)
+  const [finalindex,setfinalindex]=useState(8)
+  const [finalindexpre,setfinalindexpre]=useState(0)
+  const dataArray=data.slice(initialindex, finalindex);
+  const lastindex = data[data.length - 1].id;
+  console.log(finalindex)
+
+  const handelPrivious=(()=>{
+    // dataArray=[]
+    if (initialindex==0) {
+      
+    } else {
+      if (initialindex+8 > lastindex) {
+        setinitialindex(() => initialindexpre)
+        setfinalindex(() => finalindexpre)
+      } else {
+        setinitialindex(() => initialindex - 8)
+        setfinalindex(() => finalindex - 8)
+      }
+    }
+  })
+  const handelNext=(()=>{
+    if (finalindex==totalentries || finalindex > lastindex) {
+      
+    }else {
+    // dataArray=[]
+    if (finalindex+8 > lastindex) {
+      setfinalindexpre(finalindex)
+      setinitialindexpre(initialindex)
+      setfinalindex(lastindex)
+      setinitialindex(() => initialindex + 8)
+    }else{
+      setinitialindex(() => initialindex + 8)
+      setfinalindex(() => finalindex + 8)
+    }
+    }
+  })
+
   return (
     <>
       <div className={`lg:h-[100%] lg:w-[100%] lg:flex lg:justify-center lg:items-center`}>
@@ -28,7 +67,7 @@ const Table = (props) => {
                 </tr>
               </thead>
               <tbody className='overflow-hidden'>
-              {data.map((item,index)=>{
+              {dataArray.map((item,index)=>{
                   return(
                     <tr>
                   <td className={`lg:p-1`}><input type='checkbox'/> {item.id}</td>
@@ -47,10 +86,10 @@ const Table = (props) => {
           </div>
           <div className={`lg:h-[15%] lg:w-[100%] lg:flex lg:justify-end lg:items-center`}>
             <div className={`lg:h-[100%] lg:w-[50%] lg:flex lg:justify-end lg:items-center`}>
-                <p>1 - 8 of 7800</p>
+                <p>{initialindex+1} - {finalindex} of {totalentries}</p>
                 <div className={`lg:ml-6`}>
-                    <FontAwesomeIcon icon={faAngleLeft} className={` hover:text-slate-300 cursor-pointer lg:text-xl`}/>
-                    <FontAwesomeIcon icon={faChevronRight} className={`lg:ml-3  hover:text-slate-300 cursor-pointer lg:text-xl`}/>
+                  <button><FontAwesomeIcon icon={faAngleLeft} className={` hover:text-slate-300 cursor-pointer lg:text-xl`} onClick={handelPrivious}/></button>
+                  <button><FontAwesomeIcon icon={faChevronRight} className={`lg:ml-3  hover:text-slate-300 cursor-pointer lg:text-xl`} onClick={handelNext}/></button>
                 </div>
             </div>
           </div>
