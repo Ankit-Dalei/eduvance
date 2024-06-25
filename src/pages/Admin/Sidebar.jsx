@@ -12,9 +12,12 @@ import { Avatar, Dropdown, Modal } from "flowbite-react";
 import { RxCross2 } from "react-icons/rx";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { Tooltip } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { changestate } from "../../Redux/sidebar";
 
 const Sidebar = ({ children }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const dispatch = useDispatch()
+  const count = useSelector((state) => state.sider.value)
   const [openModal, setOpenModal] = useState(false);
   const [managementModal, setManagementModal] = useState(false);
   const [campusModal, setCampusModal] = useState(false);
@@ -33,9 +36,7 @@ const Sidebar = ({ children }) => {
     setUniversityModal(false);
   }
 
-  const toggleSidebar = () => {
-    setIsCollapsed(!isCollapsed);
-  };
+
 
   return (
     <div className="xl:p-10">
@@ -44,9 +45,9 @@ const Sidebar = ({ children }) => {
           <div className="flex relative left-[17%]">
             <span
               className="cursor-pointer relative top-5 left-8 hidden xl:inline-block"
-              onClick={toggleSidebar}
+              onClick={()=>dispatch(changestate())}
             >
-              {!isCollapsed ? (
+              {!count ? (
                 <FaBarsStaggered className="inline-block w-6 h-6 mr-2 -mt-2 text-black" />
               ) : (
                 <RxCross2 className="inline-block w-6 h-6 mr-2 -mt-2 text-black font-extrabold" />
@@ -97,17 +98,17 @@ const Sidebar = ({ children }) => {
         <aside className="h-[100%] w-[100%] px-4 flex justify-between mt-10">
           <div
             className={`mt-24 transition-all duration-300 ${
-              isCollapsed ? "w-10" : "w-56"
+              count ? "w-10" : "w-56"
             }`}
           >
             <ul className={` flex flex-col   -mt-20 space-y-3 w-1 xl:w-auto`}>
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to="/home" className="px-[0.5rem]">
                   <FaHome className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  {!isCollapsed ? (
+                  {!count ? (
                     <>
                       <span className="xl:inline-block hidden">
-                        {isCollapsed ? "" : " Home"}
+                        {count ? "" : " Home"}
                       </span>
                     </>
                   ) : (
@@ -118,10 +119,10 @@ const Sidebar = ({ children }) => {
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to="/list" className="px-[0.5rem]">
                   <MdOutlinePermContactCalendar className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  {!isCollapsed ? (
+                  {!count ? (
                     <>
                       <span className="xl:inline-block hidden">
-                        {isCollapsed ? "" : "University"}
+                        {count ? "" : "University"}
                       </span>
                     </>
                   ) : (
@@ -133,10 +134,10 @@ const Sidebar = ({ children }) => {
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to="/manage" className="px-[0.5rem]">
                   <MdManageAccounts className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  {!isCollapsed ? (
+                  {!count ? (
                     <>
                       <span className="xl:inline-block hidden">
-                        {isCollapsed ? "" : "Management"}
+                        {count ? "" : "Management"}
                       </span>
                     </>
                   ) : (
@@ -148,10 +149,10 @@ const Sidebar = ({ children }) => {
                 <Link to="/campus" className="px-[0.5rem]">
                   <BiBuildingHouse className="inline-block w-6 h-6 mr-2 -mt-2" />
 
-                  {!isCollapsed ? (
+                  {!count ? (
                     <>
                       <span className="xl:inline-block hidden">
-                        {isCollapsed ? "" : "Campus"}
+                        {count ? "" : "Campus"}
                       </span>
                     </>
                   ) : (
@@ -162,10 +163,10 @@ const Sidebar = ({ children }) => {
               <li className="mb-2  hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to={"/report"} className="px-[0.5rem]">
                   <HiOutlineDocumentReport className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  {!isCollapsed ? (
+                  {!count ? (
                     <>
                       <span className="xl:inline-block hidden">
-                        {isCollapsed ? "" : "Report"}
+                        {count ? "" : "Report"}
                       </span>
                     </>
                   ) : (
@@ -176,10 +177,10 @@ const Sidebar = ({ children }) => {
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl ">
                 <Link to={"/setting"} className="px-[0.5rem]">
                   <IoSettingsOutline className="inline-block w-6 h-6 mr-2 -mt-2" />
-                  {!isCollapsed ? (
+                  {!count ? (
                     <>
                       <span className="xl:inline-block hidden">
-                        {isCollapsed ? "" : "Setting"}
+                        {count ? "" : "Setting"}
                       </span>
                     </>
                   ) : (
@@ -190,10 +191,10 @@ const Sidebar = ({ children }) => {
               <li className="mb-2 hover:bg-purple-500  py-2 rounded-2xl relative -bottom-56">
                 <Link className="px-[0.5rem]" to={'/'}>
                   <BiLogOut className="inline-block w-6 h-6 mr-2 -mt-2 " />
-                  {!isCollapsed ? (
+                  {!count ? (
                     <>
                       <span className="xl:inline-block hidden">
-                        {isCollapsed ? "" : "Logout"}
+                        {count ? "" : "Logout"}
                       </span>
                     </>
                   ) : (

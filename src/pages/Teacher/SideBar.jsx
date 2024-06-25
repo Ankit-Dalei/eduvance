@@ -7,19 +7,17 @@ import { IoIosArrowBack, IoIosArrowDown } from "react-icons/io";
 import { IoLogOutOutline, IoSettingsOutline } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
 import { SiConfluence } from "react-icons/si";
+import { useDispatch, useSelector } from "react-redux";
+import { changestate } from "../../Redux/sidebar";
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(window.innerWidth >= 640);
+  const dispatch = useDispatch()
+  const count = useSelector((state) => state.sider.value)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 640);
-      if (window.innerWidth < 640) {
-        setOpen(false);
-      } else {
-        setOpen(true);
-      }
     };
 
     window.addEventListener("resize", handleResize);
@@ -62,7 +60,7 @@ const Sidebar = () => {
     <div className="flex">
       <div
         className={`${
-          open ? "w-56" : "w-16"
+          count ? "w-56" : "w-16"
         } bg-[#121212] h-screen p-3 pt-8 relative duration-300`}
       >
         {!isMobile && (
@@ -70,9 +68,9 @@ const Sidebar = () => {
             size={25}
             color="gray"
             className={`absolute cursor-pointer  top-9 w-7 border-dark-purple border-2 rounded-full -right-2 text-gray-500  border-slate-500 ${
-              !open && "rotate-180"
+              !count && "rotate-180"
             }`}
-            onClick={() => setOpen(!open)}
+            onClick={()=>dispatch(changestate())}
           />
         )}
         <div className="flex gap-x-4 items-center">
@@ -80,12 +78,12 @@ const Sidebar = () => {
             color="white"
             size={30}
             className={`cursor-pointer duration-500 ${
-              open && "rotate-[360deg]"
+              count && "rotate-[360deg]"
             }`}
           />
           <h1
             className={`text-white origin-left font-medium text-xl duration-200 ${
-              !open && "scale-0"
+              !count && "scale-0"
             }`}
           >
             Eduvance
@@ -105,7 +103,7 @@ const Sidebar = () => {
                     <span>{Menu.icon}</span>
                     <span
                       className={`flex justify-between items-center w-full ${
-                        !open && "hidden"
+                        !count && "hidden"
                       } origin-left duration-200`}
                     >
                       {Menu.title}
@@ -121,7 +119,7 @@ const Sidebar = () => {
                   <span>{Menu.icon}</span>
                   <span
                     className={`flex justify-between items-center w-full ${
-                      !open && "hidden"
+                      !count && "hidden"
                     } origin-left duration-200`}
                   >
                     {Menu.title}
