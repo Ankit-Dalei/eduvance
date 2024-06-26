@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 
 const Managementlayout = () => {
   const count = useSelector((state) => state.sider.value)
-    document.title=`Admin - Eduvance`
+    document.title=`Management - Eduvance`
     return (
       <>
         <div className={`bg-slate-900 lg:h-screen lg:w-full lg:flex lg:justify-center lg:items-center lg:flex-row`}>

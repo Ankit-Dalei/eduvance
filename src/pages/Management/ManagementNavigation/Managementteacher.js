@@ -5,7 +5,7 @@ import { usersData } from '../../../Data/data';
 function Managementteacher() {
   return (
     <>
-      <Table tableHeadId={'Serial Id'} tableHeadName={'Teacher Name'} tableHeadcol={'Email'} tableHeadAction={'Action'} actionsEdit={'Edit'} actionsDelete={'Delete'} actionsCourse={''} data={usersData}/>
+      <Table tableHeadId={'Serial Id'} tableHeadName={'Teacher Name'} tableHeadcol={'Email'} tableHeadAction={'Action'} actionsEdit={'Edit'} actionsDelete={'Delete'} actionsCourse={''} data={usersData} pagename={"Teacher"}/>
     </>
   )
 }

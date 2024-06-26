@@ -5,7 +5,7 @@ import { usersData } from '../../../Data/data';
 function Managementsection() {
   return (
     <>
-      <Table tableHeadId={'Serial Id'} tableHeadName={'Section'} tableHeadcol={'Section Id'} tableHeadAction={'Action'} actionsEdit={'Edit'} actionsDelete={'Delete'} actionsCourse={''} data={usersData}/>
+      <Table tableHeadId={'Serial Id'} tableHeadName={'Section'} tableHeadcol={'Section Id'} tableHeadAction={'Action'} actionsEdit={'Edit'} actionsDelete={'Delete'} actionsCourse={''} data={usersData} pagename={"Section"}/>
     </>
   )
 }

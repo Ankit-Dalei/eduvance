@@ -26,6 +26,12 @@ import QuestionLayout from './pages/Teacher/ExamSession/Layout';
 import AddQuestion from './pages/Teacher/ExamSession/AddQuestion';
 import AddQuestionform from './pages/Teacher/ExamSession/AddQuestionform';
 import AddContestform from './pages/Teacher/ExamSession/AddContestform';
+import Managemententrypanal from './pages/Management/ManagementForms/Managemententrypanal';
+import Managementaddschool from './pages/Management/ManagementForms/Managementaddschool';
+import Managementaddbranch from './pages/Management/ManagementForms/Managementaddbranch';
+import Managementaddcourse from './pages/Management/ManagementForms/Managementaddcourse';
+import Managementaddteacher from './pages/Management/ManagementForms/Managementaddteacher';
+import Managementaddstudent from './pages/Management/ManagementForms/Managementaddstudent';
 
 function App() {
   return (
@@ -46,7 +52,6 @@ function App() {
           {/* management */}
           <Route path='/Management' element={<Managementlayout/>}>
             <Route index element={<Managementhome/>}/>
-            <Route path='Home' element={<Managementhome/>}/>
             <Route path='School' element={<Managementschool/>}/>
             <Route path='Branch' element={<Managementbranch/>}/>
             <Route path='Course' element={<Managementcourse/>}/>
@@ -54,6 +59,14 @@ function App() {
             <Route path='Student' element={<Managementstudent/>}/>
             <Route path='Section' element={<Managementsection/>}/>
             <Route path='notification' element={<Managementnotify/>}/>
+            <Route path='ChooseRoll' element={<Managemententrypanal/>}>
+              <Route index element={<Managementaddschool/>}/>
+              <Route path='addBranch' element={<Managementaddbranch/>}/>
+              <Route path='addCourse' element={<Managementaddcourse/>}/>
+              <Route path='addTeacher' element={<Managementaddteacher/>}/>
+              <Route path='addStudent' element={<Managementaddstudent/>}/>
+            </Route>
+            
           </Route>
           {/* teacher */}
           {/* <Route path='/teacher' element={<Layout/>}/> */}

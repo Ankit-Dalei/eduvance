@@ -5,7 +5,7 @@ import * as XLSX from 'xlsx';
 import { ToastContainer, toast } from 'react-toastify';
 
 const Table = (props) => {
-  const { actionsCourse, actionsDelete, actionsEdit, tableHeadAction, tableHeadcol, tableHeadName, tableHeadId, data } = props;
+  const { actionsCourse, actionsDelete, actionsEdit, tableHeadAction, tableHeadcol, tableHeadName, tableHeadId, data, pagename} = props;
   const [searchInitial, setSearchInitial] = useState({ username: '' });
   const [filteredData, setFilteredData] = useState(data);
   const [selectall, setselectall] = useState(true);
@@ -97,7 +97,7 @@ const Table = (props) => {
       const datas = data.map(user => [user.id, user.username, user.email]);
       const ws = XLSX.utils.aoa_to_sheet([[`${tableHeadId}`, `${tableHeadName}`, `${tableHeadcol}`], ...datas]);
       XLSX.utils.book_append_sheet(wb, ws, "Users");
-      XLSX.writeFile(wb, "users.xlsx");
+      XLSX.writeFile(wb, `${pagename}.xlsx`);
     }
   }
 
@@ -124,21 +124,21 @@ const Table = (props) => {
             </button>
           </div>
           <div className="lg:h-[70%] lg:w-[100%]">
-            <table className="lg:border-separate lg:border lg:border-slate-500 lg:h-auto lg:w-[100%] lg:text-center lg:overflow-hidden">
-              <thead className="lg:h-[10%] lg:w-[90%] lg:bg-gray-300">
+            <table className="lg:border-separate lg:rounded-3xl lg:h-auto lg:w-[100%] lg:text-center lg:overflow-hidden">
+              <thead className="lg:h-[10%] lg:w-[90%] lg:bg-gray-500">
                 <tr className="lg:border">
-                  <th className="lg:p-1 mr-3">
+                  <th className="lg:p-3 mr-3">
                     <input type="checkbox" onClick={handelcheck}/> {tableHeadId}
                   </th>
-                  <th className="lg:p-1">{tableHeadName}</th>
-                  <th className="lg:p-1">{tableHeadcol}</th>
-                  <th className="lg:p-1">{tableHeadAction}</th>
+                  <th className="lg:p-3">{tableHeadName}</th>
+                  <th className="lg:p-3">{tableHeadcol}</th>
+                  <th className="lg:p-3">{tableHeadAction}</th>
                 </tr>
               </thead>
               <tbody className="overflow-hidden">
                 {totalEntries > 0 ? (
                   dataArray.map((item) => (
-                    <tr key={item.id}>
+                    <tr key={item.id} className={`lg:bg-gray-300`}>
                       <td className="lg:p-1">{item.id}</td>
                       <td className="lg:p-1">{item.username}</td>
                       <td className="lg:p-1">{item.email}</td>
