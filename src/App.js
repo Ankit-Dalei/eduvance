@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes,Switch  } from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login/Login';
 import ForgotPassword from './pages/Login/ForgotPassword';
@@ -24,6 +24,8 @@ import Tquestion from './pages/Teacher/ExamSession/Layout';
 import AddContest from './pages/Teacher/ExamSession/AddContest';
 import QuestionLayout from './pages/Teacher/ExamSession/Layout';
 import AddQuestion from './pages/Teacher/ExamSession/AddQuestion';
+import AddQuestionform from './pages/Teacher/ExamSession/AddQuestionform';
+import AddContestform from './pages/Teacher/ExamSession/AddContestform';
 
 function App() {
   return (
@@ -56,11 +58,16 @@ function App() {
           {/* teacher */}
           {/* <Route path='/teacher' element={<Layout/>}/> */}
           <Route path='/teacher' element={<Dashboard/>}/>
-          
           <Route path='/' element={<QuestionLayout/>}>
         <Route path="teacher/add-contest" element={<AddContest />} />
-        <Route path="teacher/add-question" element={< AddQuestion/>} />
+        
+        <Route path="teacher/add-question" element={<AddQuestion />} />
+        <Route path="/"element={<AddQuestion />} exact />
+     
         </Route>
+        <Route path="/questionform" element={<AddQuestionform/>} />
+        <Route path="/contestform" element={<AddContestform/>} />
+
         
         </Routes>
       </BrowserRouter>
