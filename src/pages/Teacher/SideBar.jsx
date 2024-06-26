@@ -9,6 +9,7 @@ import { MdDashboard } from "react-icons/md";
 import { SiConfluence } from "react-icons/si";
 import { useDispatch, useSelector } from "react-redux";
 import { changestate } from "../../Redux/sidebar";
+import { MdOutlineAddToQueue } from "react-icons/md";
 
 const Sidebar = () => {
   const dispatch = useDispatch()
@@ -41,8 +42,8 @@ const Sidebar = () => {
   );
 
   const Menus = [
-    { title: "Home", icon: <BiHome size={20} />, path: "/teacher/home" },
-    { title: "Dashboard", icon: <MdDashboard size={20} />, path: "/teacher/dashboard" },
+    { title: "Dashboard", icon: <MdDashboard size={20} />, path: "/teacher" },
+    { title: "Add Exam", icon: <MdOutlineAddToQueue size={20} />, path: "/teacher/add-question" },
     {
       title: "Reports",
       icon: <GoRepoPush size={20} />,

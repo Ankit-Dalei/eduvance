@@ -10,9 +10,7 @@ import Campus from './pages/Admin/Campus';
 import Report from './pages/Admin/Report';
 import Setting from './pages/Admin/Setting';
 import Demo from './pages/Admin/Demo';
-import Layout from './pages/Teacher/Layout';
 import Dashboard from './pages/Teacher/Dashboard';
-import THome from './pages/Teacher/THome';
 import Managementlayout from './pages/Management/Managementlayout';
 import Managementhome from './pages/Management/ManagementNavigation/Managementhome';
 import Managementschool from './pages/Management/ManagementNavigation/Managementschool';
@@ -22,6 +20,10 @@ import Managementteacher from './pages/Management/ManagementNavigation/Managemen
 import Managementstudent from './pages/Management/ManagementNavigation/Managementstudent';
 import Managementsection from './pages/Management/ManagementNavigation/Managementsection';
 import Managementnotify from './pages/Management/Managementnotify';
+import Tquestion from './pages/Teacher/ExamSession/Layout';
+import AddContest from './pages/Teacher/ExamSession/AddContest';
+import QuestionLayout from './pages/Teacher/ExamSession/Layout';
+import AddQuestion from './pages/Teacher/ExamSession/AddQuestion';
 
 function App() {
   return (
@@ -52,9 +54,13 @@ function App() {
             <Route path='notification' element={<Managementnotify/>}/>
           </Route>
           {/* teacher */}
-          <Route path='/teacher' element={<Layout/>}/>
-          <Route path='/teacher/dashboard' element={<Dashboard/>}/>
-          <Route path='/teacher/home' element={<THome/>}/>
+          {/* <Route path='/teacher' element={<Layout/>}/> */}
+          <Route path='/teacher' element={<Dashboard/>}/>
+          
+          <Route path='/' element={<QuestionLayout/>}>
+        <Route path="teacher/add-contest" element={<AddContest />} />
+        <Route path="teacher/add-question" element={< AddQuestion/>} />
+        </Route>
         
         </Routes>
       </BrowserRouter>
