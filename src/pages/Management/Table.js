@@ -124,9 +124,9 @@ const Table = (props) => {
             </button>
           </div>
           <div className="lg:h-[70%] lg:w-[100%]">
-            <table className="lg:border-separate lg:rounded-3xl lg:h-auto lg:w-[100%] lg:text-center lg:overflow-hidden">
+            <table className="lg:rounded-3xl lg:h-auto lg:w-[100%] lg:text-center lg:overflow-hidden">
               <thead className="lg:h-[10%] lg:w-[90%] lg:bg-gray-500">
-                <tr className="lg:border">
+                <tr className="lg:mb-3">
                   <th className="lg:p-3 mr-3">
                     <input type="checkbox" onClick={handelcheck}/> {tableHeadId}
                   </th>
@@ -138,7 +138,7 @@ const Table = (props) => {
               <tbody className="overflow-hidden">
                 {totalEntries > 0 ? (
                   dataArray.map((item) => (
-                    <tr key={item.id} className={`lg:bg-gray-300`}>
+                    <tr key={item.id} className={`lg:bg-gray-300 lg:border-b`}>
                       <td className="lg:p-1">{item.id}</td>
                       <td className="lg:p-1">{item.username}</td>
                       <td className="lg:p-1">{item.email}</td>
