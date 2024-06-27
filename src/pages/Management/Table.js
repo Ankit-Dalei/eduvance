@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faChevronRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faChevronRight, faAngleLeft, faPenToSquare, faTrashCan, faBook } from '@fortawesome/free-solid-svg-icons';
 import * as XLSX from 'xlsx';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -119,7 +119,7 @@ const Table = (props) => {
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
               </button>
             </form>
-            <button className="lg:bg-gray-800 lg:p-1 lg:flex lg:justify-center lg:items-center lg:w-[100px] lg:rounded-3xl lg:text-white hover:bg-slate-300 hover:text-slate-900 lg:font-serif" onClick={handelExports}>
+            <button className="lg:bg-gray-800 lg:p-1 lg:flex lg:justify-center lg:items-center lg:w-[100px] lg:rounded-lg lg:text-white hover:bg-slate-300 hover:text-slate-900 lg:font-serif" onClick={handelExports}>
               Export
             </button>
           </div>
@@ -143,15 +143,18 @@ const Table = (props) => {
                       <td className="lg:p-1">{item.username}</td>
                       <td className="lg:p-1">{item.email}</td>
                       <td className="lg:inline-flex lg:items-center lg:justify-center lg:space-x-4 lg:p-1">
-                        <div className="lg:bg-green-700 lg:p-1 lg:w-[70px] lg:rounded-full lg:text-white hover:bg-green-600 hover:text-slate-800 lg:cursor-pointer lg:font-serif">
-                          {actionsEdit}
+                        <div className="lg:bg-green-700 lg:p-1 lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl lg:text-white hover:bg-green-600 hover:text-slate-800 lg:cursor-pointer lg:font-serif">
+                          {/* {actionsEdit} */}
+                          <FontAwesomeIcon icon={faPenToSquare} />
                         </div>
-                        <div className="lg:bg-red-600 lg:p-1 lg:w-[70px] lg:rounded-full lg:text-white hover:bg-red-500 hover:text-slate-800 lg:cursor-pointer lg:font-serif">
-                          {actionsDelete}
+                        <div className="lg:bg-red-600 lg:p-1 lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl lg:w-[70px] lg:rounded-full lg:text-white hover:bg-red-500 hover:text-slate-800 lg:cursor-pointer lg:font-serif">
+                          {/* {actionsDelete} */}
+                          <FontAwesomeIcon icon={faTrashCan} />
                         </div>
                         {actionsCourse && (
-                          <div className="lg:bg-blue-600 lg:p-1 lg:w-[70px] lg:rounded-full lg:text-white hover:bg-blue-500 hover:text-slate-800 lg:cursor-pointer lg:font-serif">
-                            {actionsCourse}
+                          <div className="lg:bg-blue-600 lg:p-1 lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl lg:w-[70px] lg:rounded-full lg:text-white hover:bg-blue-500 hover:text-slate-800 lg:cursor-pointer lg:font-serif">
+                            {/* {actionsCourse} */}
+                            <FontAwesomeIcon icon={faBook} />
                           </div>
                         )}
                       </td>
