@@ -1,46 +1,47 @@
 import React, { useState } from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
-import { Pagination } from 'flowbite-react';
+import TableComponent from './TableComponent';
 
 const AddQuestion = () => {
-  const contestData = [
-    { "contestName": "Code Championship", "contestOwner": "John Doe", "startDate": "2024-07-01", "signup": "Open", "participants": 50 },
-    { "contestName": "Hackathon", "contestOwner": "Jane Smith", "startDate": "2024-07-05", "signup": "Closed", "participants": 75 },
-    { "contestName": "AI Contest", "contestOwner": "Alice Johnson", "startDate": "2024-07-10", "signup": "Open", "participants": 100 },
-    { "contestName": "Data Science Challenge", "contestOwner": "Michael Brown", "startDate": "2024-07-15", "signup": "Open", "participants": 80 },
-    { "contestName": "Cyber Security Contest", "contestOwner": "Sarah Wilson", "startDate": "2024-07-20", "signup": "Closed", "participants": 60 },
-    { "contestName": "Web Development Contest", "contestOwner": "David Lee", "startDate": "2024-07-25", "signup": "Open", "participants": 90 },
-    { "contestName": "Mobile App Contest", "contestOwner": "Emily Clark", "startDate": "2024-07-30", "signup": "Open", "participants": 70 },
-    { "contestName": "Cyber Security Contest", "contestOwner": "Sarah Wilson", "startDate": "2024-07-20", "signup": "Closed", "participants": 60 },
-    { "contestName": "Web Development Contest", "contestOwner": "David Lee", "startDate": "2024-07-25", "signup": "Open", "participants": 90 },
-    { "contestName": "Mobile App Contest", "contestOwner": "Emily Clark", "startDate": "2024-07-30", "signup": "Open", "participants": 70 },
+  const questionData = [
+    { questionName: "What is React?", questionOwner: "John Doe", startDate: "2024-07-01", signup: "Open", participants: 50 },
+    { questionName: "What is Node.js?", questionOwner: "Jane Doe", startDate: "2024-07-02", signup: "Closed", participants: 30 },
+    { questionName: "What is JavaScript?", questionOwner: "Alice Smith", startDate: "2024-07-03", signup: "Open", participants: 20 },
+    { questionName: "What is HTML?", questionOwner: "Bob Brown", startDate: "2024-07-04", signup: "Open", participants: 40 },
+    { questionName: "What is CSS?", questionOwner: "Charlie White", startDate: "2024-07-05", signup: "Open", participants: 35 },
+    { questionName: "What is Redux?", questionOwner: "David Green", startDate: "2024-07-06", signup: "Open", participants: 25 },
+    { questionName: "What is Express?", questionOwner: "Eve Black", startDate: "2024-07-07", signup: "Open", participants: 45 },
+    { questionName: "What is MongoDB?", questionOwner: "Frank Blue", startDate: "2024-07-08", signup: "Open", participants: 50 },
+    { questionName: "What is GraphQL?", questionOwner: "Grace Pink", startDate: "2024-07-09", signup: "Open", participants: 30 },
   ];
 
   const { searchQuery } = useOutletContext();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
-  const filteredContestData = contestData.filter((contest) =>
-    contest.contestName.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredQuestionData = questionData.filter((question) =>
+    question.questionName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredContestData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredQuestionData.slice(indexOfFirstItem, indexOfLastItem);
 
-  const totalPages = Math.ceil(filteredContestData.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredQuestionData.length / itemsPerPage);
+
+  const columns = [
+    { header: 'Question Name', accessor: 'questionName' },
+    { header: 'Question Owner', accessor: 'questionOwner' },
+    { header: 'Start Date', accessor: 'startDate' },
+    { header: 'Signup', accessor: 'signup' },
+    { header: 'Participants', accessor: 'participants' },
+  ];
 
   return (
     <div>
       <div className='flex justify-between w-full items-center mb-4'>
         <div className="flex items-center p-4 text-sm text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300" role="alert">
-          <svg className="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-          </svg>
-          <span className="sr-only">Info</span>
-          <div>
-            <span className="font-medium">Dark alert!</span> Change a few things up and try submitting again.
-          </div>
+          {/* Alert Content */}
         </div>
         <div>
           <Link to="/questionform">
@@ -53,45 +54,13 @@ const AddQuestion = () => {
           </Link>
         </div>
       </div>
-      <div className="relative overflow-x-auto rounded-2xl text-center">
-        {currentItems.length > 0 ? (
-          <table className="w-full text-sm rtl:text-right text-gray-500 bg-gray-800 text-center">
-            <thead className="text-xs text-white uppercase bg-gray-900">
-              <tr>
-                <th scope="col" className="px-6 py-3">Contest Name</th>
-                <th scope="col" className="px-6 py-3">Contest Owner</th>
-                <th scope="col" className="px-6 py-3">Start Date</th>
-                <th scope="col" className="px-6 py-3">Signup</th>
-                <th scope="col" className="px-6 py-3">Participants</th>
-              </tr>
-            </thead>
-            <tbody className='bg-gray-800'>
-              {currentItems.map((contest, index) => (
-                <tr key={index} className="border-b bg-gray-800 text-white">
-                  <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">{contest.contestName}</th>
-                  <td className="px-6 py-4">{contest.contestOwner}</td>
-                  <td className="px-6 py-4">{contest.startDate}</td>
-                  <td className="px-6 py-4">{contest.signup}</td>
-                  <td className="px-6 py-4">{contest.participants}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <div className="text-center text-black py-4 text-2xl">
-            <p>No contests found matching your search criteria.</p>
-          </div>
-        )}
-      </div>
-      {totalPages > 1 && (
-        <div className="flex justify-end mt-2">
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={(page) => setCurrentPage(page)}
-          />
-        </div>
-      )}
+      <TableComponent
+        data={currentItems}
+        columns={columns}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
     </div>
   );
 };

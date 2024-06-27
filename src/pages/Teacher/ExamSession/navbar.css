@@ -1,0 +1,89 @@
+/* navbar.css */
+/* navbar.css */
+@keyframes slideIn {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.nav-link {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.nav-link:nth-child(odd) {
+    animation: slideIn 0.5s ease forwards;
+}
+
+/* navbar.css */
+.nav-link {
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+}
+
+.active-nav-link {
+    background-color:  #1a202c; /* Example background color for active state */
+    color: white;
+    padding: 0.5rem 1rem;
+    border: 20%;
+    text-decoration: none;
+}
+
+
+
+.nav-link {
+    animation: fadeIn 0.5s ease forwards;
+    padding: 0.5rem 1rem; /* Adjust padding as needed */
+    transition: background-color 0.3s ease; /* Smooth transition on background-color change */
+}
+
+.nav-link:hover {
+    background-color: #1a202c; /* Darker background on hover */
+    transition: background-color 0.3s ease; /* Smooth transition on background-color change */
+    border-radius: 0.25rem; /* Optional: Add border-radius for a rounded look */
+}
+
+.nav-link:not(:last-child) {
+    margin-right: 1rem; /* Adjust margin between links */
+}
+/* navbar.css */
+.nav-link {
+    position: relative;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #00bcd4; /* Change color on hover if needed */
+}
+
+.nav-link:hover::after {
+    width: 100%; /* Extend line width on hover */
+}

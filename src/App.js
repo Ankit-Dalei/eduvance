@@ -34,12 +34,18 @@ import Managementaddteacher from './pages/Management/ManagementForms/Managementa
 import Managementaddstudent from './pages/Management/ManagementForms/Managementaddstudent';
 import Managementnotifyshow from './pages/Management/Managementnotifyshow';
 import Managementnotifycreate from './pages/Management/Managementnotifycreate';
+import BaseLayout from './pages/Teacher/ExamSession/BaseLayout';
+import Details from './pages/Teacher/ExamSession/Details';
+import Challenge from './pages/Teacher/ExamSession/Challenge';
+import Advance from './pages/Teacher/ExamSession/Advance';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <>
       
       <BrowserRouter>
+      <ToastContainer/>
         <Routes>
           <Route path='/' element={<Login/>}/>
           <Route path='/ForgotPassword' element={<ForgotPassword/>}/>
@@ -84,6 +90,15 @@ function App() {
         </Route>
         <Route path="/questionform" element={<AddQuestionform/>} />
         <Route path="/contestform" element={<AddContestform/>} />
+
+        {/* baselayout */}
+
+        <Route path="/baselayout" element={<BaseLayout/>} >
+        <Route path="details" element={<Details/>} />
+        <Route path="challenge" element={<Challenge/>} />
+        <Route path="advanced" element={<Advance/>} />
+        </Route>
+
 
         
         </Routes>

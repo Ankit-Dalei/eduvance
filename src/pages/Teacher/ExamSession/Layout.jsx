@@ -9,28 +9,28 @@ const QuestionLayout = () => {
   return (
     <Layout>
       <div className='p-6 w-full'>
-        <h1 className='text-3xl leading-5 mb-4'>Add Questions and Contest</h1>
+        <h1 className='text-3xl leading-5 mb-4'>Manage Questions and Contest here!!!!</h1>
         <hr />
         <div className='w-full flex flex-col md:flex-row justify-between items-center mt-4'>
           <div className='mb-4 md:mb-0'>
             <Link to="/teacher/add-question">
               <button
                 type="button"
-                className={`text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-16 py-2.5 text-center me-2 mb-2 ${
+                className={`text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-[4rem] py-2.5 text-center me-2 mb-2 ${
                   location.pathname === '/teacher/add-question' ? 'bg-gray-900 text-white' : ''
                 }`}
               >
-                Add Question
+                Manage Question
               </button>
             </Link>
             <Link to="/teacher/add-contest">
               <button
                 type="button"
-                className={`text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-16 py-2.5 text-center me-2 mb-2 ${
+                className={`text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-[4rem] py-2.5 text-center me-2 mb-2 ${
                   location.pathname === '/teacher/add-contest' ? 'bg-gray-900 text-white' : ''
                 }`}
               >
-                Add Contest
+                Manage Contest
               </button>
             </Link>
           </div>
@@ -46,7 +46,7 @@ const QuestionLayout = () => {
                 type="text"
                 id="simple-search"
                 className="bg-gray-950 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
-                placeholder="Search contest name..."
+                placeholder="Search by name..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />

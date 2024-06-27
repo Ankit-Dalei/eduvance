@@ -5,8 +5,8 @@ import { FiArrowLeft } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const AddContestform = () => {
-  const location = useLocation();
+const Details = () => {
+    const location = useLocation();
     const [contestName, setContestName] = useState('');
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
@@ -24,22 +24,22 @@ const navigate=useNavigate()
         setStartTime('');
         setEndTime('');
         setOrganizationType('');
-        navigate('/baselayout/details')
        
     };
 
-    let backLink = '/teacher/add-contest';
+    let backLink = '/contestform';
+
 
     return (
-        <Layout>
+       
             <div className='w-full mx-auto px-4 md:px-8 lg:px-16 xl:ml-40'>
                 <div className="flex items-center mb-4">
                     <Link to={backLink} className="flex items-center text-gray-400 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-500">
                         <FiArrowLeft className="mr-1" />
-                        Back to Contest Manage
+                        Back to ContestForm
                     </Link>
                 </div>
-                <h1 className='text-3xl leading-5 mb-4'>Add Contest</h1>
+                <h1 className='text-3xl leading-5 mb-4'>Contest Details</h1>
                 <p className='text-gray-400 italic mb-3'>
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. <br />
                     Facilis ratione consequuntur ea, consequatur deleniti accusamus! Error quae culpa assumenda eaque <br />
@@ -138,18 +138,19 @@ const navigate=useNavigate()
                             </select>
                         </div>
                     </div>
-                    
-                        <button
+                   
+                    <button
                             type="submit"
                             className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-full md:w-auto text-center"
                         >
                             Submit Here!!
                         </button>
+                    
                    
                 </form>
             </div>
-        </Layout>
+     
     );
 };
 
-export default AddContestform;
+export default Details;
