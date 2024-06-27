@@ -21,6 +21,9 @@ const Table = (props) => {
 
 
   const handlePrevious = () => {
+    const x=document.getElementById('allcheck')
+    console.log(x)
+        x.removeAttribute('checked','')
     if (initialIndex > 0) {
       if (initialIndex + 8 > lastIndex) {
         setInitialIndex(initialIndexPre);
@@ -36,6 +39,9 @@ const Table = (props) => {
   };
 
   const handleNext = () => {
+    const x=document.getElementById('allcheck')
+    console.log(x)
+        x.removeAttribute('checked','')
     if (finalIndex < totalEntries) {
       if (finalIndex + 8 > lastIndex) {
         setFinalIndexPre(finalIndex);
@@ -71,11 +77,24 @@ const Table = (props) => {
     e.preventDefault();
   };
 
-  const handelcheck =()=>{
+  const handelcheck =(e)=>{
+    const x=document.getElementById('allcheck')
+    console.log(x)
     if (selectall === true) {
       setselectall(false)
+      const y=document.getElementById('allcheck')
+      y.setAttribute('checked','')
+      const x=document.querySelectorAll('#checkinp')
+      x.forEach((e)=>{
+        e.setAttribute('checked','')})
     } else {
       setselectall(true)
+      const y=document.getElementById('allcheck')
+      y.removeAttribute('checked','')
+      const x=document.querySelectorAll('#checkinp')
+      x.forEach((e)=>{
+        e.removeAttribute('checked','')
+      })
     }
   }
 
@@ -113,6 +132,7 @@ const Table = (props) => {
                 onChange={handleChange}
                 name="username"
                 value={searchInitial.username}
+                id='allcheck'
                 className="lg:bg-slate-300 lg:h-[25px] lg:w-[90%] lg:rounded-3xl lg:p-3 lg:border-none lg:outline-slate-300"
               />
               <button className="lg:flex lg:justify-center lg:items-center lg:w-[10%] lg:outline-none lg:border-none">
@@ -127,32 +147,32 @@ const Table = (props) => {
             <table className="lg:rounded-3xl lg:h-auto lg:w-[100%] lg:text-center lg:overflow-hidden">
               <thead className="lg:h-[10%] lg:w-[90%] lg:bg-gray-500">
                 <tr className="lg:mb-3">
-                  <th className="lg:p-3 mr-3">
+                  <th className="lg:p-2 mr-3">
                     <input type="checkbox" onClick={handelcheck}/> {tableHeadId}
                   </th>
-                  <th className="lg:p-3">{tableHeadName}</th>
-                  <th className="lg:p-3">{tableHeadcol}</th>
-                  <th className="lg:p-3">{tableHeadAction}</th>
+                  <th className="lg:p-2">{tableHeadName}</th>
+                  <th className="lg:p-2">{tableHeadcol}</th>
+                  <th className="lg:p-2">{tableHeadAction}</th>
                 </tr>
               </thead>
               <tbody className="overflow-hidden">
                 {totalEntries > 0 ? (
                   dataArray.map((item) => (
-                    <tr key={item.id} className={`lg:bg-gray-300 lg:border-b`}>
-                      <td className="lg:p-1"><input type="checkbox" onClick={handelcheck}/> {item.id}</td>
-                      <td className="lg:p-1">{item.username}</td>
-                      <td className="lg:p-1">{item.email}</td>
-                      <td className="lg:inline-flex lg:items-center lg:justify-center lg:space-x-4 lg:p-1">
-                        <div className=" lg:p-1 lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl lg:text-black hover:text-green-600 lg:cursor-pointer lg:font-serif">
+                    <tr key={item.id} className={`lg:bg-gray-300 lg:border-b lg:hover:bg-gray-500`}>
+                      <td className="lg:p-3"><input type="checkbox" onClick={handelcheck} id='checkinp' /> {item.id}</td>
+                      <td className="lg:p-3">{item.username}</td>
+                      <td className="lg:p-3">{item.email}</td>
+                      <td className="lg:inline-flex lg:items-center lg:justify-center lg:space-x-4 lg:p-3">
+                        <div className="  lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl lg:text-black hover:text-green-600 lg:cursor-pointer lg:font-serif">
                           {/* {actionsEdit} */}
                           <FontAwesomeIcon icon={faPenToSquare} />
                         </div>
-                        <div className=" lg:p-1 lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl lg:w-[70px] lg:rounded-xl lg:text-black hover:text-red-500 lg:cursor-pointer lg:font-serif">
+                        <div className="  lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl lg:w-[70px] lg:rounded-xl lg:text-black hover:text-red-500 lg:cursor-pointer lg:font-serif">
                           {/* {actionsDelete} */}
                           <FontAwesomeIcon icon={faTrashCan} />
                         </div>
                         {actionsCourse && (
-                          <div className=" lg:p-1 lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl lg:w-[70px] lg:rounded-xl lg:text-black hover:text-blue-500 lg:cursor-pointer lg:font-serif">
+                          <div className="  lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl lg:w-[70px] lg:rounded-xl lg:text-black hover:text-blue-500 lg:cursor-pointer lg:font-serif">
                             {/* {actionsCourse} */}
                             <FontAwesomeIcon icon={faBook} />
                           </div>
