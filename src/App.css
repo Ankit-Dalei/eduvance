@@ -32,3 +32,19 @@
   background-color: #45a049 !important; /* Custom hover color */
   border-color: #45a049 !important;
 }
+
+.mxyz::-webkit-scrollbar-track {
+  background: #181818;
+  display: block;
+}
+
+.mxyz::-webkit-scrollbar {
+  width: 15px;
+  display: block;
+}
+
+.mxyz::-webkit-scrollbar-thumb {
+  background: linear-gradient(#2c2c2e, #b3b0b2);
+  border-radius: 7px;
+  display: block;
+}

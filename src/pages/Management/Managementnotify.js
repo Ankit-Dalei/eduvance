@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faChevronRight, faAngleLeft, faPenFancy } from '@fortawesome/free-solid-svg-icons';
 import { messages } from '../../Data/emaildata';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Managementnotify = () => {
   const [searchInitial, setSearchInitial] = useState({ username: '' });
@@ -12,6 +13,7 @@ const Managementnotify = () => {
   const [finalIndex, setFinalIndex] = useState(10);
   const [finalIndexPre, setFinalIndexPre] = useState(0);
   const [count,setCount]=useState(1)
+  const navigate=useNavigate()
 
   const dataArray = filteredData.slice(initialIndex, finalIndex);
   const lastIndex = messages[filteredData.length - 1]?.id;
@@ -65,7 +67,7 @@ const Managementnotify = () => {
   };
 
   const handelClick=(item)=>{
-    console.log(item.sender)
+    navigate('/management/notificationDisplay', { state: { message: item } })
   }
 
   return (
@@ -111,7 +113,7 @@ const Managementnotify = () => {
             <div className={`lg:h-[100%] lg:w-[100%] lg:flex lg:justify-start lg:items-center lg:flex-col lg:gap-1`}>
               {totalEntries > 0 ? (
                   dataArray.map((item) => (
-                    <div className="lg:flex lg:justify-center lg:items-center lg:bg-gray-100 p-4 lg:h-[9.1%] lg:w-full lg:border-b lg:border-gray-200 lg:hover:bg-gray-400 lg:hover:border-2" onClick={()=>handelClick(item)}>
+                    <div className="lg:flex lg:justify-center lg:items-center lg:bg-gray-100 p-4 lg:h-[9.1%] lg:w-full lg:border-b lg:border-gray-200 lg:hover:bg-gray-400 lg:hover:border-2 lg:cursor-pointer " onClick={()=>handelClick(item)}>
                       <div className="lg:flex lg:items-center lg:flex-grow">
                         <div className="lg:w-[15%] lg:text-gray-600 lg:font-semibold">{item.sender}</div>
                         <div className="lg:ml-4 lg:text-gray-800">{item.heading}</div>
@@ -121,7 +123,11 @@ const Managementnotify = () => {
                   ))
                 ) :'' }
             </div>
-            <button className={`lg:absolute lg:bg-pink-500 lg:p-2 lg:right-2 lg:bottom-2 lg:rounded-full lg:w-[130px] lg:text-gray-200 lg:font-semibold hover:lg:bg-slate-600 lg:flex lg:justify-center lg:items-center lg:gap-3`}><FontAwesomeIcon icon={faPenFancy} size='ls'/>Compose</button>
+            <Link to={`/management/message`}>
+              <button className={`lg:absolute lg:bg-pink-500 lg:p-2 lg:right-2 lg:bottom-2 lg:rounded-full lg:w-[130px] lg:text-gray-200 lg:font-semibold hover:lg:bg-slate-600 lg:flex lg:justify-center lg:items-center lg:gap-3`}><FontAwesomeIcon icon={faPenFancy} size='ls'/>
+                Compose
+              </button>
+            </Link>
           </div>
         </div>
       </div>

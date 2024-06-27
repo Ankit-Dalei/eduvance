@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes,Switch  } from 'react-router-dom';
+import { BrowserRouter, Route, Routes  } from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login/Login';
 import ForgotPassword from './pages/Login/ForgotPassword';
@@ -32,6 +32,8 @@ import Managementaddbranch from './pages/Management/ManagementForms/Managementad
 import Managementaddcourse from './pages/Management/ManagementForms/Managementaddcourse';
 import Managementaddteacher from './pages/Management/ManagementForms/Managementaddteacher';
 import Managementaddstudent from './pages/Management/ManagementForms/Managementaddstudent';
+import Managementnotifyshow from './pages/Management/Managementnotifyshow';
+import Managementnotifycreate from './pages/Management/Managementnotifycreate';
 
 function App() {
   return (
@@ -59,6 +61,8 @@ function App() {
             <Route path='Student' element={<Managementstudent/>}/>
             <Route path='Section' element={<Managementsection/>}/>
             <Route path='notification' element={<Managementnotify/>}/>
+            <Route path='notificationDisplay' element={<Managementnotifyshow/>}/>
+            <Route path='message' element={<Managementnotifycreate/>}/>
             <Route path='ChooseRoll' element={<Managemententrypanal/>}>
               <Route index element={<Managementaddschool/>}/>
               <Route path='addBranch' element={<Managementaddbranch/>}/>
