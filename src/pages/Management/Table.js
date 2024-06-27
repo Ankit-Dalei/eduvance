@@ -139,7 +139,7 @@ const Table = (props) => {
                 {totalEntries > 0 ? (
                   dataArray.map((item) => (
                     <tr key={item.id} className={`lg:bg-gray-300 lg:border-b`}>
-                      <td className="lg:p-1">{item.id}</td>
+                      <td className="lg:p-1"><input type="checkbox" onClick={handelcheck}/> {item.id}</td>
                       <td className="lg:p-1">{item.username}</td>
                       <td className="lg:p-1">{item.email}</td>
                       <td className="lg:inline-flex lg:items-center lg:justify-center lg:space-x-4 lg:p-1">
