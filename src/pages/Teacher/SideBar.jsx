@@ -62,7 +62,7 @@ const Sidebar = () => {
       <div
         className={`${
           count ? "w-56" : "w-16"
-        } bg-[#121212] h-screen p-3 pt-8 relative duration-300`}
+        } bg-black h-screen p-3 pt-8 relative duration-300`}
       >
         {!isMobile && (
           <IoIosArrowBack
