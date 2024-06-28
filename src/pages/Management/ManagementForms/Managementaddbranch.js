@@ -1,10 +1,11 @@
 import React from 'react'
+import Form from '../Form'
 
 const Managementaddbranch = () => {
   return (
-    <div>
-      yo bro
-    </div>
+    <>
+      <Form/>
+    </>
   )
 }
 

@@ -1,10 +1,11 @@
 import React from 'react'
+import Form from '../Form'
 
 const Managementaddteacher = () => {
   return (
-    <div>
-      Managementaddteacher
-    </div>
+    <>
+      <Form/>
+    </>
   )
 }
 
