@@ -18,7 +18,7 @@ const BaseLayout = () => {
 
     return (
         <Layout>
-            <header className="bg-black border-b-4 border-gray-700">
+            <header className="nav-header bg-black top-0 left-0 w-full z-10 fixed">
                 <nav className="container mx-auto flex items-center justify-between py-4">
                     <div className="flex items-center justify-between w-full text-white">
                         {navLinks.map(({ to, text }) => (
@@ -27,20 +27,20 @@ const BaseLayout = () => {
                             </NavLink>
                         ))}
                     </div>
-                    <div className="">
+                    <div>
                         {/* Hamburger menu for mobile */}
                     </div>
                 </nav>
             </header>
-            <div>
+            <main className="content mt-16 overflow-hidden">
                 <Outlet />
-            </div>
+            </main>
         </Layout>
     );
 }
+
 const NavLink = ({ to, isActive, children }) => {
     const activeClassName = isActive ? 'active-nav-link' : 'nav-link';
-    
     return (
         <Link to={to} className={activeClassName}>
             {children}

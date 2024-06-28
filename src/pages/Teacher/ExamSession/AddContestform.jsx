@@ -39,7 +39,7 @@ const navigate=useNavigate()
                         Back to Contest Manage
                     </Link>
                 </div>
-                <h1 className='text-3xl leading-5 mb-4'>Add Contest</h1>
+                <h1 className='lg:text-3xl text-lg leading-5 mb-4'>Add Contest</h1>
                 <p className='text-gray-400 italic mb-3'>
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. <br />
                     Facilis ratione consequuntur ea, consequatur deleniti accusamus! Error quae culpa assumenda eaque <br />
