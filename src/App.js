@@ -40,13 +40,15 @@ import Challenge from './pages/Teacher/ExamSession/Challenge';
 import Advance from './pages/Teacher/ExamSession/Advance';
 import { ToastContainer } from 'react-toastify';
 import Moderate from './pages/Teacher/ExamSession/Moderate';
+import { Toaster } from 'react-hot-toast';
+import Notification from './pages/Teacher/ExamSession/Notification';
 
 function App() {
   return (
     <>
       
       <BrowserRouter>
-      <ToastContainer/>
+      <Toaster />
         <Routes>
           <Route path='/' element={<Login/>}/>
           <Route path='/ForgotPassword' element={<ForgotPassword/>}/>
@@ -99,6 +101,7 @@ function App() {
         <Route path="challenge" element={<Challenge/>} />
         <Route path="advanced" element={<Advance/>} />
         <Route path="moderate" element={<Moderate/>} />
+        <Route path="notification" element={<Notification/>} />
         </Route>
 
 

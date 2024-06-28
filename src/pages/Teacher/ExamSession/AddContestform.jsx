@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import Layout from '../Layout';
 import { FiArrowLeft } from 'react-icons/fi'; 
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import toast from 'react-hot-toast';
 
 const AddContestform = () => {
   const location = useLocation();
@@ -16,7 +16,7 @@ const navigate=useNavigate()
        
         e.preventDefault();
         if (!contestName || !startTime || !endTime || !organizationType) {
-            toast.error('Please fill in all required fields.');
+           toast.error("please fill all the fileds..")
             return;
         }
       
