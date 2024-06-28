@@ -48,7 +48,10 @@ function App() {
     <>
       
       <BrowserRouter>
-      <Toaster />
+      <Toaster 
+        position="top-right" // Change the position here
+        reverseOrder={false} // Optionally reverse the order of toasts
+      />
         <Routes>
           <Route path='/' element={<Login/>}/>
           <Route path='/ForgotPassword' element={<ForgotPassword/>}/>
