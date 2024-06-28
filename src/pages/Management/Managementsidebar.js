@@ -51,7 +51,7 @@ const Managementsidebar = () => {
           }
           </div>
           <div className={`bg-slate-950 lg:h-[17.7%] lg:w-[100%] lg:flex lg:justify-center lg:items-center`}>
-          <button className={`${count? 'lg:bg-slate-100 lg:h-[40px] lg:w-[160px] lg:rounded-lg lg:text-lg font-mono hover:bg-slate-800 hover:text-slate-50' :'lg:h-[35px] lg:w-[35px] rounded-full lg:text-white hover:bg-slate-300 hover:text-red-500 lg:text-xl'}`}>{count?'Logout':<FontAwesomeIcon icon={faRightFromBracket}/>}</button> 
+          <button className={`${count? 'lg:bg-slate-100 lg:h-[40px] lg:w-[160px] lg:rounded-lg lg:text-lg font-mono hover:bg-slate-800 hover:text-slate-50' :'lg:h-[35px] lg:w-[35px] rounded-lg lg:text-white hover:bg-slate-300 hover:text-red-500 lg:text-xl'}`}>{count?'Logout':<FontAwesomeIcon icon={faRightFromBracket}/>}</button> 
           </div>
         </div>
       </div>
