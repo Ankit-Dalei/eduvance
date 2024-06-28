@@ -42,6 +42,7 @@ import { ToastContainer } from 'react-toastify';
 import Moderate from './pages/Teacher/ExamSession/Moderate';
 import { Toaster } from 'react-hot-toast';
 import Notification from './pages/Teacher/ExamSession/Notification';
+import Statistics from './pages/Teacher/ExamSession/Statistics';
 
 function App() {
   return (
@@ -105,6 +106,7 @@ function App() {
         <Route path="advanced" element={<Advance/>} />
         <Route path="moderate" element={<Moderate/>} />
         <Route path="notification" element={<Notification/>} />
+        <Route path="statistic" element={<Statistics/>} />
         </Route>
 
 

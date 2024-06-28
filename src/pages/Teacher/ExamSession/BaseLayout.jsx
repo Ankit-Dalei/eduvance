@@ -13,7 +13,7 @@ const BaseLayout = () => {
         { to: "/baselayout/advanced", text: "Advanced" },
         { to: "/baselayout/moderate", text: "Moderate" },
         { to: "/baselayout/notification", text: "Notifications" },
-        { to: "/baselayout/stats", text: "Stats" }
+        { to: "/baselayout/statistic", text: "Statistic" }
     ];
 
     return (

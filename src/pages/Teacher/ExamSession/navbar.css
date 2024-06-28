@@ -112,6 +112,7 @@
     padding: 0.5rem 1rem;
     color: #00bcd4;
     text-decoration: none;
+    border-radius: 5px;
     border-bottom: 2px solid white;
 }
 
