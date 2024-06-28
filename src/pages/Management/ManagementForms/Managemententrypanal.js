@@ -21,7 +21,7 @@ const Managemententrypanal = () => {
                         <Link to={`addStudent`} className={`lg:p-1 hover:bg-slate-200 hover:text-slate-900 lg:rounded-2xl lg:pl-3 lg:pr-3 ${isActive('/management/ChooseRoll/addStudent') ? 'bg-slate-500 text-white' : 'lg:text-gray-100'}`}><li>ADD STUDENT</li></Link>
                     </ul>
                 </div>
-                <div className={`bg-slate-200 lg:h-[85%] lg:w-[100%] lg:flex lg:justify-center lg:items-center`}>
+                <div className={`lg:h-[85%] lg:w-[100%] lg:flex lg:justify-center lg:items-center`}>
                     <Outlet/>
                 </div>
             </div>
