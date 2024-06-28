@@ -30,14 +30,14 @@
 
 /* navbar.css */
 .nav-link {
-    color: white;
+    color:#00bcd4;
     padding: 0.5rem 1rem;
     text-decoration: none;
 }
 
 .active-nav-link {
     background-color:  #1a202c; /* Example background color for active state */
-    color: white;
+    color: #00bcd4;
     padding: 0.5rem 1rem;
     border: 20%;
     text-decoration: none;
@@ -63,7 +63,7 @@
 /* navbar.css */
 .nav-link {
     position: relative;
-    color: white;
+    color:#00bcd4;
     text-decoration: none;
     padding: 0.5rem 1rem;
     transition: color 0.3s ease;
@@ -86,4 +86,35 @@
 
 .nav-link:hover::after {
     width: 100%; /* Extend line width on hover */
+}
+.nav-header {
+    background-color: black;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    position: fixed;
+}
+
+.nav-link {
+    padding: 0.5rem 1rem;
+    color: white;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    border-bottom: 2px solid white;
+}
+
+.active-nav-link {
+    padding: 0.5rem 1rem;
+    color: #00bcd4;
+    text-decoration: none;
+    border-bottom: 2px solid white;
+}
+
+.content {
+    margin-top: 4rem;
 }

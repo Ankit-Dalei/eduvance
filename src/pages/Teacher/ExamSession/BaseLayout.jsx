@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation, Link, Outlet } from 'react-router-dom';
 import Layout from '../Layout';
 import './navbar.css';
+import Sidebar from '../SideBar';
 
 const BaseLayout = () => {
     const location = useLocation();
@@ -18,8 +19,8 @@ const BaseLayout = () => {
 
     return (
         <Layout>
-            <header className="nav-header bg-black top-0 left-0 w-full z-10 fixed">
-                <nav className="container mx-auto flex items-center justify-between py-4">
+            <header className="nav-header bg-black top-0 left-0 w-full z-10 fixed ">
+                <nav className="container mx-auto flex items-center justify-between py-5 overflow-auto">
                     <div className="flex items-center justify-between w-full text-white">
                         {navLinks.map(({ to, text }) => (
                             <NavLink key={to} to={to} isActive={location.pathname === to}>

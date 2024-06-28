@@ -9,7 +9,7 @@ const QuestionLayout = () => {
   return (
     <Layout>
       <div className='p-6 w-full'>
-        <h1 className='text-3xl leading-5 mb-4'>Manage Questions and Contest here!!!!</h1>
+        <h1 className='lg:text-3xl text-lg leading-5 mb-4'>Manage Questions and Contest here!!!!</h1>
         <hr />
         <div className='w-full flex flex-col md:flex-row justify-between items-center mt-4'>
           <div className='mb-4 md:mb-0'>
