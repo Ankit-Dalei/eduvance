@@ -16,7 +16,10 @@ const navigate=useNavigate()
        
         e.preventDefault();
         if (!contestName || !startTime || !endTime || !organizationType) {
-           toast.error("please fill all the fileds..")
+            toast.error('please fill all the fields...', {
+                duration: 2000, 
+              });
+              
             return;
         }
       
