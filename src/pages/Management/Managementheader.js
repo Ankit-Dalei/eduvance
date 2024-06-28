@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { changestate } from '../../Redux/sidebar';
 import { Link } from 'react-router-dom';
 
+
 const Managementheader = () => {
   const dispatch = useDispatch()
   const [isState,SetisState]=useState(true);
@@ -34,7 +35,7 @@ const Managementheader = () => {
             </div>
           </div>
         </>
-      )
+    )
 }
 
 export default Managementheader
