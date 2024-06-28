@@ -125,7 +125,7 @@ const Table = (props) => {
       <div className="lg:h-[100%] lg:w-[100%] lg:flex lg:justify-center lg:items-center">
         <div className="lg:h-[95%] lg:w-[95%] lg:flex lg:justify-start lg:items-center lg:flex-col">
           <div className="lg:h-[10%] lg:w-[100%] lg:flex lg:justify-between lg:items-center">
-            <form className="lg:bg-slate-300 lg:h-[35px] lg:w-[350px] lg:flex lg:justify-between lg:items-center lg:rounded-3xl lg:p-2" onSubmit={handleSubmit}>
+            <form className="lg:bg-slate-300 lg:h-[35px] lg:w-[420px] lg:flex lg:justify-between lg:items-center lg:rounded-xl lg:p-2" onSubmit={handleSubmit}>
               <input
                 type="text"
                 placeholder="Search Here"
@@ -133,7 +133,7 @@ const Table = (props) => {
                 name="username"
                 value={searchInitial.username}
                 id='allcheck'
-                className="lg:bg-slate-300 lg:h-[25px] lg:w-[90%] lg:rounded-3xl lg:p-3 lg:border-none lg:outline-slate-300"
+                className="lg:bg-slate-300 lg:h-[25px] lg:w-[90%] lg:rounded-lg lg:p-3 nonono"
               />
               <button className="lg:flex lg:justify-center lg:items-center lg:w-[10%] lg:outline-none lg:border-none">
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
@@ -143,7 +143,7 @@ const Table = (props) => {
               Export
             </button>
           </div>
-          <div className="lg:h-auto lg:w-[100%]">
+          <div className="lg:h-auto lg:w-[100%] mt-5">
             <table className="lg:rounded-3xl lg:h-auto lg:w-[100%] lg:text-center lg:overflow-hidden">
               <thead className="lg:h-[10%] lg:w-[90%] lg:bg-slate-950 lg:text-white">
                 <tr className="lg:mb-3">
