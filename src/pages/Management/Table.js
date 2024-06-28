@@ -145,7 +145,7 @@ const Table = (props) => {
           </div>
           <div className="lg:h-[70%] lg:w-[100%]">
             <table className="lg:rounded-3xl lg:h-auto lg:w-[100%] lg:text-center lg:overflow-hidden">
-              <thead className="lg:h-[10%] lg:w-[90%] lg:bg-gray-500">
+              <thead className="lg:h-[10%] lg:w-[90%] lg:bg-slate-950 lg:text-white">
                 <tr className="lg:mb-3">
                   <th className="lg:p-2 mr-3">
                     <input type="checkbox" onClick={handelcheck}/> {tableHeadId}
@@ -158,21 +158,21 @@ const Table = (props) => {
               <tbody className="overflow-hidden">
                 {totalEntries > 0 ? (
                   dataArray.map((item) => (
-                    <tr key={item.id} className={`lg:bg-gray-300 lg:border-b lg:hover:bg-gray-500`}>
+                    <tr key={item.id} className={`lg:bg-slate-800 lg:border-b lg:hover:bg-gray-500 lg:text-white`}>
                       <td className="lg:p-3"><input type="checkbox" onClick={handelcheck} id='checkinp' /> {item.id}</td>
                       <td className="lg:p-3">{item.username}</td>
                       <td className="lg:p-3">{item.email}</td>
                       <td className="lg:inline-flex lg:items-center lg:justify-center lg:space-x-4 lg:p-3">
-                        <div className="  lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl lg:text-black hover:text-green-600 lg:cursor-pointer lg:font-serif">
+                        <div className="  lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl hover:text-green-600 lg:cursor-pointer lg:font-serif">
                           {/* {actionsEdit} */}
                           <FontAwesomeIcon icon={faPenToSquare} />
                         </div>
-                        <div className="  lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl lg:w-[70px] lg:rounded-xl lg:text-black hover:text-red-500 lg:cursor-pointer lg:font-serif">
+                        <div className="  lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl lg:w-[70px] lg:rounded-xl hover:text-red-500 lg:cursor-pointer lg:font-serif">
                           {/* {actionsDelete} */}
                           <FontAwesomeIcon icon={faTrashCan} />
                         </div>
                         {actionsCourse && (
-                          <div className="  lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl lg:w-[70px] lg:rounded-xl lg:text-black hover:text-blue-500 lg:cursor-pointer lg:font-serif">
+                          <div className="  lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl lg:w-[70px] lg:rounded-xl hover:text-blue-500 lg:cursor-pointer lg:font-serif">
                             {/* {actionsCourse} */}
                             <FontAwesomeIcon icon={faBook} />
                           </div>
