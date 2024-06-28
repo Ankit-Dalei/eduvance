@@ -39,6 +39,7 @@ import Details from './pages/Teacher/ExamSession/Details';
 import Challenge from './pages/Teacher/ExamSession/Challenge';
 import Advance from './pages/Teacher/ExamSession/Advance';
 import { ToastContainer } from 'react-toastify';
+import Moderate from './pages/Teacher/ExamSession/Moderate';
 
 function App() {
   return (
@@ -97,6 +98,7 @@ function App() {
         <Route path="details" element={<Details/>} />
         <Route path="challenge" element={<Challenge/>} />
         <Route path="advanced" element={<Advance/>} />
+        <Route path="moderate" element={<Moderate/>} />
         </Route>
 
 

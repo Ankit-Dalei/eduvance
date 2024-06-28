@@ -11,7 +11,6 @@ const BaseLayout = () => {
         { to: "/baselayout/details", text: "Details" },
         { to: "/baselayout/challenge", text: "Challenge" },
         { to: "/baselayout/advanced", text: "Advanced" },
-        { to: "/baselayout/settings", text: "Settings" },
         { to: "/baselayout/moderate", text: "Moderate" },
         { to: "/baselayout/notifications", text: "Notifications" },
         { to: "/baselayout/stats", text: "Stats" }

@@ -39,6 +39,8 @@ const Details = () => {
           Back to ContestForm
         </Link>
       </div>
+      <h1 className="lg:text-3xl text-lg leading-5 mb-1">Bikash Malu</h1>
+      <a href="" className='text-blue-500 underline mb-3'>wwww.hackerrank.com/bikash-malu</a>
       <h1 className="lg:text-3xl text-lg leading-5 mb-4">Contest Details</h1>
       <p className="text-gray-400 italic mb-3">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum
@@ -192,7 +194,7 @@ const Details = () => {
             />
           </div>
         </div>
-        <hr className="mt-4" />
+        <hr className="mt-4 w-[100%]" />
         <div className="space-y-4 mt-3">
           <h1 className="lg:text-3xl text-lg leading-5 mb-4">
             Landing Page Customization
@@ -326,6 +328,8 @@ const Details = () => {
       </button>
     </Link>
   </div>
+  <div>
+  <button type="reset" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Reset Here!!</button>
   <Link to={'/baselayout/challenge'}>
   <button
     type="submit"
@@ -333,8 +337,11 @@ const Details = () => {
   >
     Save Changes
   </button>
-  <button type="reset" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ml-2">Reset Here!!</button>
   </Link>
+  </div>
+
+
+
  
 </div>
 
