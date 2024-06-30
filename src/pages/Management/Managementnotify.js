@@ -121,7 +121,7 @@ const Managementnotify = () => {
                       <div className=" lg:text-gray-600">{item.time}</div>
                     </div>
                   ))
-                ) :'' }
+                ) :<div className={`lg:flex lg:justify-center lg:items-center lg:h-full lg:w-full lg:font-mono lg:text-2xlxl`}>no data found</div> }
             </div>
             <Link to={`/management/message`}>
               <button className={`lg:absolute lg:bg-pink-500 lg:p-2 lg:right-2 lg:bottom-2 lg:rounded-full lg:w-[130px] lg:text-gray-200 lg:font-semibold hover:lg:bg-slate-600 lg:flex lg:justify-center lg:items-center lg:gap-3`}><FontAwesomeIcon icon={faPenFancy} size='ls'/>

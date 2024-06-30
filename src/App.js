@@ -37,6 +37,13 @@ import { Toaster } from 'react-hot-toast';
 import Notification from './pages/Teacher/ExamSession/Notification';
 import Statistics from './pages/Teacher/ExamSession/Statistics';
 import Adminlayout from './pages/Admin/Adminlayout';
+import Adminhome from './pages/Admin/AdminTable/Adminhome';
+import Adminuniversity from './pages/Admin/AdminTable/Adminuniversity';
+import Admincampus from './pages/Admin/AdminTable/Admincampus';
+import Adminmanagement from './pages/Admin/AdminTable/Adminmanagement';
+import Adminnotify from './pages/Admin/Adminnotify';
+import Adminnotifyshow from './pages/Admin/Adminnotifyshow';
+import Adminnotifycreate from './pages/Admin/Adminnotifycreate';
 
 function App() {
   return (
@@ -52,7 +59,15 @@ function App() {
           <Route path='/ForgotPassword' element={<ForgotPassword/>}/>
           <Route path='/ResetPassWord' element={<ResetPassWordPage/>}/>
           {/* admin */}
-          <Route path='/admin' element={<Adminlayout/>}/>
+          <Route path='/Admin' element={<Adminlayout/>}>
+            <Route index element={<Adminhome/>}/>
+            <Route path='University' element={<Adminuniversity/>}/>
+            <Route path='Campus' element={<Admincampus/>}/>
+            <Route path='Management' element={<Adminmanagement/>}/>
+            <Route path='Notification' element={<Adminnotify/>}/>
+            <Route path='notificationDisplay' element={<Adminnotifyshow/>}/>
+            <Route path='message' element={<Adminnotifycreate/>}/>
+          </Route>
           {/* management */}
           <Route path='/Management' element={<Managementlayout/>}>
             <Route index element={<Managementhome/>}/>
