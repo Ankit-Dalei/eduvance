@@ -7,7 +7,7 @@ const Managementaddteacher = () => {
   }
   return (
     <>
-      <div className={`border-2 border-solid lg:h-full lg:w-full lg:flex lg:justify-center lg:items-center`}>
+      <div className={`lg:h-full lg:w-full lg:flex lg:justify-center lg:items-center`}>
         <form className={`lg:p-2 lg:h-full lg:w-full lg:flex lg:justify-center lg:items-center lg:flex-row`} onSubmit={handelSubmit}>
           <div className={`lg:p-2 lg:w-[50%] lg:h-full`}>
             <div className={`lg:flex lg:justify-center lg:items-start lg:flex-col gap-2 lg:font-semibold lg:text-sm`}>

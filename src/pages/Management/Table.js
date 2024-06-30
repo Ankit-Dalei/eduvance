@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faChevronRight, faAngleLeft, faPenToSquare, faTrashCan, faBook } from '@fortawesome/free-solid-svg-icons';
 import * as XLSX from 'xlsx';
 import { ToastContainer, toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const Table = (props) => {
-  const { actionsCourse, actionsDelete, actionsEdit, tableHeadAction, tableHeadcol, tableHeadName, tableHeadId, data, pagename} = props;
+  const { actionsCourse, actionsDelete, actionsEdit, tableHeadAction, tableHeadcol, tableHeadName, tableHeadId, data, pagename,link} = props;
   const [searchInitial, setSearchInitial] = useState({ username: '' });
   const [filteredData, setFilteredData] = useState(data);
   const [selectall, setselectall] = useState(true);
@@ -167,15 +168,16 @@ const Table = (props) => {
                           {/* {actionsEdit} */}
                           <FontAwesomeIcon icon={faPenToSquare} />
                         </div>
-                        <div className="  lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl lg:w-[70px] lg:rounded-xl hover:text-red-500 lg:cursor-pointer lg:font-serif">
+                        <div className="  lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl hover:text-red-500 lg:cursor-pointer lg:font-serif">
                           {/* {actionsDelete} */}
                           <FontAwesomeIcon icon={faTrashCan} />
                         </div>
                         {actionsCourse && (
-                          <div className="  lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl lg:w-[70px] lg:rounded-xl hover:text-blue-500 lg:cursor-pointer lg:font-serif">
+                          <Link to={link}>
+                          <div className="  lg:pl-3 lg:pr-3 lg:w-auto lg:rounded-xl hover:text-blue-500 lg:cursor-pointer lg:font-serif">
                             {/* {actionsCourse} */}
                             <FontAwesomeIcon icon={faBook} />
-                          </div>
+                          </div></Link>
                         )}
                       </td>
                     </tr>

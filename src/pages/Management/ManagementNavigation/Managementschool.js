@@ -5,7 +5,7 @@ import { usersData } from '../../../Data/data';
 const Managementschool = () => {
   return (
     <>
-      <Table tableHeadId={'Serial Id'} tableHeadName={'Username'} tableHeadcol={'Email Id'} tableHeadAction={'Action'} actionsEdit={'Edit'} actionsDelete={'Delete'} actionsCourse={'Course'} data={usersData} pagename={"School"}/>
+      <Table tableHeadId={'Serial Id'} tableHeadName={'School Name'} tableHeadcol={'School Id'} tableHeadAction={'Action'} actionsEdit={'Edit'} actionsDelete={'Delete'} actionsCourse={'Branch'} data={usersData} pagename={"School"} link={'/management/ChooseRoll/addBranch'}/>
     </>
   )
 }
