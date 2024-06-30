@@ -26,8 +26,8 @@ const Managementheader = () => {
               </div>
               <h1 className={` lg:h-full lg:w-[76%] lg:flex lg:justify-start lg:items-center lg:text-4xl lg:font-sans lg:font-bold`}>Eduvance</h1>
               <div className={` lg:h-full lg:w-[20%] lg:flex lg:justify-end lg:items-center`}>
-                <Link to={`notification`}><FontAwesomeIcon icon={faBell} size="xl" className={`text-black hover:text-slate-400 cursor-pointer `}/></Link>
-                <Link to={'ChooseRoll'} className={`lg:bg-gray-800 lg:p-2 lg:rounded-lg lg:text-white hover:bg-slate-300 hover:text-slate-900 cursor-pointer lg:ml-6 lg:font-serif`}><FontAwesomeIcon icon={faPlus} size="sm"/> Create role</Link>
+                <Link to={`notification`}><FontAwesomeIcon icon={faBell} size="xl" className={`text-red-500 hover:text-slate-400 cursor-pointer lg:font-mono`}/></Link>
+                <Link to={'ChooseRoll'} className={`lg:bg-red-500 lg:p-2 lg:rounded-lg lg:text-white hover:bg-slate-300 hover:text-slate-900 cursor-pointer lg:ml-6 lg:font-mono`}><FontAwesomeIcon icon={faPlus} size="sm"/> Create role</Link>
                 {/* <div className={`lg:h-[40px] lg:w-[40px] lg:rounded-[50%]`}>
                   <img src='./Images/management.png' alt=''className='rounded-[50%] cursor-pointer'/>
                 </div> */}

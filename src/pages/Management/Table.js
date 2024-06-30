@@ -139,13 +139,13 @@ const Table = (props) => {
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
               </button>
             </form>
-            <button className="lg:bg-gray-800 lg:p-1 lg:flex lg:justify-center lg:items-center lg:w-[100px] lg:rounded-lg lg:text-white hover:bg-slate-300 hover:text-slate-900 lg:font-serif" onClick={handelExports}>
+            <button className="lg:bg-red-500 lg:p-1 lg:flex lg:justify-center lg:items-center lg:w-[100px] lg:rounded-lg lg:text-white hover:bg-slate-300 hover:text-slate-900 lg:font-mono" onClick={handelExports}>
               Export
             </button>
           </div>
           <div className="lg:h-auto lg:w-[100%] mt-5">
             <table className="lg:rounded-3xl lg:h-auto lg:w-[100%] lg:text-center lg:overflow-hidden">
-              <thead className="lg:h-[10%] lg:w-[90%] lg:bg-slate-950 lg:text-white">
+              <thead className="lg:h-[10%] lg:w-[90%] lg:bg-gray-600 lg:text-white">
                 <tr className="lg:mb-3">
                   <th className="lg:p-2 mr-3">
                     <input type="checkbox" onClick={handelcheck}/> {tableHeadId}
@@ -158,7 +158,7 @@ const Table = (props) => {
               <tbody className="overflow-hidden">
                 {totalEntries > 0 ? (
                   dataArray.map((item) => (
-                    <tr key={item.id} className={`lg:bg-slate-800 lg:border-b lg:hover:bg-gray-500 lg:text-white`}>
+                    <tr key={item.id} className={`lg:bg-gray-500 lg:border-b lg:hover:bg-gray-200 lg:text-white lg:hover:text-black`}>
                       <td className="lg:p-3"><input type="checkbox" onClick={handelcheck} id='checkinp' /> {item.id}</td>
                       <td className="lg:p-3">{item.username}</td>
                       <td className="lg:p-3">{item.email}</td>
