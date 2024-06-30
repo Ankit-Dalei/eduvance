@@ -82,7 +82,7 @@ const Dashboard = () => {
       ROLE: "Admin",
       "CREATED AT": "2024-05-12T11:10:00Z",
     },
-    // Add more data as needed
+    
   ];
 
   const [data, setData] = useState(initialData);

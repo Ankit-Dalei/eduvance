@@ -26,7 +26,7 @@ const TableComponent = ({ data, columns, currentPage, totalPages, onPageChange }
           </table>
         ) : (
           <div className="text-center text-black py-4 text-2xl">
-            <p>No contests found matching your search criteria.</p>
+            <p>No courses found matching your search criteria.</p>
           </div>
         )}
       </div>

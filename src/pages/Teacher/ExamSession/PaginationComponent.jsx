@@ -8,7 +8,10 @@ const PaginationComponent = ({ currentPage, totalPages, onPageChange }) => {
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
-          onPageChange={onPageChange}
+          onPageChange={(e) => {
+            onPageChange(e);
+            console.log(`Pagination onPageChange triggered with page: ${e}`);
+          }}
         />
       </div>
     )
