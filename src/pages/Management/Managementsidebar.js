@@ -14,7 +14,7 @@ const Managementsidebar = () => {
   return (
     <>
       <div className={`lg:h-[100%] lg:w-[100%] lg:flex lg:justify-center lg:items-center lg:flex-col`}>
-        <div className={`lg:h-[100%] lg:w-[100%] lg:flex lg:justify-between lg:items-center lg:flex-col`}>
+        <div className={`lg:h-[100%] lg:w-[100%] lg:flex lg:justify-start lg:items-center lg:flex-col`}>
           <div className={`lg:h-[12%] lg:w-[100%] lg:flex lg:justify-center lg:items-center`}>
             {count?
           <div className={`lg:flex lg:flex-row lg:justify-center lg:items-center lg:h-full lg:w-[80%]`}>
@@ -29,7 +29,7 @@ const Managementsidebar = () => {
           </div>
           }
           </div>
-          <div className={`lg:h-[70%] lg:w-[100%] lg:flex lg:justify-center lg:items-center lg:font-thin`}>
+          <div className={`lg:h-[70%] lg:w-[100%] lg:flex lg:justify-start lg:items-center lg:font-thin`}>
           {count?<ul className='lg:h-[95%] lg:w-[100%] lg:flex lg:justify-start lg:items-center lg:flex-col space-y-5'>
             <Link to={``} className={`lg:h-[35px] lg:w-[70%] lg:flex lg:justify-center lg:items-center hover:bg-slate-300 hover:text-red-500 rounded-xl lg:text-xl ${isActive('/management') ? 'bg-slate-300 text-black' : 'lg:text-gray-500'}`}><div className={`w-[20%]`}><FontAwesomeIcon icon={faHouse} size="xs"/></div> <div className={`w-[70%]`}><li className={`lg:text-sm lg:font-semibold`}>Home</li></div></Link>
             <Link to={`School`} className={`lg:h-[35px] lg:w-[70%] lg:flex lg:justify-center lg:items-center hover:bg-slate-300 hover:text-red-500 rounded-xl lg:text-xl ${isActive('/management/School') ? 'bg-slate-300 text-black' : 'lg:text-gray-500'}`}><div className={`w-[20%]`}><FontAwesomeIcon icon={faGraduationCap} size="xs"/></div> <div className={`w-[70%]`}><li className={`lg:text-sm lg:font-semibold`}>School</li></div></Link>
