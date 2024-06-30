@@ -82,3 +82,60 @@
   outline: none;
   border: none;
 }
+/* sidebar.css */
+.custom-dropdown .ant-dropdown-menu {
+  background-color: black !important;
+  color: white;
+}
+
+.custom-dropdown .ant-dropdown-menu-item {
+  color: white;
+}
+
+.custom-dropdown .ant-dropdown-menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+.custom-menu {
+  background-color: black !important;
+}
+
+.custom-menu-item {
+  color: white !important;
+}
+
+.custom-menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+.custom-dropdown {
+  position: absolute;
+  z-index: 1000;
+}
+
+.custom-menu {
+  background-color: #1a1a1a; /* Or your desired color */
+}
+
+.custom-menu-item {
+  color: white;
+}
+.custom-dropdown {
+  position: fixed !important;
+  z-index: 1000;
+}
+
+.custom-menu {
+  background-color: #1a1a1a;
+  border: none;
+}
+
+.custom-menu-item {
+  color: white;
+}
+
+.ant-dropdown {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
+

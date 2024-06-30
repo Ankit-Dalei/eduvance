@@ -1,19 +1,18 @@
-import { Dropdown, Menu } from "antd";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { BiHome } from "react-icons/bi";
-import { GoRepoPush } from "react-icons/go";
-import { IoIosArrowBack, IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
 import { IoLogOutOutline, IoSettingsOutline } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
 import { SiConfluence } from "react-icons/si";
 import { useDispatch, useSelector } from "react-redux";
 import { changestate } from "../../Redux/sidebar";
 import { MdOutlineAddToQueue } from "react-icons/md";
+import { GoRepoPush } from "react-icons/go";
+import StaggeredDropDown from "./ExamSession/StaggeredDropDown";
 
 const Sidebar = () => {
-  const dispatch = useDispatch()
-  const count = useSelector((state) => state.sider.value)
+  const dispatch = useDispatch();
+  const count = useSelector((state) => state.sider.value);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
 
   useEffect(() => {
@@ -25,21 +24,17 @@ const Sidebar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const settingsMenu = (
-    <Menu>
-      <Menu.Item key="1">Profile</Menu.Item>
-      <Menu.Item key="2">Account</Menu.Item>
-      <Menu.Item key="3">Preferences</Menu.Item>
-    </Menu>
-  );
+  const settingsMenuItems = [
+    { icon: IoSettingsOutline, text: "Profile" },
+    { icon: IoSettingsOutline, text: "Account" },
+    { icon: IoSettingsOutline, text: "Preferences" },
+  ];
 
-  const reportsMenu = (
-    <Menu>
-      <Menu.Item key="1">Report 1</Menu.Item>
-      <Menu.Item key="2">Report 2</Menu.Item>
-      <Menu.Item key="3">Report 3</Menu.Item>
-    </Menu>
-  );
+  const reportsMenuItems = [
+    { icon: IoSettingsOutline, text: "Report 1" },
+    { icon: IoSettingsOutline, text: "Report 2" },
+    { icon: IoSettingsOutline, text: "Report 3" },
+  ];
 
   const Menus = [
     { title: "Dashboard", icon: <MdDashboard size={20} />, path: "/teacher" },
@@ -47,12 +42,12 @@ const Sidebar = () => {
     {
       title: "Reports",
       icon: <GoRepoPush size={20} />,
-      dropdown: reportsMenu,
+      dropdown: count ? <StaggeredDropDown title="Reports" icon={<GoRepoPush size={20} />} menuItems={reportsMenuItems} /> : null,
     },
     {
       title: "Settings",
       icon: <IoSettingsOutline size={20} />,
-      dropdown: settingsMenu,
+      dropdown: count ? <StaggeredDropDown title="Settings" icon={<IoSettingsOutline size={20} />} menuItems={settingsMenuItems} /> : null,
     },
     { title: "Logout", icon: <IoLogOutOutline size={20} />, path: "/logout" },
   ];
@@ -68,10 +63,10 @@ const Sidebar = () => {
           <IoIosArrowBack
             size={25}
             color="gray"
-            className={`absolute cursor-pointer  top-9 w-7 border-dark-purple border-2 rounded-full -right-2 text-gray-500  border-slate-500 ${
+            className={`absolute cursor-pointer top-9 w-7  border-2 rounded-full -right-2 text-gray-500 border-slate-500 ${
               !count && "rotate-180"
             }`}
-            onClick={()=>dispatch(changestate())}
+            onClick={() => dispatch(changestate())}
           />
         )}
         <div className="flex gap-x-4 items-center">
@@ -99,27 +94,14 @@ const Sidebar = () => {
               } ${index === 0 && "bg-light-white"}`}
             >
               {Menu.dropdown ? (
-                <Dropdown overlay={Menu.dropdown} trigger={["click"]}>
-                  <div className="flex items-center gap-x-4 w-full">
-                    <span>{Menu.icon}</span>
-                    <span
-                      className={`flex justify-between items-center w-full ${
-                        !count && "hidden"
-                      } origin-left duration-200`}
-                    >
-                      {Menu.title}
-                      {!isMobile && <IoIosArrowDown className="ml-2" />}
-                    </span>
-                  </div>
-                </Dropdown>
+                <div className="relative">
+                  {Menu.dropdown} {/* Render dropdown directly */}
+                </div>
               ) : (
-                <Link
-                  to={Menu.path || "#"}
-                  className="flex items-center gap-x-4 w-full"
-                >
+                <Link to={Menu.path || "#"} className="flex items-center gap-x-4 w-full justify-between">
                   <span>{Menu.icon}</span>
                   <span
-                    className={`flex justify-between items-center w-full ${
+                    className={`flex items-center w-full ${
                       !count && "hidden"
                     } origin-left duration-200`}
                   >

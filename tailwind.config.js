@@ -6,6 +6,7 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
     "./node_modules/flowbite-react/**/*.js",
     "./node_modules/flowbite/**/*.js",
+    'node_modules/preline/dist/*.js',
     flowbite.content(),
   ],
   theme: {
@@ -38,5 +39,7 @@ module.exports = {
   plugins: [
     flowbite.plugin(),
     require('flowbite/plugin'),
+    require('@tailwindcss/forms'),
+    require('preline/plugin'),
   ],
 }
