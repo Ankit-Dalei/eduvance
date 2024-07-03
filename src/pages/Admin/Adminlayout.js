@@ -10,7 +10,7 @@ const Adminlayout = () => {
   return (
     <>
         <div className={`bg-slate-900 sm:h-screen sm:w-full flex justify-center items-center flex-row relative h-screen w-full`}>
-          <div className={`bg-gray-100 h-full ${count? 'lg:w-[18%]' : 'lg:w-[8%]'} ${count? 'md:w-[25%]' : 'md:w-[10%]'} ${count? 'sm:w-[25%]' : 'sm:w-[10%]'} md:relative absolute left-0 z-[1]  ${count? 'w-[50%]' : 'w-[0%]'} `}>
+          <div className={`bg-gray-100 h-full ${count? 'lg:w-[18%]' : 'lg:w-[8%]'} ${count? 'md:w-[25%]' : 'md:w-[10%]'} ${count? 'sm:w-[25%]' : 'sm:w-[10%]'} md:relative absolute left-0 z-[1]  ${count? 'w-[50%]' : 'w-[0%] hidden'} `}>
             <Adminsidebar/>
           </div>
           <div className={`bg-gray-200 flex justify-between items-center flex-col h-full  ${count? 'lg:w-[82%] lg:ml-0' : 'lg:w-[92%] lg:ml-0'}  ${count? 'md:w-[75%] md:ml-0' : 'md:w-[90%] md:ml-0'} ${count? 'sm:w-[100%] sm:ml-[0%]' : 'sm:w-[90%] sm:ml-[10%]'}  ${count? 'w-[100%] ml-0' : 'w-[100%] ml-[0%]'} `}>
