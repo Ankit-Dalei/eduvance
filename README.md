@@ -8,6 +8,7 @@ In the project directory, you can run:
 
 ## Contributors
 @Bikash-Malu
+@Ankit-Dalei
 
 ### `npm run dev`
 
