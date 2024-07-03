@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Button } from 'antd';
 import * as XLSX from 'xlsx';
-
+import { useMediaQuery } from 'react-responsive';
 
 const GlobalTable = ({ initialData, columns }) => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
@@ -11,6 +11,14 @@ const GlobalTable = ({ initialData, columns }) => {
     total: initialData.length,
   });
   const [filteredInfo, setFilteredInfo] = useState({});
+
+  const isSmallScreen = useMediaQuery({ query: '(max-width: 768px)' });
+
+  useEffect(() => {
+    if (isSmallScreen) {
+      setSelectedRowKeys(initialData.map(item => item.key));
+    }
+  }, [isSmallScreen, initialData]);
 
   const onSelectChange = (newSelectedRowKeys) => {
     setSelectedRowKeys(newSelectedRowKeys);
@@ -51,6 +59,7 @@ const GlobalTable = ({ initialData, columns }) => {
         {selectedRowKeys.length ? <span className="ml-4">{`Selected ${selectedRowKeys.length} items`}</span> : ''}
       </div>
       <Table
+        className='hidden lg:block'
         rowSelection={rowSelection}
         columns={columns}
         dataSource={initialData}
