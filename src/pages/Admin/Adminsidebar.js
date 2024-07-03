@@ -23,7 +23,7 @@ const Adminsidebar = () => {
           <div className={`lg:h-[12%] w-[100%] flex justify-center items-center h-[8%] relative`}>
             <p>{count?
             <div className={`flex justify-center items-center gap-1 font-serif font-semibold lg:text-2xl text-gray-300 text-lg`}>ADMIN <div className={`text-green-400`}>DASH</div>
-            <div className={`absolute right-0 hover:text-gray-300 text-gray-500 text-xl sm:hidden`} onClick={handelclick}>
+            <div className={`absolute right-0 hover:text-gray-300 text-gray-500 text-xl md:hidden`} onClick={handelclick}>
                 {count?<FontAwesomeIcon icon={faChevronLeft}  />:<FontAwesomeIcon icon={faChevronRight} />}
             </div>
             </div>

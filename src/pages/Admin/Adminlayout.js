@@ -18,7 +18,7 @@ const Adminlayout = () => {
               <Adminheader/>
             </div>
             <div className={`lg:h-[87.9%] lg:w-full md:h-[90.5%] md:w-[95%] sm:h-[90.5%] sm:w-[95%]`}>
-              {/* <Outlet/> */}
+              <Outlet/>
             </div>
           </div>
         </div>

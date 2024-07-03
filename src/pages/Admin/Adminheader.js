@@ -14,7 +14,7 @@ const Adminheader = () => {
   return (
     <>
       <div className={`h-full w-full p-2 text-black flex justify-between items-center flex-row relative `}>
-        <div className={` md:h-[20px] md:w-[25px] sm:rounded-full sm:flex sm:justify-center sm:items-center hover:border-gray-500 cursor-pointer absolute lg:left-[-18px] sm:border-solid sm:border-2 sm:border-gray-300 hover:sm:text-gray-500 sm:text-gray-300 md:left-[-16px] sm:z-[2] sm:h-[15px] sm:w-[18px] sm:text-xs ${count?`sm:left-[169px]`:`sm:left-[-12px]`}  hover:text-gray-300 text-gray-500 flex justify-center items-center text-xl w-[15%]`} onClick={handelclick}>
+        <div className={` md:h-[20px] md:w-[25px] sm:rounded-full sm:flex sm:justify-center sm:items-center hover:border-gray-500 cursor-pointer absolute lg:left-[-18px] sm:border-solid sm:border-2 sm:border-gray-300 hover:sm:text-gray-500 sm:text-gray-300 md:left-[-16px] md:z-[2] sm:h-[15px] sm:w-[18px] sm:text-xs ${count?`z-[0]`:`sm:z-[2] sm:left-[-12px]`}  hover:text-gray-300 text-gray-500 flex justify-center items-center text-xl w-[15%]`} onClick={handelclick}>
                 {count?<FontAwesomeIcon icon={faChevronLeft}  />:<FontAwesomeIcon icon={faChevronRight} />}
         </div>
         <div className={`h-full w-[15%] sm:hidden `} ></div>
