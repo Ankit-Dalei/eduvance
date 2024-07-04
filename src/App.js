@@ -44,6 +44,7 @@ import Adminmanagement from './pages/Admin/AdminTable/Adminmanagement';
 import Adminnotify from './pages/Admin/Adminnotify';
 import Adminnotifyshow from './pages/Admin/Adminnotifyshow';
 import Adminnotifycreate from './pages/Admin/Adminnotifycreate';
+import Adminprofile from './pages/Admin/Adminprofile';
 
 function App() {
   return (

@@ -6,9 +6,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
-    const onChange=()=>{
-        alert('bikash')
-    }
+    // const onChange=()=>{
+    //     alert('bikash')
+    // }
     const navigate = useNavigate();
     const [inputInitial, setInputInitial] = useState({
         Username: '',

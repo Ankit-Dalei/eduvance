@@ -1,15 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faBell, faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch,useSelector } from 'react-redux'
 import { changestate } from '../../Redux/sidebar';
 import { Link } from 'react-router-dom';
+import Adminprofile from './Adminprofile';
+import Adminformchoice from './AdminForm/Adminformchoice';
+import { formoff } from '../../Redux/formon';
 
 const Adminheader = () => {
+  const [profileDisplay,SetprofileDisplay]=useState(true)
   const count = useSelector((state) => state.sider.value)
+  const formDisplay = useSelector((state) => state.formr.value)
   const dispatch = useDispatch()
   const handelclick=()=>{
     dispatch(changestate())
+  }
+  const handelprofileclick=()=>{
+    if (profileDisplay===true) {
+      SetprofileDisplay(false)
+    } else {
+      SetprofileDisplay(true)
+    }
+  }
+  const handelFormclick=()=>{
+    dispatch(formoff())
   }
   return (
     <>
@@ -20,16 +35,18 @@ const Adminheader = () => {
         <div className={`h-full w-[15%] sm:hidden `} ></div>
         <div className={`p-3 font-semibold text-3xl flex justify-center sm:justify-start`}>Eduvance</div>
         <div className={`p-3 flex sm:justify-between justify-end items-center sm:gap-4 w-[15%] sm:w-auto`}>
-          <div className={`bg-green-200 text-green-400 sm:p-2 sm:w-9 sm:h-9 sm:flex sm:justify-center sm:items-center sm:border-2 sm:rounded-lg sm:font-light sm:text-xl hover:bg-green-300 hover:text-green-100 cursor-pointer hidden`}><FontAwesomeIcon icon={faPlus} /></div>
+          <div className={`bg-green-200 text-green-400 sm:p-2 sm:w-9 sm:h-9 sm:flex sm:justify-center sm:items-center sm:border-2 sm:rounded-lg sm:font-light sm:text-xl hover:bg-green-300 hover:text-green-100 cursor-pointer hidden`} onClick={handelFormclick}><FontAwesomeIcon icon={faPlus} /></div>
           <Link to='Notification'><div className={`bg-green-200 text-green-400 p-2 w-9 h-9 flex justify-center items-center border-2 rounded-lg font-light text-xl hover:bg-green-300 hover:text-green-100 cursor-pointer`}><FontAwesomeIcon icon={faBell} /></div></Link>
           <div className={`sm:flex sm:justify-center justify-end items-center sm:flex-row sm:gap-4 md:h-[50px] sm:h-[35px] md:w-[190px] sm:w-[140px] sm:font-semibold hidden`} style={{boxShadow: '-1px 0px 0px gray'}}>
             <div className={`sm:flex sm:justify-around sm:items-center hidden`}><p className={`text-gray-400`}>Hello,</p>Ankit</div>
-            <div className={`bg-slate-400 md:h-[45px] md:w-[45px] rounded-full cursor-pointer sm:h-[30px] sm:w-[30px] h-[30px] w-[30px]`}>
+            <div className={`bg-slate-400 md:h-[45px] md:w-[45px] rounded-full cursor-pointer sm:h-[30px] sm:w-[30px] h-[30px] w-[30px]`} onClick={handelprofileclick}>
               <img src='' alt=''/>
             </div>
           </div>
         </div>
       </div>
+      {profileDisplay?'':<Adminprofile/>}
+      {formDisplay?<Adminformchoice/>:''}
     </>
   )
 }
