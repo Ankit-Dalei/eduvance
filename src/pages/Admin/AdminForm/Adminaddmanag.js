@@ -17,8 +17,18 @@ const Adminaddmanag = () => {
                 <h1 className={`font-semibold text-gray-400 text-2xl font-mono`}>ADDING MANAGEMENT</h1>
                 <FontAwesomeIcon icon={faXmark} className={`absolute right-0 font-semibold hover:text-gray-700 text-gray-400 text-2xl font-mono cursor-pointer`} onClick={handelchange}/>
             </div>
-            <div className={``}>
-            </div>
+            <form className={`h-[90%] w-full flex justify-around items-center flex-col gap-2 font-serif`}>
+              <input type='text' placeholder='MANAGEMENT ID' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
+              <input type='text' placeholder='MANAGEMENT NAME' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
+              <input type='text' placeholder='MANAGEMENT EMAIL' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
+              <input type='text' placeholder='PASSWORD' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
+              <input type='text' placeholder='CAMPUS ID' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
+              <input type='text' placeholder='GENDER' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
+              <input type='text' placeholder='BLOOD GROUP' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
+              <input type='text' placeholder='UNIVERSITY ID' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
+              <input type='date' placeholder='DATE OF JOIN' className={`h-[40px] w-[90%] p-2 rounded-xl`} hidden/>
+              <button className={`h-[40px] w-[90%] p-2 bg-blue-500 rounded-xl`}>Submit</button>
+            </form>
         </div>
       </div>
     </>
