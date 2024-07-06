@@ -5,9 +5,12 @@ import { useDispatch } from 'react-redux'
 import { formmanbck } from '../../../Redux/formmanagementback';
 
 const Adminaddmanag = () => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const handelchange=()=>{
     dispatch(formmanbck())
+  }
+  const handelSubmit=(e)=>{
+    e.preventDefault()
   }
   return (
     <>
@@ -17,7 +20,7 @@ const Adminaddmanag = () => {
                 <h1 className={`font-semibold text-gray-400 text-2xl font-mono`}>ADDING MANAGEMENT</h1>
                 <FontAwesomeIcon icon={faXmark} className={`absolute right-0 font-semibold hover:text-gray-700 text-gray-400 text-2xl font-mono cursor-pointer`} onClick={handelchange}/>
             </div>
-            <form className={`h-[90%] w-full flex justify-around items-center flex-col gap-2 font-serif`}>
+            <form className={`h-[90%] w-full flex justify-around items-center flex-col gap-2 font-serif`} onSubmit={handelSubmit}>
               <input type='text' placeholder='MANAGEMENT ID' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
               <input type='text' placeholder='MANAGEMENT NAME' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
               <input type='text' placeholder='MANAGEMENT EMAIL' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>

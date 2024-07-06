@@ -5,9 +5,12 @@ import { useDispatch } from 'react-redux'
 import {formcampu} from '../../../Redux/formcampusback';
 
 const Adminaddcampus = () => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const handelchange=()=>{
     dispatch(formcampu())
+  }
+  const handelSubmit=(e)=>{
+    e.preventDefault()
   }
   return (
     <>
@@ -17,15 +20,15 @@ const Adminaddcampus = () => {
                 <h1 className={`font-semibold text-gray-400 text-2xl font-mono`}>ADDING CAMPUS</h1>
                 <FontAwesomeIcon icon={faXmark} className={`absolute right-0 font-semibold hover:text-gray-700 text-gray-400 text-2xl font-mono cursor-pointer`} onClick={handelchange}/>
             </div>
-            <form className={`h-[90%] w-full flex justify-around items-center flex-col gap-2 font-serif`}>
+            <form className={`h-[90%] w-full flex justify-around items-center flex-col gap-2 font-serif`} onSubmit={handelSubmit}>
               <input type='text' placeholder='CAMPUS ID' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
               <input type='text' placeholder='CAMPUS NAME' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
               <input type='text' placeholder='UNIVERSITY ID' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
-              <input type='text' placeholder='ESTD' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
+              <input type='number' placeholder='ESTD' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
               <input type='text' placeholder='STATE' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
               <input type='text' placeholder='ADDRESS' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
-              <input type='text' placeholder='PHONE' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
-              <input type='text' placeholder='LANDLINK' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
+              <input type='number' placeholder='PHONE' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
+              <input type='number' placeholder='LANDLINK' className={`h-[40px] w-[90%] p-2 rounded-xl`}/>
               <input type='date' placeholder='DATE OF JOIN' className={`h-[40px] w-[90%] p-2 rounded-xl`} hidden/>
               <button className={`h-[40px] w-[90%] p-2 bg-blue-500 rounded-xl`}>Submit</button>
             </form>
