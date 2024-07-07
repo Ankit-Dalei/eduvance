@@ -3,29 +3,29 @@ import { Link, useOutletContext } from 'react-router-dom';
 import TableComponent from './TableComponent';
 import { getAllContests } from '../../../Service/TeacherService';
 import toast from 'react-hot-toast';
-const AddContest = () => {
-  const contestData = [
-    { "contestName": "Code Championship", "contestOwner": "John Doe", "startDate": "2024-07-01", "signup": "Open", "participants": 50 },
-    { "contestName": "Hackathon", "contestOwner": "Jane Smith", "startDate": "2024-07-05", "signup": "Closed", "participants": 75 },
-    { "contestName": "AI Contest", "contestOwner": "Alice Johnson", "startDate": "2024-07-10", "signup": "Open", "participants": 100 },
-    { "contestName": "Data Science Challenge", "contestOwner": "Michael Brown", "startDate": "2024-07-15", "signup": "Open", "participants": 80 },
-    { "contestName": "Cyber Security Contest", "contestOwner": "Sarah Wilson", "startDate": "2024-07-20", "signup": "Closed", "participants": 60 },
-    { "contestName": "Web Development Contest", "contestOwner": "David Lee", "startDate": "2024-07-25", "signup": "Open", "participants": 90 },
-    { "contestName": "Mobile App Contest", "contestOwner": "Emily Clark", "startDate": "2024-07-30", "signup": "Open", "participants": 70 },
-    { "contestName": "Cyber Security Contest", "contestOwner": "Sarah Wilson", "startDate": "2024-07-20", "signup": "Closed", "participants": 60 },
-    { "contestName": "Web Development Contest", "contestOwner": "David Lee", "startDate": "2024-07-25", "signup": "Open", "participants": 90 },
-    { "contestName": "Mobile App Contest", "contestOwner": "Emily Clark", "startDate": "2024-07-30", "signup": "Open", "participants": 70 },
-  ];
-  const[contest, setContest]=useState([]);
-  useEffect(() => {
-    fetchContest();
-}, []);
 
+const AddContest = () => {
+  const [contest, setContest] = useState([]);
   const { searchQuery } = useOutletContext();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
-  const filteredContestData = contestData.filter((contest) =>
+  useEffect(() => {
+    fetchContest();
+  }, []);
+
+  const fetchContest = async () => {
+    try {
+      const data = await getAllContests();
+      console.log(data);
+      setContest(data);
+    } catch (error) {
+      console.log(error);
+      toast.error("Error in loading contests");
+    }
+  };
+
+  const filteredContestData = contest.filter((contest) =>
     contest.contestName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -34,19 +34,7 @@ const AddContest = () => {
   const currentItems = filteredContestData.slice(indexOfFirstItem, indexOfLastItem);
 
   const totalPages = Math.ceil(filteredContestData.length / itemsPerPage);
-//fech all contest
-const fetchContest=async()=>{
-  getAllContests().then(data => {
-    console.log(data);
-    setContest({
-        ...data
-    })
-})
-.catch(error => {
-    console.log(error)
-    toast.error("error in loading contests")
-})
-}
+
   const columns = [
     { header: 'Contest Name', accessor: 'contestName' },
     { header: 'Contest Owner', accessor: 'contestOwner' },
@@ -73,7 +61,7 @@ const fetchContest=async()=>{
         </div>
       </div>
       <TableComponent
-        data={contestData}
+        data={currentItems}
         columns={columns}
         currentPage={currentPage}
         totalPages={totalPages}
