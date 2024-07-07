@@ -1,3 +1,4 @@
+import { publicAxios } from "./axios.service";
 import { BASE_URL } from "./Url";
 
 
@@ -7,7 +8,7 @@ const login = async (username, password) => {
     formData.append('userid', username);
     formData.append('password', password);
 
-    const response = await fetch(`${BASE_URL}/user/login`, {
+    const response = await fetch(`${publicAxios}/user/login`, {
       method: 'POST',
       body: formData,
     });

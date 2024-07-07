@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
 import TableComponent from './TableComponent';
-
+import { getAllContests } from '../../../Service/TeacherService';
+import toast from 'react-hot-toast';
 const AddContest = () => {
   const contestData = [
     { "contestName": "Code Championship", "contestOwner": "John Doe", "startDate": "2024-07-01", "signup": "Open", "participants": 50 },
@@ -15,6 +16,10 @@ const AddContest = () => {
     { "contestName": "Web Development Contest", "contestOwner": "David Lee", "startDate": "2024-07-25", "signup": "Open", "participants": 90 },
     { "contestName": "Mobile App Contest", "contestOwner": "Emily Clark", "startDate": "2024-07-30", "signup": "Open", "participants": 70 },
   ];
+  const[contest,setcontest]=useState([]);
+  useEffect(() => {
+    // fetchContest();
+}, []);
 
   const { searchQuery } = useOutletContext();
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,7 +34,15 @@ const AddContest = () => {
   const currentItems = filteredContestData.slice(indexOfFirstItem, indexOfLastItem);
 
   const totalPages = Math.ceil(filteredContestData.length / itemsPerPage);
-
+//fech all contest
+const fetchContest=async()=>{
+  try {
+    const result =  getAllContests();
+    setcontest(result);
+  } catch (error) {
+    toast.error("Error in loading orders");
+  }
+}
   const columns = [
     { header: 'Contest Name', accessor: 'contestName' },
     { header: 'Contest Owner', accessor: 'contestOwner' },
@@ -56,7 +69,7 @@ const AddContest = () => {
         </div>
       </div>
       <TableComponent
-        data={currentItems}
+        data={contestData}
         columns={columns}
         currentPage={currentPage}
         totalPages={totalPages}
