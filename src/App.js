@@ -49,6 +49,9 @@ import BaseLayoutQuestion from './pages/Teacher/ExamSession/questionsection/Base
 import QDetails from './pages/Teacher/ExamSession/questionsection/QDetails';
 import QModerate from './pages/Teacher/ExamSession/questionsection/Moderate';
 import TestCase from './pages/Teacher/ExamSession/questionsection/TestCase';
+import CodeSube from './pages/Teacher/ExamSession/questionsection/CodeSube';
+import Language from './pages/Teacher/ExamSession/questionsection/Language';
+import Setting from './pages/Teacher/ExamSession/questionsection/Setting';
 
 function App() {
   return (
@@ -121,6 +124,9 @@ function App() {
         <Route path="details" element={<QDetails/>} />
         <Route path="moderate" element={<QModerate/>} />
         <Route path="testcase" element={<TestCase/>} />
+        <Route path="code" element={<CodeSube/>} />
+        <Route path="language" element={<Language/>} />
+        <Route path="setting" element={<Setting/>} />
         
 
         </Route>
