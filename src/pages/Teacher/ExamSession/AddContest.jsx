@@ -16,9 +16,9 @@ const AddContest = () => {
     { "contestName": "Web Development Contest", "contestOwner": "David Lee", "startDate": "2024-07-25", "signup": "Open", "participants": 90 },
     { "contestName": "Mobile App Contest", "contestOwner": "Emily Clark", "startDate": "2024-07-30", "signup": "Open", "participants": 70 },
   ];
-  const[contest,setcontest]=useState([]);
+  const[contest, setContest]=useState([]);
   useEffect(() => {
-    // fetchContest();
+    fetchContest();
 }, []);
 
   const { searchQuery } = useOutletContext();
@@ -36,12 +36,16 @@ const AddContest = () => {
   const totalPages = Math.ceil(filteredContestData.length / itemsPerPage);
 //fech all contest
 const fetchContest=async()=>{
-  try {
-    const result =  getAllContests();
-    setcontest(result);
-  } catch (error) {
-    toast.error("Error in loading orders");
-  }
+  getAllContests().then(data => {
+    console.log(data);
+    setContest({
+        ...data
+    })
+})
+.catch(error => {
+    console.log(error)
+    toast.error("error in loading contests")
+})
 }
   const columns = [
     { header: 'Contest Name', accessor: 'contestName' },
