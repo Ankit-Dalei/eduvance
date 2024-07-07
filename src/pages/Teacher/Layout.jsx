@@ -5,7 +5,8 @@ import Navigation from './Navbar';
 
 const Layout = ({ children }) => {
     const location = useLocation();
-    const shouldHideNavigation = location.pathname.startsWith('/baselayout');
+    const shouldHideNavigation = location.pathname.startsWith('/baselayout') || location.pathname.startsWith('/questionbaselayout');
+
 
     return (
         <div className="flex h-screen w-screen">

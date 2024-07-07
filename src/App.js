@@ -16,8 +16,8 @@ import Managementnotify from './pages/Management/Managementnotify';
 import Tquestion from './pages/Teacher/ExamSession/Layout';
 import AddContest from './pages/Teacher/ExamSession/AddContest';
 import QuestionLayout from './pages/Teacher/ExamSession/Layout';
-import AddQuestion from './pages/Teacher/ExamSession/AddQuestion';
-import AddQuestionform from './pages/Teacher/ExamSession/AddQuestionform';
+import AddQuestion from './pages/Teacher/ExamSession/questionsection/AddQuestion';
+import AddQuestionform from './pages/Teacher/ExamSession/questionsection/AddQuestionform';
 import AddContestform from './pages/Teacher/ExamSession/AddContestform';
 import Managemententrypanal from './pages/Management/ManagementForms/Managemententrypanal';
 import Managementaddschool from './pages/Management/ManagementForms/Managementaddschool';
@@ -27,7 +27,7 @@ import Managementaddteacher from './pages/Management/ManagementForms/Managementa
 import Managementaddstudent from './pages/Management/ManagementForms/Managementaddstudent';
 import Managementnotifyshow from './pages/Management/Managementnotifyshow';
 import Managementnotifycreate from './pages/Management/Managementnotifycreate';
-import BaseLayout from './pages/Teacher/ExamSession/BaseLayout';
+import BaseLayout from './pages/Teacher/ExamSession/BaseLayoutContest';
 import Details from './pages/Teacher/ExamSession/Details';
 import Challenge from './pages/Teacher/ExamSession/Challenge';
 import Advance from './pages/Teacher/ExamSession/Advance';
@@ -45,10 +45,14 @@ import Adminnotify from './pages/Admin/Adminnotify';
 import Adminnotifyshow from './pages/Admin/Adminnotifyshow';
 import Adminnotifycreate from './pages/Admin/Adminnotifycreate';
 import Adminprofile from './pages/Admin/Adminprofile';
+import BaseLayoutQuestion from './pages/Teacher/ExamSession/questionsection/BaseLayoutQuestion';
+import QDetails from './pages/Teacher/ExamSession/questionsection/QDetails';
+import QModerate from './pages/Teacher/ExamSession/questionsection/Moderate';
+import TestCase from './pages/Teacher/ExamSession/questionsection/TestCase';
 
 function App() {
   return (
-    <>
+    <div>
       
       <BrowserRouter>
       <Toaster 
@@ -102,7 +106,7 @@ function App() {
         <Route path="/questionform" element={<AddQuestionform/>} />
         <Route path="/contestform" element={<AddContestform/>} />
 
-        {/* baselayout */}
+        {/* baselayout for contest */}
 
         <Route path="/baselayout" element={<BaseLayout/>} >
         <Route path="details" element={<Details/>} />
@@ -112,12 +116,18 @@ function App() {
         <Route path="notification" element={<Notification/>} />
         <Route path="statistic" element={<Statistics/>} />
         </Route>
+  {/* baselayout for question */}
+        <Route path="/questionbaselayout" element={<BaseLayoutQuestion/>} >
+        <Route path="details" element={<QDetails/>} />
+        <Route path="moderate" element={<QModerate/>} />
+        <Route path="testcase" element={<TestCase/>} />
+        
 
-
+        </Route>
         
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

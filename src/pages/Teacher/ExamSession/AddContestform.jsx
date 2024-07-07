@@ -35,7 +35,7 @@ const navigate=useNavigate()
 
     return (
         <Layout>
-            <div className='w-full mx-auto px-4 md:px-8 lg:px-16 xl:ml-40'>
+            <div className='w-[85%] mx-auto px-4 md:px-8 lg:px-16 xl:ml-40 overflow-hidden'>
                 <div className="flex items-center mb-4">
                     <Link to={backLink} className="flex items-center text-gray-400 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-500">
                         <FiArrowLeft className="mr-1" />
