@@ -52,6 +52,8 @@ import TestCase from './pages/Teacher/ExamSession/questionsection/TestCase';
 import CodeSube from './pages/Teacher/ExamSession/questionsection/CodeSube';
 import Language from './pages/Teacher/ExamSession/questionsection/Language';
 import Setting from './pages/Teacher/ExamSession/questionsection/Setting';
+import Editoral from './pages/Teacher/ExamSession/questionsection/Editoral';
+import CustomCheaker from './pages/Teacher/ExamSession/questionsection/CustomCheaker';
 
 function App() {
   return (
@@ -127,6 +129,8 @@ function App() {
         <Route path="code" element={<CodeSube/>} />
         <Route path="language" element={<Language/>} />
         <Route path="setting" element={<Setting/>} />
+        <Route path="editorial" element={<Editoral/>} />
+        <Route path="custom" element={<CustomCheaker/>} />
         
 
         </Route>

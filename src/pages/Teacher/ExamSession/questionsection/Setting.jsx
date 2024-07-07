@@ -1,5 +1,6 @@
 import React from 'react';
 import { Checkbox, Button, Breadcrumb } from 'flowbite-react';
+import { Link } from 'react-router-dom';
 
 const Setting = () => {
   return (
@@ -81,7 +82,7 @@ const Setting = () => {
       </div>
 
       <div className="flex justify-end">
-        <Button>Save Changes</Button>
+      <Link to={'/questionbaselayout/editorial'}><Button color="dark">Save Changes</Button></Link> 
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Breadcrumb } from 'flowbite-react';
+import { Link } from 'react-router-dom';
 
 const CodeSube = () => {
   return (
@@ -62,7 +63,7 @@ const CodeSube = () => {
 
           <div className="flex justify-end mt-4 space-x-2">
             <Button color="light">Preview Challenge</Button>
-            <Button color="dark">Save Changes</Button>
+           <Link to={'/questionbaselayout/language'}><Button color="dark">Save Changes</Button></Link> 
           </div>
         </div>
       </div>

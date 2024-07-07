@@ -20,7 +20,7 @@ const BaseLayoutQuestion = () => {
 
     return (
         <Layout>
-            <header className="nav-header bg-black top-0 left-0 w-full z-10 fixed px-2 ">
+            <header className="nav-header bg-black top-0 left-0 w-full z-10 fixed px-2 text-[10px] lg:text-sm ">
                 <nav className="container mx-auto flex items-center justify-between py-5 overflow-auto">
                     <div className="flex items-center justify-between w-full text-white">
                         {navLinks.map(({ to, text }) => (

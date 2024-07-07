@@ -1,5 +1,6 @@
 import React from 'react';
 import { Breadcrumb, Button, Checkbox } from 'flowbite-react';
+import { Link } from 'react-router-dom';
 
 const languages = [
   { name: 'ADA', timeLimit: '3 s', memoryLimit: '512 MB', selected: true },
@@ -78,7 +79,7 @@ const Language = () => {
           <Button color="light" onClick={handleUnselectAll}>Unselect All Languages</Button>
           <Button color="dark" onClick={handleSelectAll}>Select All Languages</Button>
         </div>
-        <div className="overflow-hidden rounded-lg border border-gray-300 dark:border-gray-700">
+        <div className=" rounded-lg border border-gray-300 dark:border-gray-700 overflow-scroll">
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 overflow-x-auto">
             <thead className="bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white">
               <tr>
@@ -107,7 +108,7 @@ const Language = () => {
         </div>
         <div className="flex justify-end mt-4 space-x-2">
           <Button color="light">Preview Challenge</Button>
-          <Button color="dark">Save Changes</Button>
+          <Link to={'/questionbaselayout/setting'}><Button color="dark">Save Changes</Button></Link> 
         </div>
       </div>
     </div>

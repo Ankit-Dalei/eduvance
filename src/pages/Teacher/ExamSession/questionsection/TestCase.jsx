@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Breadcrumb, Button } from 'flowbite-react';
 import { FiUploadCloud } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
@@ -41,12 +41,12 @@ const TestCase = () => {
               <span>You do not have any test cases for this challenge. Add at least one test case.</span>
             </div>
           </div>
-          <div className="flex items-center mb-4">
+          <div className="flex flex-col sm:flex-row items-center mb-4">
             <FiUploadCloud className="mr-2 text-gray-500 dark:text-gray-400"/>
-            <Button color="gray" size="sm">
+            <Button color="gray" size="sm" className="w-full sm:w-auto mb-2 sm:mb-0">
               Upload Zip
             </Button>
-            <Button color="dark" size="sm" className="ml-2">
+            <Button color="dark" size="sm" className="w-full sm:w-auto sm:ml-2">
               + Add Test Case
             </Button>
           </div>
@@ -55,7 +55,7 @@ const TestCase = () => {
               <span className="text-green-500">&#x2714;</span>
               <span className="ml-2">Autofill <strong>Sample Input</strong>, <strong>Sample Output</strong>, and <strong>Explanation</strong> fields for all test cases marked as Sample.</span>
             </p>
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 overflow-scroll">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" className="px-6 py-3">Order</th>
@@ -78,28 +78,28 @@ const TestCase = () => {
               You will get <span className="text-yellow-500 font-bold">0.00%</span> of the maximum score if you pass the selected test cases.
             </p>
           </div>
-          <div className="flex justify-end mt-4">
-          <Link to={'/baselayout/preview'}>
+          <div className="flex justify-end mt-4 space-x-2">
+            <Link to={'/baselayout/preview'}>
               <button
                 type="button"
-                className="mx-1 text-white bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2"
+                className="text-white bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-800 font-medium rounded-lg text-sm px-5 py-2.5"
               >
-                Preview Challange
+                Preview Challenge
               </button>
             </Link>
             <Link to={'/questionbaselayout/code'}>
-           <button 
-              type="submit" 
-              className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-full lg:w-auto mr-2"
-            >
-              Submit Here!!
-            </button>
-           </Link>
+              <button 
+                type="submit" 
+                className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+              >
+                Submit Here!!
+              </button>
+            </Link>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default TestCase;
