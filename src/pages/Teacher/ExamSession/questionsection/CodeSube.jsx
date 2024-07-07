@@ -25,7 +25,7 @@ const CodeSube = () => {
         </Breadcrumb>
 
         <div className="bg-white p-6 rounded-lg shadow-md dark:bg-gray-800">
-          <p className="text-gray-400 italic mb-6">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+          <p className="text-gray-400 italic mb-6">You must use our Domain Specific Language (DSL) to generate code stubs that read test case data from standard input. <span className='text-blue-600 underline cursor-pointer'> Click here</span> to learn how to write DSL.</p>
           <div className="mb-6">
             <label htmlFor="dsl" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
               DSL for code stubs:

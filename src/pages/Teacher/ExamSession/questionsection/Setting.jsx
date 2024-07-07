@@ -29,7 +29,8 @@ const Setting = () => {
           Settings
         </Breadcrumb.Item>
       </Breadcrumb>
-      <h2 className="text-xl font-semibold mb-4">Set various challenge flags and parameters.</h2>
+      <p className="text-gray-400 italic mb-6">Set various challenge flags and parameters.</p>
+
       
       <div className="mb-4">
         <Checkbox id="precisionCheck" />

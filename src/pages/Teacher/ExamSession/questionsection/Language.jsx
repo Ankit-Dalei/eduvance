@@ -74,7 +74,7 @@ const Language = () => {
             Language
           </Breadcrumb.Item>
         </Breadcrumb>
-        <p className="text-gray-400 italic mb-6">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+        <p className="text-gray-400 italic mb-6">Refer to <span className='text-blue-600 underline cursor-pointer'>environment page</span>  for available languages and libraries.</p>
         <div className="flex flex-wrap gap-2 mb-4">
           <Button color="light" onClick={handleUnselectAll}>Unselect All Languages</Button>
           <Button color="dark" onClick={handleSelectAll}>Select All Languages</Button>

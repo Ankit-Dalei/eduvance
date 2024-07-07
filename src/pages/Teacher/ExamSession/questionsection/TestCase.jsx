@@ -23,12 +23,12 @@ const TestCase = () => {
         </Breadcrumb>
 
         <div className="bg-white p-6 rounded-lg shadow-md dark:bg-gray-800">
-          <p className="text-gray-700 dark:text-gray-300 mb-2">
+          <p className="text-gray-400 italic mb-3">
             Add test cases to judge the correctness of a user's code. Refer to these 
             <a href="#" className="text-blue-500"> instructions </a>
             to write a good test case.
           </p>
-          <p className="text-gray-700 dark:text-gray-300 mb-2">
+          <p className="text-gray-400 italic mb-3">
             Download sample test cases from 
             <a href="#" className="text-blue-500"> Hello World challenge </a>
             to understand the .zip format.

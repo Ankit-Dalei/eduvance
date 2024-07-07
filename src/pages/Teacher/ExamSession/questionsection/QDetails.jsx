@@ -11,10 +11,14 @@ const QDetails = () => {
         <Breadcrumb aria-label="breadcrumb" className="flex items-center text-gray-400 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-500">
           <Breadcrumb.Item>
             <Link to="/questionform" className="flex items-center">
-              <FiArrowLeft className="mr-1" />
+          
               Back to Question form
             </Link>
           </Breadcrumb.Item>
+          <Breadcrumb.Item current>
+           Details
+          </Breadcrumb.Item>
+
         </Breadcrumb>
       </div>
 
