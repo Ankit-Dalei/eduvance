@@ -46,9 +46,11 @@ const Adminadduni = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validate();
-    if (Object.keys(errors).length > 0) {
+     if (Object.values(formData).slice(0, -1).every(field => !field)) {
+      toast.error('Please fill in all fields');
+    }else if (Object.keys(errors).length > 0) {
       Object.values(errors).forEach(error => toast.error(error));
-    } else {
+    }else {
       try {
         const response = await addUniversity(formData);
         if (response.success) {
@@ -80,7 +82,7 @@ const Adminadduni = () => {
 
   return (
     <div className="h-[85%] w-[100%] flex justify-center items-center absolute top-[12%] left-0 z-[2]">
-      <div className="h-[100%] w-[29%] p-4 bg-slate-300 rounded-xl flex justify-start items-center flex-col">
+      <div className="h-[100%] w-[65%] sm:h-[95%] sm:w-[55%] lg:h-[100%] lg:w-[29%] p-4 bg-slate-300 rounded-xl flex justify-start items-center flex-col">
         <div className="h-[10%] w-[90%] relative flex justify-center items-center">
           <h1 className="font-semibold text-gray-400 text-2xl font-mono">ADDING UNIVERSITY</h1>
           <FontAwesomeIcon
@@ -160,7 +162,6 @@ const Adminadduni = () => {
             placeholder="DATE OF JOIN"
             className="h-[40px] w-[90%] p-2 rounded-xl"
             value={formData.dateOfJoin}
-            onChange={handleChange}
             readOnly
           />
           <button type="submit" className="h-[40px] w-[90%] p-2 bg-blue-500 rounded-xl">

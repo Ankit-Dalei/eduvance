@@ -29,8 +29,8 @@ const Adminformchoice = () => {
   }
   return (
     <>
-      <div className={`h-[80%] w-[100%] flex justify-center items-center absolute top-[12%] left-0 z-[2]`}>
-        <div className={`h-[80%] w-[25%] p-4 bg-slate-300 rounded-xl flex justify-start items-center flex-col`}>
+      <div className={`h-[80%] w-[100%] flex justify-center items-center absolute lg:top-[12%] sm:top-[8%] left-0 z-[2]`}>
+        <div className={`h-[60%] w-[65%] sm:h-[70%] sm:w-[45%] lg:h-[80%] lg:w-[25%] p-4 bg-slate-300 rounded-xl flex justify-start items-center flex-col`}>
             <div className={`h-[10%] w-[90%] relative flex justify-center items-center`}>
                 <h1 className={`font-semibold text-gray-400 text-2xl font-mono`}>ADD ROLE</h1>
                 <FontAwesomeIcon icon={faXmark} className={`absolute right-0 font-semibold hover:text-gray-700 text-gray-400 text-2xl font-mono cursor-pointer`} onClick={handelchange}/>
