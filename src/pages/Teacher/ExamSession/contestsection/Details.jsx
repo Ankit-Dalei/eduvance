@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
-import Layout from "../Layout";
+import Layout from "../common/Layout";
 import { FiArrowLeft } from "react-icons/fi";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import GlobalEditor from "./GlobalEditor";
+import GlobalEditor from "../common/GlobalEditor";
 
 const Details = () => {
   const location = useLocation();

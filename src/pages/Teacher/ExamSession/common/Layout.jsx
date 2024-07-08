@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Layout from '../Layout';
+import Layout from '../../component/Layout';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
 const QuestionLayout = () => {

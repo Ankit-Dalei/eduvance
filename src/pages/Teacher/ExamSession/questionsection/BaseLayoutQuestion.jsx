@@ -1,8 +1,8 @@
 import React from 'react';
 import { useLocation, Link, Outlet } from 'react-router-dom';
-import Layout from '../../Layout';
-import '../navbar.css';
-import Sidebar from '../../SideBar';
+import Layout from '../../component/Layout';
+import '../common/navbar.css';
+import Sidebar from '../../component/SideBar';
 
 const BaseLayoutQuestion = () => {
     const location = useLocation();
@@ -15,6 +15,8 @@ const BaseLayoutQuestion = () => {
         { to: "/questionbaselayout/language", text: "Language" },
         { to: "/questionbaselayout/setting", text: "Settings" },
         { to: "/questionbaselayout/editorial", text: "Editorial" },
+        { to: "/questionbaselayout/orm", text: "Orm" },
+
         { to: "/questionbaselayout/custom", text: "Custom Checker" }
     ];
 

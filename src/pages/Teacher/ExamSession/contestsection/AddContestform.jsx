@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
-import Layout from '../Layout';
+import Layout from '../../component/Layout';
 import { FiArrowLeft } from 'react-icons/fi'; 
 import 'react-toastify/dist/ReactToastify.css';
 import toast from 'react-hot-toast';

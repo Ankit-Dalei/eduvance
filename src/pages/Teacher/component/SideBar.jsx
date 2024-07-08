@@ -5,10 +5,10 @@ import { IoLogOutOutline, IoSettingsOutline } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
 import { SiConfluence } from "react-icons/si";
 import { useDispatch, useSelector } from "react-redux";
-import { changestate } from "../../Redux/sidebar";
+import { changestate } from "../../../Redux/sidebar";
 import { MdOutlineAddToQueue } from "react-icons/md";
 import { GoRepoPush } from "react-icons/go";
-import StaggeredDropDown from "./ExamSession/StaggeredDropDown";
+import StaggeredDropDown from "../ExamSession/common/StaggeredDropDown";
 
 const Sidebar = () => {
   const dispatch = useDispatch();

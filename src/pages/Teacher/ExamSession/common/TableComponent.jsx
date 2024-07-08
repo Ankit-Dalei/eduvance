@@ -1,5 +1,5 @@
 import React from 'react';
-import PaginationComponent from './PaginationComponent';
+import PaginationComponent from '../common/PaginationComponent';
 
 const TableComponent = ({ data, columns, currentPage, totalPages, onPageChange }) => {
   return (

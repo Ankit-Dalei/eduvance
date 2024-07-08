@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
-import TableComponent from '../TableComponent';
+import TableComponent from '../common/TableComponent';
 
 const AddQuestion = () => {
   const questionData = [

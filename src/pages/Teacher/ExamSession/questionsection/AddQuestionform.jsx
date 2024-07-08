@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import Layout from '../../Layout';
-import GlobalEditor from '../GlobalEditor';
+import Layout from '../../component/Layout';
+import GlobalEditor from '../common/GlobalEditor';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 

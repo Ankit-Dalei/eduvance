@@ -1,8 +1,8 @@
 import React from 'react';
 import { useLocation, Link, Outlet } from 'react-router-dom';
-import Layout from '../Layout';
-import './navbar.css';
-import Sidebar from '../SideBar';
+import Layout from '../../component/Layout';
+import '../common/navbar.css';
+import Sidebar from '../../component/SideBar';
 
 const BaseLayout = () => {
     const location = useLocation();

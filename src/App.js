@@ -3,7 +3,7 @@ import './App.css';
 import Login from './pages/Login/Login';
 import ForgotPassword from './pages/Login/ForgotPassword';
 import ResetPassWordPage from './pages/Login/ResetPassWordPage';
-import Dashboard from './pages/Teacher/Dashboard';
+import Dashboard from './pages/Teacher/component/Dashboard';
 import Managementlayout from './pages/Management/Managementlayout';
 import Managementhome from './pages/Management/ManagementNavigation/Managementhome';
 import Managementschool from './pages/Management/ManagementNavigation/Managementschool';
@@ -13,12 +13,12 @@ import Managementteacher from './pages/Management/ManagementNavigation/Managemen
 import Managementstudent from './pages/Management/ManagementNavigation/Managementstudent';
 import Managementsection from './pages/Management/ManagementNavigation/Managementsection';
 import Managementnotify from './pages/Management/Managementnotify';
-import Tquestion from './pages/Teacher/ExamSession/Layout';
-import AddContest from './pages/Teacher/ExamSession/AddContest';
-import QuestionLayout from './pages/Teacher/ExamSession/Layout';
+import Tquestion from './pages/Teacher/ExamSession/common/Layout';
+import AddContest from './pages/Teacher/ExamSession/contestsection/AddContest';
+import QuestionLayout from './pages/Teacher/ExamSession/common/Layout';
 import AddQuestion from './pages/Teacher/ExamSession/questionsection/AddQuestion';
 import AddQuestionform from './pages/Teacher/ExamSession/questionsection/AddQuestionform';
-import AddContestform from './pages/Teacher/ExamSession/AddContestform';
+import AddContestform from './pages/Teacher/ExamSession/contestsection/AddContestform';
 import Managemententrypanal from './pages/Management/ManagementForms/Managemententrypanal';
 import Managementaddschool from './pages/Management/ManagementForms/Managementaddschool';
 import Managementaddbranch from './pages/Management/ManagementForms/Managementaddbranch';
@@ -27,15 +27,15 @@ import Managementaddteacher from './pages/Management/ManagementForms/Managementa
 import Managementaddstudent from './pages/Management/ManagementForms/Managementaddstudent';
 import Managementnotifyshow from './pages/Management/Managementnotifyshow';
 import Managementnotifycreate from './pages/Management/Managementnotifycreate';
-import BaseLayout from './pages/Teacher/ExamSession/BaseLayoutContest';
-import Details from './pages/Teacher/ExamSession/Details';
-import Challenge from './pages/Teacher/ExamSession/Challenge';
-import Advance from './pages/Teacher/ExamSession/Advance';
+import BaseLayout from './pages/Teacher/ExamSession/contestsection/BaseLayoutContest';
+import Details from './pages/Teacher/ExamSession/contestsection/Details';
+import Challenge from './pages/Teacher/ExamSession/contestsection/Challenge';
+import Advance from './pages/Teacher/ExamSession/contestsection/Advance';
 import { ToastContainer } from 'react-toastify';
-import Moderate from './pages/Teacher/ExamSession/Moderate';
+import Moderate from './pages/Teacher/ExamSession/contestsection/Moderate';
 import { Toaster } from 'react-hot-toast';
-import Notification from './pages/Teacher/ExamSession/Notification';
-import Statistics from './pages/Teacher/ExamSession/Statistics';
+import Notification from './pages/Teacher/ExamSession/contestsection/Notification';
+import Statistics from './pages/Teacher/ExamSession/contestsection/Statistics';
 import Adminlayout from './pages/Admin/Adminlayout';
 import Adminhome from './pages/Admin/AdminTable/Adminhome';
 import Adminuniversity from './pages/Admin/AdminTable/Adminuniversity';
@@ -54,6 +54,7 @@ import Language from './pages/Teacher/ExamSession/questionsection/Language';
 import Setting from './pages/Teacher/ExamSession/questionsection/Setting';
 import Editoral from './pages/Teacher/ExamSession/questionsection/Editoral';
 import CustomCheaker from './pages/Teacher/ExamSession/questionsection/CustomCheaker';
+import Orm from './pages/Teacher/ExamSession/questionsection/Orm';
 
 function App() {
   return (
@@ -131,10 +132,11 @@ function App() {
         <Route path="setting" element={<Setting/>} />
         <Route path="editorial" element={<Editoral/>} />
         <Route path="custom" element={<CustomCheaker/>} />
+        <Route path="orm" element={<Orm/>} />
         
 
         </Route>
-        
+       
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import GlobalEditor from '../GlobalEditor';
+import GlobalEditor from '../common/GlobalEditor';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Breadcrumb } from 'flowbite-react';
 
