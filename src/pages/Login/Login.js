@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../Service/LogAuth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Context } from '../..';
 
 const Login = () => {
-    // const onChange=()=>{
-    //     alert('bikash')
-    // }
     const navigate = useNavigate();
+  const { isAuthorized, setIsAuthorized } = useContext(Context);
     const [inputInitial, setInputInitial] = useState({
         Username: '',
         Password: ''
@@ -68,10 +67,10 @@ const Login = () => {
             });
             return;
         }
-
         const response = await login(Username, Password);
 
         if (response.success) {
+            setIsAuthorized(true);
             const roles = await response.role;
             const trimmed = roles.trim();
             const firstTwo = trimmed.substring(0, 2);
@@ -96,7 +95,7 @@ const Login = () => {
             } else if (firstTwo === 'Hod') {
                 navigate('/Hod');
             } else if (firstTwo === 'Teacher') {
-                navigate('/TeacherDashBoard');
+                navigate('/teacher');
             } else if (firstTwo === 'Student') {
                 navigate('/stdash');
             } else {

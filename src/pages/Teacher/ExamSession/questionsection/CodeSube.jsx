@@ -56,7 +56,7 @@ const CodeSube = () => {
                 {/* Add more options as needed */}
               </select>
             </div>
-            <div className="overflow-hidden rounded-lg border border-gray-300 dark:border-gray-700 p-4">
+            <div className="overflow-hidden rounded-lg border border-gray-300 dark:border-gray-700 py-40">
               {/* Add preview content here */}
             </div>
           </div>

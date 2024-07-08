@@ -55,8 +55,26 @@ import Setting from './pages/Teacher/ExamSession/questionsection/Setting';
 import Editoral from './pages/Teacher/ExamSession/questionsection/Editoral';
 import CustomCheaker from './pages/Teacher/ExamSession/questionsection/CustomCheaker';
 import Orm from './pages/Teacher/ExamSession/questionsection/Orm';
+import { useContext, useEffect } from 'react';
+import { Context } from '.';
+import { getUser } from './Service/LogAuth';
 
 function App() {
+  const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const data = await getUser();
+        setUser(data.user);
+        setIsAuthorized(true);
+      } catch (error) {
+        setIsAuthorized(false);
+      }
+    };
+    fetchUser();
+  }, [isAuthorized, setIsAuthorized, setUser]);
+
   return (
     <div>
       

@@ -55,8 +55,8 @@ const TestCase = () => {
               <span className="text-green-500">&#x2714;</span>
               <span className="ml-2">Autofill <strong>Sample Input</strong>, <strong>Sample Output</strong>, and <strong>Explanation</strong> fields for all test cases marked as Sample.</span>
             </p>
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 overflow-scroll">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <table className="w-full text-sm text-left text-gray-500  overflow-scroll">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50  ">
                 <tr>
                   <th scope="col" className="px-6 py-3">Order</th>
                   <th scope="col" className="px-6 py-3">Input</th>
