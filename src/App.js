@@ -58,6 +58,7 @@ import Orm from './pages/Teacher/ExamSession/questionsection/Orm';
 import { useContext, useEffect } from 'react';
 import { Context } from '.';
 import { getUser } from './Service/LogAuth';
+import CountryCity from './pages/Teacher/ExamSession/common/CountryCity';
 
 function App() {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
@@ -67,6 +68,7 @@ function App() {
       try {
         const data = await getUser();
         setUser(data.user);
+        
         setIsAuthorized(true);
       } catch (error) {
         setIsAuthorized(false);
@@ -154,6 +156,7 @@ function App() {
         
 
         </Route>
+        <Route path='/testing' element={<CountryCity/>}/>
        
         </Routes>
       </BrowserRouter>
