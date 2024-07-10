@@ -6,6 +6,8 @@ import { formcampu } from '../../../Redux/formcampusback';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { postCampusData } from '../../../Service/postCampusData';
+import { Select, TextInput, Button } from 'flowbite-react';
+import { Country, State, City } from 'country-state-city';
 
 const Adminaddcampus = () => {
   const dispatch = useDispatch();
@@ -26,12 +28,47 @@ const Adminaddcampus = () => {
     landline: '',
     dateOfJoin: new Date().toISOString().slice(0, 10)
   });
-
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
   const [options, setOptions] = useState([]);
+
 
   useEffect(() => {
     setOptions(data);
+    setCountries(Country.getAllCountries());
   }, []);
+
+
+  const handleCountryChange = (e) => {
+    const countryCode = e.target.value;
+    setFormData({
+      ...formData,
+      country: countryCode,
+      state: '',
+      city: ''
+    });
+    setStates(State.getStatesOfCountry(countryCode));
+    setCities([]);
+  };
+
+  const handleStateChange = (e) => {
+    const stateCode = e.target.value;
+    setFormData({
+      ...formData,
+      state: stateCode,
+      city: ''
+    });
+    setCities(City.getCitiesOfState(formData.country, stateCode));
+  };
+
+  const handleCityChange = (e) => {
+    setFormData({
+      ...formData,
+      city: e.target.value
+    });
+  };
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -135,12 +172,44 @@ const Adminaddcampus = () => {
           </div>
           <form className={`h-[90%] w-full flex justify-around items-center flex-col gap-2 font-serif`} onSubmit={handleSubmit}>
             <input type='text' placeholder='CAMPUS NAME' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='campusName' value={formData.campusName} onChange={handleChange} />
-            <select className={`h-[40px] w-[90%] p-2 rounded-xl`} name='universityId' value={formData.universityId} onChange={handleChange}>
-              <option value="" className='text-gray-500'>UNIVERSITY ID</option>
-              {options.map((option) => (
-                <option key={option.id} value={option.id}>{option.natme}</option>
-              ))}
-            </select>
+            <Select
+      color={'blue'}
+        id="country"
+        className="h-[40px] w-[94%] p-2 rounded-xl"
+        value={formData.country}
+        onChange={handleCountryChange}
+      >
+        <option value="">Select Country</option>
+        {countries.map((country) => (
+          <option key={country.isoCode} value={country.isoCode}>{country.name}</option>
+        ))}
+      </Select>
+      <Select
+      color={'blue'}
+        id="state"
+        className="h-[40px] w-[94%] p-2 rounded-xl"
+        value={formData.state}
+        onChange={handleStateChange}
+        disabled={!formData.country}
+      >
+        <option value="">Select State</option>
+        {states.map((state) => (
+          <option key={state.isoCode} value={state.isoCode}>{state.name}</option>
+        ))}
+      </Select>
+      <Select
+      color={'blue'}
+        id="city"
+        className="h-[40px] w-[94%] p-2 rounded-xl mb-3 "
+        value={formData.city}
+        onChange={handleCityChange}
+        disabled={!formData.state}
+      >
+        <option value="">Select City</option>
+        {cities.map((city) => (
+          <option key={city.name} value={city.name}>{city.name}</option>
+        ))}
+      </Select>
             <input type='number' placeholder='ESTD' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='estd' value={formData.estd} onChange={handleChange} />
             <input type='text' placeholder='STATE' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='state' value={formData.state} onChange={handleChange} />
             <input type='text' placeholder='ADDRESS' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='address' value={formData.address} onChange={handleChange} />

@@ -20,4 +20,4 @@ const addUniversity = async (formData) => {
   }
 };
 
-export { addUniversity };
+export default { addUniversity };
