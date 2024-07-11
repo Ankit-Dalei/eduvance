@@ -21,7 +21,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { Username, Password } = inputInitial;
-        navigate('/home')
+        // navigate('/home')
 
         if (!Username) {
             toast('Email cannot be empty', {

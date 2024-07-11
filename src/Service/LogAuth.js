@@ -2,13 +2,13 @@ import axios from "axios";
 import { publicAxios } from "./axios.service";
 import { BASE_URL } from "./Url";
 
-const login = async (username, password) => {
+const login = async (email, password) => {
   try {
     const formData = new FormData();
-    formData.append('userid', username);
+    formData.append('username', email);
     formData.append('password', password);
 
-    const response = await axios.post(`${publicAxios}/user/login`, formData, {
+    const response = await axios.post(`${publicAxios}/eduvance/user/login`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
