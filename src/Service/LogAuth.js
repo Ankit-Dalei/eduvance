@@ -24,13 +24,13 @@ const login = async (username, password) => {
 
 export { login };
 
-export const getUser = async () => {
-  try {
-    const response = await axios.get(`${BASE_URL}`, {
-      withCredentials: true,
-    });
-    return response.data;
-  } catch (error) {
-    throw error.response.data.message;
-  }
-};
+// export const getUser = async () => {
+//   try {
+//     const response = await axios.get(`${BASE_URL}`, {
+//       withCredentials: true,
+//     });
+//     return response.data;
+//   } catch (error) {
+//     throw error.response.data.message;
+//   }
+// };

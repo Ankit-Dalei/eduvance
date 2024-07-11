@@ -61,21 +61,6 @@ import { getUser } from './Service/LogAuth';
 import CountryCity from './pages/Teacher/ExamSession/common/CountryCity';
 
 function App() {
-  const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const data = await getUser();
-        setUser(data.user);
-        
-        setIsAuthorized(true);
-      } catch (error) {
-        setIsAuthorized(false);
-      }
-    };
-    fetchUser();
-  }, [isAuthorized, setIsAuthorized, setUser]);
 
   return (
     <div>

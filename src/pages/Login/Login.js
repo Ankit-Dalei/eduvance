@@ -4,11 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../Service/LogAuth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Context } from '../..';
-
 const Login = () => {
     const navigate = useNavigate();
-  const { isAuthorized, setIsAuthorized } = useContext(Context);
     const [inputInitial, setInputInitial] = useState({
         Username: '',
         Password: ''
@@ -70,7 +67,6 @@ const Login = () => {
         const response = await login(Username, Password);
 
         if (response.success) {
-            setIsAuthorized(true);
             const roles = await response.role;
             const trimmed = roles.trim();
             const firstTwo = trimmed.substring(0, 2);
