@@ -21,3 +21,4 @@ const addUniversity = async (formData) => {
 };
 
 export default { addUniversity };
+

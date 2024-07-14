@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import GlobalTable from './GlobalTable';
-import { EditOutlined, DeleteOutlined, UserOutlined, MailOutlined, KeyOutlined, CalendarOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined, PhoneOutlined, ContactsOutlined, PrinterOutlined } from '@ant-design/icons';
 import { Button, Space, Modal, Form, Input } from 'antd';
 import { TextInput } from 'flowbite-react';
 
 const Adminuniversity = () => {
-  const initialData = [
-    { key: 1, "USER NAME": "John Doe", LOGIN: "jdoe", ROLE: "Admin", "CREATED AT": "2024-01-15T08:30:00Z" },
-    { key: 2, "USER NAME": "Jane Smith", LOGIN: "jsmith", ROLE: "User", "CREATED AT": "2024-02-20T12:45:00Z" },
-    { key: 3, "USER NAME": "Alice Johnson", LOGIN: "ajohnson", ROLE: "Moderator", "CREATED AT": "2024-03-10T09:00:00Z" },
-    { key: 4, "USER NAME": "Bob Brown", LOGIN: "bbrown", ROLE: "User", "CREATED AT": "2024-04-05T14:20:00Z" },
-    { key: 5, "USER NAME": "Charlie Davis", LOGIN: "cdavis", ROLE: "Admin", "CREATED AT": "2024-05-12T11:10:00Z" },
-  ];
-
-  const [data, setData] = useState(initialData);
-  const [filteredData, setFilteredData] = useState(initialData);
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [currentRecord, setCurrentRecord] = useState(null);
+
+  useEffect(() => {
+    axios.get('https://mocki.io/v1/3136c4b5-a5d8-491f-a9e0-4834531b423a')
+      .then(response => {
+        setData(response.data);
+        setFilteredData(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
   const handleEdit = (record) => {
     setCurrentRecord(record);
@@ -48,19 +52,25 @@ const Adminuniversity = () => {
   const handleSearch = (e) => {
     const value = e.target.value.toLowerCase();
     const filtered = data.filter(item => 
-      item['USER NAME'].toLowerCase().includes(value) ||
-      item.LOGIN.toLowerCase().includes(value) ||
-      item.ROLE.toLowerCase().includes(value) ||
-      item['CREATED AT'].toLowerCase().includes(value)
+      item.universityName.toLowerCase().includes(value) ||
+      item.estd.toLowerCase().includes(value) ||
+      item.address.toLowerCase().includes(value) ||
+      item.phone.toLowerCase().includes(value) ||
+      item.landline.toLowerCase().includes(value) ||
+      item.faxNumber.toLowerCase().includes(value) ||
+      item.dateOfJoin.toLowerCase().includes(value)
     );
     setFilteredData(filtered);
   };
 
   const columns = [
-    { title: 'USER NAME', dataIndex: 'USER NAME', key: 'USER NAME' },
-    { title: 'LOGIN', dataIndex: 'LOGIN', key: 'LOGIN' },
-    { title: 'ROLE', dataIndex: 'ROLE', key: 'ROLE' },
-    { title: 'CREATED AT', dataIndex: 'CREATED AT', key: 'CREATED AT' },
+    { title: 'University Name', dataIndex: 'universityName', key: 'universityName' },
+    { title: 'Established', dataIndex: 'estd', key: 'estd' },
+    { title: 'Address', dataIndex: 'address', key: 'address' },
+    { title: 'Phone', dataIndex: 'phone', key: 'phone' },
+    { title: 'Landline', dataIndex: 'landline', key: 'landline' },
+    { title: 'Fax Number', dataIndex: 'faxNumber', key: 'faxNumber' },
+    { title: 'Date of Join', dataIndex: 'dateOfJoin', key: 'dateOfJoin' },
     {
       title: 'Action',
       dataIndex: 'action',
@@ -86,7 +96,7 @@ const Adminuniversity = () => {
       <div className="lg:h-[98%] lg:w-[97%]">
         <GlobalTable initialData={filteredData} columns={columns} />
         <Modal
-          title="Edit User"
+          title="Edit University"
           visible={isEditModalVisible}
           onCancel={() => setIsEditModalVisible(false)}
           footer={null}
@@ -95,34 +105,31 @@ const Adminuniversity = () => {
             initialValues={currentRecord}
             onFinish={handleEditOk}
           >
-            <Form.Item name="USER NAME" label="User Name">
-              <Input prefix={<UserOutlined />} />
+            <Form.Item name="phone" label="Phone">
+              <Input prefix={<PhoneOutlined />} />
             </Form.Item>
-            <Form.Item name="LOGIN" label="Login">
-              <Input prefix={<MailOutlined />} />
+            <Form.Item name="landline" label="Landline">
+              <Input prefix={<ContactsOutlined />} />
             </Form.Item>
-            <Form.Item name="ROLE" label="Role">
-              <Input prefix={<KeyOutlined />} />
-            </Form.Item>
-            <Form.Item name="CREATED AT" label="Created At">
-              <Input prefix={<CalendarOutlined />} />
+            <Form.Item name="faxNumber" label="Fax Number">
+              <Input prefix={<PrinterOutlined />} />
             </Form.Item>
             <Form.Item>
-              <Button type="primary" htmlType="submit">
+              <Button type="dashed" htmlType="submit">
                 Save
               </Button>
             </Form.Item>
           </Form>
         </Modal>
         <Modal
-          title="Delete User"
+          title="Delete University"
           visible={isDeleteModalVisible}
           onOk={handleDeleteOk}
           onCancel={() => setIsDeleteModalVisible(false)}
           okText="Delete"
           okButtonProps={{ danger: true }}
         >
-          <p>Are you sure you want to delete {currentRecord?.['USER NAME']}?</p>
+          <p>Are you sure you want to delete {currentRecord?.universityName}?</p>
         </Modal>
       </div>
     </div>
