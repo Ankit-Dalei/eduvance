@@ -1,6 +1,7 @@
 import axios from "axios";
 import { publicAxios } from "./axios.service";
 import { BASE_URL } from "./Url";
+import { setSessionStorageItem } from "./SessionStorage";
 
 const login = async (email, password) => {
   try {
@@ -15,6 +16,7 @@ const login = async (email, password) => {
     });
 
     const data = response.data;
+    setSessionStorageItem('user', data);
     return { success: true, role: data.user.userId };
   } catch (error) {
     console.error('Error logging in:', error);
