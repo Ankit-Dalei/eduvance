@@ -8,7 +8,7 @@ const login = async (email, password) => {
     formData.append('username', email);
     formData.append('password', password);
 
-    const response =await publicAxios.post(`/eduvance/user/login`, formData, {
+    const response = await publicAxios.post(`/eduvance/user/login`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
