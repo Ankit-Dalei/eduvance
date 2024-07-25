@@ -4,6 +4,7 @@ import formReducer from '../Redux/formon'
 import formbackReducer from '../Redux/formback'
 import formmanabackReducer from '../Redux/formmanagementback'
 import formcampusbackReducer from '../Redux/formcampusback'
+import formdegreebackReducer from '../Redux/formdegreeback'
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     forbac:formbackReducer,
     formbac:formmanabackReducer,
     formcampus:formcampusbackReducer,
+    formdegree:formdegreebackReducer,
   },
 })

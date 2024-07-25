@@ -9,11 +9,15 @@ import { formmanbck } from '../../../Redux/formmanagementback';
 import Adminaddmanag from './Adminaddmanag';
 import Adminaddcampus from './Adminaddcampus';
 import {formcampu} from '../../../Redux/formcampusback';
+import { formdeg } from '../../../Redux/formdegreeback';
+import Admindegree from './Admindegree';
+
 
 const Adminformchoice = () => {
   const uniactive = useSelector((state) => state.forbac.value)
   const campusactive = useSelector((state) => state.formcampus.value)
   const managementactive = useSelector((state) => state.formbac.value)
+  const degreeactive = useSelector((state) => state.formdegree.value)
   const dispatch = useDispatch()
   const handelchange=()=>{
     dispatch(formoff())
@@ -27,6 +31,9 @@ const Adminformchoice = () => {
   const handelmanagement=()=>{
     dispatch(formmanbck())
   }
+  const handelDegree=()=>{
+    dispatch(formdeg())
+  }
   return (
     <>
       <div className={`h-[80%] w-[100%] flex justify-center items-center absolute lg:top-[12%] sm:top-[8%] left-0 z-[2]`}>
@@ -39,12 +46,14 @@ const Adminformchoice = () => {
                 <button className={`h-[50px] p-3 w-[190px] bg-gray-200 text-gray-500 rounded-xl font-semibold text-xl flex justify-center items-center hover:bg-gray-400 hover:text-gray-200`} onClick={handeluni}>University</button>
                 <button className={`h-[50px] p-3 w-[190px] bg-gray-200 text-gray-500 rounded-xl font-semibold text-xl flex justify-center items-center hover:bg-gray-400 hover:text-gray-200`} onClick={handelcampus}>Campus</button>
                 <button className={`h-[50px] p-3 w-[190px] bg-gray-200 text-gray-500 rounded-xl font-semibold text-xl flex justify-center items-center hover:bg-gray-400 hover:text-gray-200`} onClick={handelmanagement}>Management</button>
+                <button className={`h-[50px] p-3 w-[190px] bg-gray-200 text-gray-500 rounded-xl font-semibold text-xl flex justify-center items-center hover:bg-gray-400 hover:text-gray-200`} onClick={handelDegree}>Degree</button>
             </div>
         </div>
       </div>
       {uniactive?<Adminadduni/>:''}
       {campusactive?<Adminaddcampus/>:''}
       {managementactive?<Adminaddmanag/>:''}
+      {degreeactive?<Admindegree/>:''}
     </>
   )
 }
