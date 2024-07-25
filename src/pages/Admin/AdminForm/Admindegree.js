@@ -75,7 +75,7 @@ const Admindegree = () => {
        <div className={`h-[80%] w-[100%] flex justify-center items-center absolute top-[12%] left-0 z-[2]`}>
         <div className={`h-[90%] w-[65%] sm:h-[90%] sm:w-[55%] lg:h-[90%] lg:w-[25%] p-4 bg-slate-300 rounded-xl flex justify-start items-center flex-col`}>
           <div className={`h-[10%] w-[90%] relative flex justify-center items-center`}>
-            <h1 className={`font-semibold text-gray-400 text-2xl font-mono`}>ADDING MANAGEMENT</h1>
+            <h1 className={`font-semibold text-gray-400 text-2xl font-mono`}>ADDING DEGREE</h1>
             <FontAwesomeIcon icon={faXmark} className={`absolute right-0 font-semibold hover:text-gray-700 text-gray-400 text-2xl font-mono cursor-pointer`} onClick={handleClose} />
           </div>
           <form className={`h-[80%] w-full flex justify-around items-center flex-col gap-2 font-serif`} onSubmit={handleSubmit}>
