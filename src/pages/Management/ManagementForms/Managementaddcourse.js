@@ -1,53 +1,191 @@
-import React from 'react'
-import Form from '../Form'
+import React, { useState, useEffect } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { addCourseM } from '../../../Service/Management/addCourseM';
 
 const Managementaddcourse = () => {
-  const handelSubmit=(e)=>{
-    e.preventDefault()
-  }
-  return (
-    <>
-      <div className={`lg:h-full lg:w-full lg:flex lg:justify-center lg:items-center`}>
-        <form className={`lg:p-2 lg:h-full lg:w-full lg:flex lg:justify-center lg:items-center lg:flex-row`} onSubmit={handelSubmit}>
-          <div className={`lg:p-2 lg:w-[50%] lg:h-full`}>
-            <div className={`lg:flex lg:justify-center lg:items-start lg:flex-col gap-2 lg:font-semibold lg:text-sm`}>
-              <label className='lg:w-full lg:text-lg'>Course ID:</label>
-              <input type='text' placeholder='Course Id' className={`lg:w-full`}/>
-            </div>
-            <div className={`lg:flex lg:justify-center lg:items-start lg:flex-col gap-2 lg:font-semibold lg:text-sm`}>
-              <label className='lg:w-full lg:text-lg'>Course Name:</label>
-              <input type='text' placeholder='Course Name' className={`lg:w-full`}/>
-            </div>
-            <div className={`lg:flex lg:justify-center lg:items-start lg:flex-col gap-2 lg:font-semibold lg:text-sm`}>
-              <label className='lg:w-full lg:text-lg'>Course Credit:</label>
-              <input type='text' placeholder='Course Credit' className={`lg:w-full`}/>
-            </div>
-            <div className={`lg:flex lg:justify-center lg:items-start lg:flex-col gap-2 lg:font-semibold lg:text-sm`}>
-              <label className='lg:w-full lg:text-lg'>Description:</label>
-              <textarea rows="6" className="lg:w-full" placeholder='Typehere'></textarea>
-            </div>
-          </div>
-          <div className={`lg:p-2 lg:w-[50%] lg:h-full`}>
-            <div className={`lg:flex lg:justify-center lg:items-start lg:flex-col gap-2 lg:font-semibold lg:text-sm`}>
-              <label className='lg:w-full lg:text-lg'>Author:</label>
-              <input type='text' placeholder='Author' className={`lg:w-full lg:cursor-not-allowed`}/>
-            </div>
-            <div className={`lg:flex lg:justify-center lg:items-start lg:flex-col gap-2 lg:font-semibold lg:text-sm`}>
-              <label className='lg:w-full lg:text-lg'>Campus:</label>
-              <input type='text' placeholder='Campus' className={`lg:w-full lg:cursor-not-allowed`} value={'Bhubaneswar'} readonly/>
-            </div>
-            <div className={`lg:flex lg:justify-center lg:items-start lg:flex-col gap-2 lg:font-semibold lg:text-sm`}>
-              <label className='lg:w-full lg:text-lg'>University:</label>
-              <input type='text' placeholder='University' className={`lg:w-full lg:cursor-not-allowed`} value={'Centurion University'} readonly/>
-            </div>
-            <div className={`lg:w-full lg:flex lg:justify-center lg:items-center lg:font-semibold lg:text-sm mt-9`}>
-              <button className={`lg:w-full lg:bg-blue-500 lg:h-10 lg:hover:bg-blue-400 lg:text-white hover:lg:text-black`}>Submit</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </>
-  )
-}
+  const [formData, setFormData] = useState({
+    courseName: '',
+    courseCredit: '',
+    description: '',
+    author: '',
+    campus: '',
+    university: '',
+    date: '',
+  });
 
-export default Managementaddcourse
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const storedData = sessionStorage.getItem('data');
+    const parsedData = storedData ? JSON.parse(storedData) : {};
+
+    setFormData((prevData) => ({
+      ...prevData,
+      campus: parsedData.campus || 'Default Campus',
+      university: parsedData.university || 'Default University',
+      date: new Date().toLocaleDateString(),
+    }));
+  }, []);
+
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.courseName) newErrors.courseName = 'Course Name is required';
+    if (!formData.author) newErrors.courseName = 'Author Name is required';
+    if (!formData.courseCredit || formData.courseCredit < 1 || formData.courseCredit > 10) newErrors.courseCredit = 'Course Credit must be between 1 and 10';
+    if (!formData.description) newErrors.description = 'Description is required';
+    
+    setErrors(newErrors);
+  
+    const allFieldsBlank = !formData.courseName && !formData.courseCredit && !formData.description;
+    
+    return {
+      errors: Object.values(newErrors),
+      allFieldsBlank
+    };
+  };
+  
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const { errors, allFieldsBlank } = validateForm();
+  
+    if (allFieldsBlank) {
+      toast.error('Please fill in all required fields.');
+      return;
+    }
+    
+    if (errors.length > 0) {
+      errors.forEach(error => toast.error(error));
+      return;
+    }
+  
+    setIsSubmitting(true);
+  
+    try {
+      const result = await addCourseM(formData);
+      if (result.success) {
+        toast.success('Data successfully submitted!');
+        setFormData({
+          courseName: '',
+          courseCredit: '',
+          description: '',
+          author: '',
+          campus: formData.campus,
+          university: formData.university,
+          date: new Date().toLocaleDateString(),
+        });
+      } else {
+        toast.error(`Failed to submit data: ${result.error}`);
+      }
+    } catch (error) {
+      console.error('There was an error!', error);
+      toast.error(`Failed to submit data: ${error.message}`);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+  
+
+  return (
+    <div className={`h-full w-full flex justify-center items-center`}>
+      <ToastContainer />
+      <form className={`p-2 h-full w-full flex justify-center items-center flex-row`} onSubmit={handleSubmit}>
+        <div className={`p-2 w-[50%] h-full`}>
+          <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
+            <label className='w-full text-lg'>Course Name:</label>
+            <input
+              type='text'
+              placeholder='Course Name'
+              className={`w-full`}
+              name="courseName"
+              value={formData.courseName}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
+            <label className='w-full text-lg'>Course Credit:</label>
+            <input
+              type='number'
+              placeholder='Course Credit'
+              className={`w-full`}
+              name="courseCredit"
+              value={formData.courseCredit}
+              onChange={handleChange}
+              min="1"
+              max="10"
+            />
+          </div>
+          <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
+            <label className='lg:w-full lg:text-lg'>Author:</label>
+            <input
+              type='text'
+              placeholder='Author'
+              className={`w-full`}
+              name="author"
+              value={formData.author}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
+            <label className='w-full text-lg'>Description:</label>
+            <textarea
+              rows="6"
+              className="w-full"
+              placeholder='Type here'
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <div className={`p-2 w-[50%] h-full`}>
+          <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
+            <label className='w-full text-lg'>Campus:</label>
+            <input
+              type='text'
+              className={`w-full cursor-not-allowed`}
+              value={formData.campus}
+              readOnly
+            />
+          </div>
+          <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
+            <label className='w-full text-lg'>University:</label>
+            <input
+              type='text'
+              className={`w-full cursor-not-allowed`}
+              value={formData.university}
+              readOnly
+            />
+          </div>
+          <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
+            <label className='w-full text-lg'>Date:</label>
+            <input
+              type='text'
+              className={`w-full cursor-not-allowed`}
+              value={formData.date}
+              readOnly
+            />
+          </div>
+          <div className={`w-full flex justify-center items-center font-semibold text-sm mt-9`}>
+            <button type="submit" className={`w-full bg-blue-500 h-10 hover:bg-blue-400 text-white hover:text-black`} disabled={isSubmitting}>
+              {isSubmitting ? 'Submitting...' : 'Submit'}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default Managementaddcourse;

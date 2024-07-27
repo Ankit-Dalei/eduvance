@@ -31,11 +31,19 @@ const ManagementAddSchool = () => {
 
   const validateForm = () => {
     const newErrors = {};
+    
     if (!formData.schoolName) newErrors.schoolName = 'School Name is required';
     if (!formData.degree) newErrors.degree = 'Degree selection is required';
     if (!formData.description) newErrors.description = 'Description is required';
+    
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  
+    const allFieldsBlank = !formData.schoolName && !formData.degree && !formData.description;
+    
+    return {
+      errors: Object.values(newErrors),
+      allFieldsBlank
+    };
   };
 
   const handleChange = (e) => {
@@ -54,13 +62,21 @@ const ManagementAddSchool = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validateForm()) {
+    
+    const { errors, allFieldsBlank } = validateForm();
+  
+    if (allFieldsBlank) {
       toast.error('Please fill in all required fields.');
       return;
     }
-
+    
+    if (errors.length > 0) {
+      errors.forEach(error => toast.error(error));
+      return;
+    }
+  
     setIsSubmitting(true);
-
+  
     try {
       const result = await addSchoolM(formData);
       if (result.success) {
@@ -83,6 +99,8 @@ const ManagementAddSchool = () => {
       setIsSubmitting(false);
     }
   };
+  
+
 
   const degreeOptions = [
     { value: 'Master', label: 'Master' },

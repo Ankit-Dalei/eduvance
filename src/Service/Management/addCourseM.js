@@ -1,13 +1,13 @@
-import { BASE_URL } from '../Url';
+import { BASE_URL } from "../Url";
 
-export const addSchoolM = async (schoolData) => {
+export const addCourseM = async (courseData) => {
   try {
-    const response = await fetch(`${BASE_URL}/schools`, {
+    const response = await fetch(`${BASE_URL}/courses`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(schoolData),
+      body: JSON.stringify(courseData),
     });
 
     if (!response.ok) {
@@ -16,8 +16,8 @@ export const addSchoolM = async (schoolData) => {
     }
 
     const data = await response.json();
-    return { success: true, data };
+    return { success: true, data }; 
   } catch (error) {
-    return { success: false, error: error.message || 'An error occurred' };
+    return { success: false, error: error.message };
   }
 };
