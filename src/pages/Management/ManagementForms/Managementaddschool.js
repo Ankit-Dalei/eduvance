@@ -91,32 +91,32 @@ const ManagementAddSchool = () => {
   ];
 
   return (
-    <div className={`lg:h-full lg:w-full lg:flex lg:justify-center lg:items-center`}>
+    <div className={`h-full w-full flex justify-center items-center`}>
       <ToastContainer />
-      <form className={`lg:p-2 lg:h-full lg:w-full lg:flex lg:justify-center lg:items-center lg:flex-row`} onSubmit={handleSubmit}>
-        <div className={`lg:p-2 lg:w-[50%] lg:h-full`}>
-          <div className={`lg:flex lg:justify-center lg:items-start lg:flex-col gap-2 lg:font-semibold lg:text-sm`}>
-            <label className='lg:w-full lg:text-lg'>School Name:</label>
+      <form className={`p-2 h-full w-full flex justify-center items-center flex-row`} onSubmit={handleSubmit}>
+        <div className={`p-2 w-[50%] h-full`}>
+          <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
+            <label className='w-full text-lg'>School Name:</label>
             <input
               type='text'
               placeholder='School Name'
-              className={`lg:w-full`}
+              className={`w-full`}
               name="schoolName"
               value={formData.schoolName}
               onChange={handleChange}
             />
           </div>
-          <div className={`lg:flex lg:justify-center lg:items-start lg:flex-col gap-2 lg:font-semibold lg:text-sm`}>
-            <label className='lg:w-full lg:text-lg'>Campus:</label>
+          <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
+            <label className='w-full text-lg'>Campus:</label>
             <input
               type='text'
-              className={`lg:w-full lg:cursor-not-allowed`}
+              className={`w-full cursor-not-allowed`}
               value={formData.campus}
               readOnly
             />
           </div>
-          <div className={`lg:flex lg:justify-center lg:items-start lg:flex-col gap-2 lg:font-semibold lg:text-sm`}>
-            <label className='lg:w-full lg:text-lg'>Description:</label>
+          <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
+            <label className='w-full text-lg'>Description:</label>
             <textarea
               rows="6"
               className="lg:w-full"
@@ -127,37 +127,37 @@ const ManagementAddSchool = () => {
             />
           </div>
         </div>
-        <div className={`lg:p-2 lg:w-[50%] lg:h-full`}>
-          <div className={`lg:flex lg:justify-center lg:items-start lg:flex-col gap-2 lg:font-semibold lg:text-sm`}>
-            <label className='lg:w-full lg:text-lg'>Degree:</label>
+        <div className={`p-2 w-[50%] h-full`}>
+          <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
+            <label className='w-full text-lg'>Degree:</label>
             <Select
               options={degreeOptions}
-              className="lg:w-full"
+              className="w-full"
               onChange={handleSelectChange}
               value={degreeOptions.find(option => option.value === formData.degree)}
               placeholder="Select One"
             />
           </div>
-          <div className={`lg:flex lg:justify-center lg:items-start lg:flex-col gap-2 lg:font-semibold lg:text-sm`}>
-            <label className='lg:w-full lg:text-lg'>University:</label>
+          <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
+            <label className='w-full text-lg'>University:</label>
             <input
               type='text'
-              className={`lg:w-full lg:cursor-not-allowed`}
+              className={`w-full cursor-not-allowed`}
               value={formData.university}
               readOnly
             />
           </div>
-          <div className={`lg:flex lg:justify-center lg:items-start lg:flex-col gap-2 lg:font-semibold lg:text-sm`}>
-            <label className='lg:w-full lg:text-lg'>Date:</label>
+          <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
+            <label className='w-full text-lg'>Date:</label>
             <input
               type='text'
-              className={`lg:w-full lg:cursor-not-allowed`}
+              className={`w-full cursor-not-allowed`}
               value={formData.date}
               readOnly
             />
           </div>
-          <div className={`lg:w-full lg:flex lg:justify-center lg:items-center lg:font-semibold lg:text-sm mt-9`}>
-            <button type="submit" className={`lg:w-full lg:bg-blue-500 lg:h-10 lg:hover:bg-blue-400 lg:text-white hover:lg:text-black`} disabled={isSubmitting}>
+          <div className={`w-full flex justify-center items-center font-semibold text-sm mt-9`}>
+            <button type="submit" className={`w-full bg-blue-500 h-10 hover:bg-blue-400 text-white hover:text-black`} disabled={isSubmitting}>
               {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
           </div>
