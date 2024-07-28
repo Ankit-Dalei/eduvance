@@ -85,7 +85,7 @@ const ManagementAddSchool = () => {
           schoolName: '',
           campus: formData.campus,
           description: '',
-          degree: '',
+          degree: '', // Reset degree to show "Select One"
           university: formData.university,
           date: new Date().toLocaleDateString(),
         });
@@ -100,7 +100,6 @@ const ManagementAddSchool = () => {
     }
   };
   
-
 
   const degreeOptions = [
     { value: 'Master', label: 'Master' },
@@ -152,7 +151,7 @@ const ManagementAddSchool = () => {
               options={degreeOptions}
               className="w-full"
               onChange={handleSelectChange}
-              value={degreeOptions.find(option => option.value === formData.degree)}
+              value={degreeOptions.find(option => option.value === formData.degree) || null} // Show "Select One" if no option is selected
               placeholder="Select One"
             />
           </div>

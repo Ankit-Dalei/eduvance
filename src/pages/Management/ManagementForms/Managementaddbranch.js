@@ -136,7 +136,7 @@ const Managementaddbranch = () => {
               options={schools}
               className="w-full"
               onChange={handleSelectChange}
-              value={schools.find(option => option.value === formData.school)}
+              value={schools.find(option => option.value === formData.school) || null}
               placeholder="Select One"
             />
           </div>
