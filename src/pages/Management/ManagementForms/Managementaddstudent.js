@@ -291,17 +291,6 @@ const Managementaddstudent = () => {
                 placeholder="Select one"
               />
             </div>
-            <div className="lg:flex lg:justify-center lg:items-start lg:flex-col gap-2 lg:font-semibold lg:text-sm">
-              <label className="lg:w-full lg:text-lg">Batch:</label>
-              <Select
-                name="batch"
-                options={batchOptions}
-                value={batchOptions.find(option => option.value === formData.batch) || null}
-                onChange={handleSelectChange}
-                className="lg:w-full"
-                placeholder="Select one"
-              />
-            </div>
             <div className="lg:hidden lg:justify-center lg:items-start lg:flex-col gap-2 lg:font-semibold lg:text-sm">
               <label className="lg:w-full lg:text-lg">Admission Date:</label>
               <input
