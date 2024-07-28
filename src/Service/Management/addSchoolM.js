@@ -1,13 +1,13 @@
 import { BASE_URL } from '../Url';
 
-export const addSchoolM = async (schoolData) => {
+export const addSchoolM = async (formData) => {
   try {
     const response = await fetch(`${BASE_URL}/schools`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(schoolData),
+      body: JSON.stringify(formData),
     });
 
     if (!response.ok) {
