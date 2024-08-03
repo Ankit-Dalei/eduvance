@@ -67,9 +67,13 @@ const Login = () => {
         const response = await login(Username, Password);
 
         if (response.success) {
-            const roles = await response.role;
-            const trimmed = roles.trim();
+            const userInfo = await response.userData;
+            console.log("data is:-",userInfo.user.userId)
+            const userid=userInfo.user.userId;
+
+            const trimmed = userid.trim();
             const firstTwo = trimmed.substring(0, 2);
+            console.log("id is",firstTwo);
 
             if (rememberMe && 'credentials' in navigator && window.PasswordCredential) {
                 const cred = new window.PasswordCredential({
