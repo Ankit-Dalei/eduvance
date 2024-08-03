@@ -2,19 +2,19 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faBell, faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch,useSelector } from 'react-redux'
-import { changestate } from '../../Redux/sidebar';
+import { toggleSidebar } from '../../Redux/formSlice';
 import { Link } from 'react-router-dom';
 import Adminprofile from './Adminprofile';
 import Adminformchoice from './AdminForm/Adminformchoice';
-import { formoff } from '../../Redux/formon';
+import { toggleFormon } from '../../Redux/formSlice';
 
 const Adminheader = () => {
   const [profileDisplay,SetprofileDisplay]=useState(true)
-  const count = useSelector((state) => state.sider.value)
-  const formDisplay = useSelector((state) => state.formr.value)
+  const count = useSelector((state) => state.forms.sidebar)
+  const formDisplay = useSelector((state) => state.forms.formon)
   const dispatch = useDispatch()
   const handelclick=()=>{
-    dispatch(changestate())
+    dispatch(toggleSidebar())
   }
   const handelprofileclick=()=>{
     if (profileDisplay===true) {
@@ -24,7 +24,7 @@ const Adminheader = () => {
     }
   }
   const handelFormclick=()=>{
-    dispatch(formoff())
+    dispatch(toggleFormon())
   }
   return (
     <>

@@ -2,37 +2,37 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch,useSelector } from 'react-redux'
-import { formoff } from '../../../Redux/formon';
-import { formbck } from '../../../Redux/formback';
+import { toggleFormoff } from '../../../Redux/formSlice';
+import { toggleFormback } from '../../../Redux/formSlice';
 import Adminadduni from './Adminadduni';
-import { formmanbck } from '../../../Redux/formmanagementback';
+import { toggleFormmanaback } from '../../../Redux/formSlice';
 import Adminaddmanag from './Adminaddmanag';
 import Adminaddcampus from './Adminaddcampus';
-import {formcampu} from '../../../Redux/formcampusback';
-import { formdeg } from '../../../Redux/formdegreeback';
+import {toggleFormcampusback} from '../../../Redux/formSlice';
+import { toggleFormdegreeback } from '../../../Redux/formSlice';
 import Admindegree from './Admindegree';
 
 
 const Adminformchoice = () => {
-  const uniactive = useSelector((state) => state.forbac.value)
-  const campusactive = useSelector((state) => state.formcampus.value)
-  const managementactive = useSelector((state) => state.formbac.value)
-  const degreeactive = useSelector((state) => state.formdegree.value)
+  const uniactive = useSelector((state) => state.forms.formback)
+  const campusactive = useSelector((state) => state.forms.formcampusback)
+  const managementactive = useSelector((state) => state.forms.formmanaback)
+  const degreeactive = useSelector((state) => state.forms.formdegreeback)
   const dispatch = useDispatch()
   const handelchange=()=>{
-    dispatch(formoff())
+    dispatch(toggleFormoff())
   }
   const handeluni=()=>{
-    dispatch(formbck())
+    dispatch(toggleFormback())
   }
   const handelcampus=()=>{
-    dispatch(formcampu())
+    dispatch(toggleFormcampusback())
   }
   const handelmanagement=()=>{
-    dispatch(formmanbck())
+    dispatch(toggleFormmanaback())
   }
   const handelDegree=()=>{
-    dispatch(formdeg())
+    dispatch(toggleFormdegreeback())
   }
   return (
     <>

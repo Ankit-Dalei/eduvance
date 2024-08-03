@@ -5,7 +5,7 @@ import Adminsidebar from './Adminsidebar';
 import Adminheader from './Adminheader';
 
 const Adminlayout = () => {
-    const count = useSelector((state) => state.sider.value)
+    const count = useSelector((state) => state.forms.sidebar)
     document.title=`Admin - Eduvance`
   return (
     <>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
-import { formcampu } from '../../../Redux/formcampusback';
+import { toggleFormcampusback } from '../../../Redux/formSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { postCampusData } from '../../../Service/postCampusData';
@@ -79,7 +79,7 @@ const Adminaddcampus = () => {
   };
 
   const handleClose = () => {
-    dispatch(formcampu());
+    dispatch(toggleFormcampusback());
   };
 
   const handleSubmit = async (e) => {

@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGraduationCap,faBook,faChalkboardUser,faCodeBranch,faPersonChalkboard,faPersonPraying, faHouse, faRightFromBracket, faUserTie, faChevronRight, faChevronLeft  } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux'
-import { changestate } from '../../Redux/sidebar';
+import { toggleSidebar } from '../../Redux/formSlice';
 
 const Managementsidebar = () => {
   const dispatch = useDispatch()
-  const count = useSelector((state) => state.sider.value)
+  const count = useSelector((state) => state.forms.sidebar)
   const location = useLocation();
   const isActive = (path) => {
     return location.pathname === path;
   };
   const handelclick=()=>{
-    dispatch(changestate())
+    dispatch(toggleSidebar())
   }
   return (
     <>

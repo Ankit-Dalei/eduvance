@@ -4,7 +4,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { formdeg } from '../../../Redux/formdegreeback';
+import { toggleFormdegreeback } from '../../../Redux/formSlice';
 import { postDegreeData } from '../../../Service/postDegreeData';
 
 const Admindegree = () => {
@@ -25,7 +25,7 @@ const Admindegree = () => {
     };
   
     const handleClose = () => {
-      dispatch(formdeg());
+      dispatch(toggleFormdegreeback());
     };
   
     const handleSubmit = async (e) => {

@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Select, TextInput, Button } from 'flowbite-react';
 import { Country, State, City } from 'country-state-city';
 import addUniversity from '../../../Service/addUniversity';
-import { formbck } from '../../../Redux/formback';
+import { toggleFormback } from '../../../Redux/formSlice';
 
 const Adminadduni = () => {
   const dispatch = useDispatch();
@@ -101,7 +101,7 @@ const Adminadduni = () => {
             states: [],
             cities: []
           });
-          dispatch(formbck());
+          dispatch(toggleFormback());
         } else {
           toast.error('Failed to add university. Please try again.');
         }
@@ -112,7 +112,7 @@ const Adminadduni = () => {
   };
 
   const handleCancel = () => {
-    dispatch(formbck());
+    dispatch(toggleFormback());
   };
 
   return (

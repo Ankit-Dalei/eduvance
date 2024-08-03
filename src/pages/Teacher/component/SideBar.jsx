@@ -2,17 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoLogOutOutline, IoSettingsOutline } from "react-icons/io5";
-import { MdDashboard } from "react-icons/md";
+import { MdDashboard, MdOutlineAddToQueue } from "react-icons/md";
+import { GoRepoPush } from "react-icons/go";
 import { SiConfluence } from "react-icons/si";
 import { useDispatch, useSelector } from "react-redux";
-import { changestate } from "../../../Redux/sidebar";
-import { MdOutlineAddToQueue } from "react-icons/md";
-import { GoRepoPush } from "react-icons/go";
+import { toggleSidebar } from "../../../Redux/formSlice";  // Update the import
 import StaggeredDropDown from "../ExamSession/common/StaggeredDropDown";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
-  const count = useSelector((state) => state.sider.value);
+  const isSidebarOpen = useSelector((state) => state.forms.sidebar);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
 
   useEffect(() => {
@@ -42,12 +41,12 @@ const Sidebar = () => {
     {
       title: "Reports",
       icon: <GoRepoPush size={20} />,
-      dropdown: count ? <StaggeredDropDown title="Reports" icon={<GoRepoPush size={20} />} menuItems={reportsMenuItems} /> : null,
+      dropdown: isSidebarOpen ? <StaggeredDropDown title="Reports" icon={<GoRepoPush size={20} />} menuItems={reportsMenuItems} /> : null,
     },
     {
       title: "Settings",
       icon: <IoSettingsOutline size={20} />,
-      dropdown: count ? <StaggeredDropDown title="Settings" icon={<IoSettingsOutline size={20} />} menuItems={settingsMenuItems} /> : null,
+      dropdown: isSidebarOpen ? <StaggeredDropDown title="Settings" icon={<IoSettingsOutline size={20} />} menuItems={settingsMenuItems} /> : null,
     },
     { title: "Logout", icon: <IoLogOutOutline size={20} />, path: "/logout" },
   ];
@@ -56,17 +55,17 @@ const Sidebar = () => {
     <div className="flex">
       <div
         className={`${
-          count ? "w-56" : "w-16"
+          isSidebarOpen ? "w-56" : "w-16"
         } bg-black h-screen p-3 pt-8 relative duration-300`}
       >
         {!isMobile && (
           <IoIosArrowBack
             size={25}
             color="gray"
-            className={`absolute cursor-pointer top-9 w-7  border-2 rounded-full -right-2 text-gray-500 border-slate-500 ${
-              !count && "rotate-180"
+            className={`absolute cursor-pointer top-9 w-7 border-2 rounded-full -right-2 text-gray-500 border-slate-500 ${
+              !isSidebarOpen && "rotate-180"
             }`}
-            onClick={() => dispatch(changestate())}
+            onClick={() => dispatch(toggleSidebar())} // Update to use toggleSidebar
           />
         )}
         <div className="flex gap-x-4 items-center">
@@ -74,12 +73,12 @@ const Sidebar = () => {
             color="white"
             size={30}
             className={`cursor-pointer duration-500 ${
-              count && "rotate-[360deg]"
+              isSidebarOpen && "rotate-[360deg]"
             }`}
           />
           <h1
             className={`text-white origin-left font-medium text-xl duration-200 ${
-              !count && "scale-0"
+              !isSidebarOpen && "scale-0"
             }`}
           >
             Eduvance
@@ -102,7 +101,7 @@ const Sidebar = () => {
                   <span>{Menu.icon}</span>
                   <span
                     className={`flex items-center w-full ${
-                      !count && "hidden"
+                      !isSidebarOpen && "hidden"
                     } origin-left duration-200`}
                   >
                     {Menu.title}

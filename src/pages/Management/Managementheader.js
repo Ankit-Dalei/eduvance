@@ -2,16 +2,15 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell,faPlus,faChevronRight,faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux'
-import { changestate } from '../../Redux/sidebar';
+import { toggleSidebar } from '../../Redux/formSlice';
 import { Link } from 'react-router-dom';
-import { formoff } from '../../Redux/formon';
 
 
 const Managementheader = () => {
   const dispatch = useDispatch()
-  const count = useSelector((state) => state.sider.value)
+  const count = useSelector((state) => state.forms.sidebar)
   const handelclick=()=>{
-    dispatch(changestate())
+    dispatch(toggleSidebar())
   }
     return (
         <>

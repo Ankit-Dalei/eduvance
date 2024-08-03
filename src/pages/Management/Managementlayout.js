@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 
 
 const Managementlayout = () => {
-  const count = useSelector((state) => state.sider.value)
+  const count = useSelector((state) => state.forms.sidebar)
     document.title=`Management - Eduvance`
     return (
       <>

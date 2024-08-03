@@ -3,18 +3,18 @@ import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGraduationCap,faBook,faChalkboardUser,faCodeBranch,faPersonChalkboard, faBell, faPlus, faHouse, faRightFromBracket, faUserTie, faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { changestate } from '../../Redux/sidebar';
+import { toggleSidebar } from '../../Redux/formSlice';
 import { useSelector, useDispatch } from 'react-redux'
 
 const Adminsidebar = () => {
   const dispatch = useDispatch()
-  const count = useSelector((state) => state.sider.value)
+  const count = useSelector((state) => state.forms.sidebar)
   const location = useLocation();
   const isActive = (path) => {
     return location.pathname === path;
   };
   const handelclick=()=>{
-    dispatch(changestate())
+    dispatch(toggleSidebar())
   }
   return (
     <>

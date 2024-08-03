@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
-import { formmanbck } from '../../../Redux/formmanagementback';
+import { toggleFormmanaback } from '../../../Redux/formSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { postManagementData } from '../../../Service/postManagementData';
@@ -51,7 +51,7 @@ const Adminaddmanag = () => {
   };
 
   const handleClose = () => {
-    dispatch(formmanbck());
+    dispatch(toggleFormmanaback());
   };
 
   const handleSubmit = async (e) => {
