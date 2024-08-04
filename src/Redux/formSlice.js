@@ -33,10 +33,16 @@ const formSlice = createSlice({
       state.sidebar = !state.sidebar
     },
     toggleFormoff: (state) => {
-      state.formoff = !state.formoff
+      state.formback = false;
+      state.formcampusback = false;
+      state.formdegreeback = false;
+      state.formmanaback = false;
+      state.formon = false;
+      state.formoff = false;
     },
   },
-})
+});
+
 
 export const {
   toggleFormback,
