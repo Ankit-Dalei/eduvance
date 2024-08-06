@@ -13,7 +13,7 @@ const Admindegree = () => {
     const [formData, setFormData] = useState({
       degreeName: '',
       degreeSnAme: '',
-      dateOfJoin: new Date().toISOString().slice(0, 10),
+      dateOfJoin: new Date().getFullYear().toString(),
     });
 
     const handleChange = (e) => {
@@ -45,9 +45,14 @@ const Admindegree = () => {
         toast.error("Short Name is required");
         return;
       }
+
+      if (!/^\d{4}$/.test(dateOfJoin)) {
+        toast.error("Date of Join must be a valid year (e.g., 2024)");
+        return;
+      }
   
       const DegreeData = { degreeName, degreeSnAme, dateOfJoin };
-  console.log(DegreeData)
+      console.log(DegreeData)
       try {
         console.log(DegreeData)
         const response = await postDegreeData(DegreeData);
@@ -61,7 +66,7 @@ const Admindegree = () => {
           setFormData({
             degreeName: '',
             degreeSnAme: '',
-            dateOfJoin: new Date().toISOString().slice(0, 10)
+            dateOfJoin: new Date().getFullYear().toString()
           });
   
           toast.success("Form submitted successfully");
@@ -70,6 +75,7 @@ const Admindegree = () => {
         toast.error("There was an error submitting the form");
       }
     };
+
   return (
     <>
        <div className={`h-[80%] w-[100%] flex justify-center items-center absolute top-[12%] left-0 z-[2]`}>
@@ -78,10 +84,10 @@ const Admindegree = () => {
             <h1 className={`font-semibold text-gray-400 text-2xl font-mono`}>ADDING DEGREE</h1>
             <FontAwesomeIcon icon={faXmark} className={`absolute right-0 font-semibold hover:text-gray-700 text-gray-400 text-2xl font-mono cursor-pointer`} onClick={handleClose} />
           </div>
-          <form className={`h-[80%] w-full flex justify-around items-center flex-col gap-2 font-serif`} onSubmit={handleSubmit}>
+          <form className={`h-[80%] w-full flex justify-around items-center flex-col font-serif`} onSubmit={handleSubmit}>
             <input type='text' placeholder='DEGREE FULL NAME' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='degreeName' value={formData.degreeName} onChange={handleChange} />
-            <textarea rows={10} type='text' placeholder='DEGREE SHORT DESC' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='degreeSnAme' value={formData.degreeSnAme} onChange={handleChange} />
-            <input type='date' placeholder='DATE OF JOIN' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='dateOfJoin' value={formData.dateOfJoin} />
+            <textarea rows={4} cols={10}  placeholder='DEGREE SHORT DESC' className={` w-[90%] p-2 rounded-xl resize-none`} name='degreeSnAme' value={formData.degreeSnAme} onChange={handleChange} />
+            <input type='text' placeholder='YEAR OF JOIN (e.g., 2024)' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='dateOfJoin' value={formData.dateOfJoin} onChange={handleChange} />
             <button className={`h-[40px] w-[90%] p-2 bg-blue-500 rounded-xl`}>Submit</button>
           </form>
         </div>

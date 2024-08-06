@@ -211,7 +211,7 @@ const Adminaddcampus = () => {
         ))}
       </Select>
          <select className={`h-[40px] w-[90%] p-2 rounded-xl`} name='campusId' value={formData.campusId} onChange={handleChange}>
-              <option value="" className='text-gray-500'>CAMPUS ID</option>
+              <option value="" className='text-gray-500'>UNIVERSITY ID</option>
               {campusOptions.map((option) => (
                 <option key={option.id} value={option.id}>{option.name}</option>
               ))}

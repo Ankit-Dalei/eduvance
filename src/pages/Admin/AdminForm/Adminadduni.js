@@ -11,6 +11,7 @@ import { toggleFormback } from '../../../Redux/formSlice';
 
 const Adminadduni = () => {
   const dispatch = useDispatch();
+  
   const [formData, setFormData] = useState({
     universityName: '',
     estd: '',
