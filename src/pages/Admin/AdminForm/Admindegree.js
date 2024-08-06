@@ -80,7 +80,7 @@ const Admindegree = () => {
           </div>
           <form className={`h-[80%] w-full flex justify-around items-center flex-col gap-2 font-serif`} onSubmit={handleSubmit}>
             <input type='text' placeholder='DEGREE FULL NAME' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='degreeName' value={formData.degreeName} onChange={handleChange} />
-            <input type='text' placeholder='DEGREE SHORT NAME' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='degreeSnAme' value={formData.degreeSnAme} onChange={handleChange} />
+            <textarea rows={10} type='text' placeholder='DEGREE SHORT DESC' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='degreeSnAme' value={formData.degreeSnAme} onChange={handleChange} />
             <input type='date' placeholder='DATE OF JOIN' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='dateOfJoin' value={formData.dateOfJoin} />
             <button className={`h-[40px] w-[90%] p-2 bg-blue-500 rounded-xl`}>Submit</button>
           </form>

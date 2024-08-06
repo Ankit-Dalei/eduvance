@@ -17,10 +17,13 @@ const Admincampus = () => {
   const [filteredData, setFilteredData] = useState(initialData);
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
+  const [isConfirmationVisible, setIsConfirmationVisible] = useState(false);
   const [currentRecord, setCurrentRecord] = useState(null);
+  const [editValues, setEditValues] = useState({});
 
   const handleEdit = (record) => {
     setCurrentRecord(record);
+    setEditValues(record);
     setIsEditModalVisible(true);
   };
 
@@ -30,11 +33,21 @@ const Admincampus = () => {
   };
 
   const handleEditOk = (values) => {
-    const newData = data.map(item => item.key === currentRecord.key ? { ...item, ...values } : item);
+    setEditValues(values);
+    setIsConfirmationVisible(true);
+  };
+
+  const handleConfirmationOk = () => {
+    const newData = data.map(item => item.key === currentRecord.key ? { ...item, ...editValues } : item);
     setData(newData);
     setFilteredData(newData);
     setIsEditModalVisible(false);
+    setIsConfirmationVisible(false);
     setCurrentRecord(null);
+  };
+
+  const handleConfirmationCancel = () => {
+    setIsConfirmationVisible(false);
   };
 
   const handleDeleteOk = () => {
@@ -108,7 +121,7 @@ const Admincampus = () => {
               <Input prefix={<CalendarOutlined />} />
             </Form.Item>
             <Form.Item>
-              <Button type="primary" htmlType="submit">
+              <Button type="dashed" htmlType="submit">
                 Save
               </Button>
             </Form.Item>
@@ -123,6 +136,18 @@ const Admincampus = () => {
           okButtonProps={{ danger: true }}
         >
           <p>Are you sure you want to delete {currentRecord?.['USER NAME']}?</p>
+        </Modal>
+        <Modal
+          title="Confirm Update"
+          visible={isConfirmationVisible}
+          onOk={handleConfirmationOk}
+          onCancel={handleConfirmationCancel}
+          okText="Yes, update"
+          okType='dashed'
+          cancelText="Cancel"
+          
+        >
+          <p>Are you sure you want to update the user details?</p>
         </Modal>
       </div>
     </div>

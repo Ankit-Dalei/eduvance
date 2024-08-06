@@ -11,7 +11,7 @@ import { Country, State, City } from 'country-state-city';
 
 const Adminaddcampus = () => {
   const dispatch = useDispatch();
-
+  const [campusOptions, setCampusOptions] = useState([]);
   const data = [
     { id: 'ytfd6543', natme: 'kjhhggf' },
     { id: 'pofd6543', natme: 'hgfkjhgf' },
@@ -164,7 +164,7 @@ const Adminaddcampus = () => {
 
   return (
     <>
-      <div className={`h-[80%] w-[100%] flex justify-center items-center absolute top-[12%] left-0 z-[2]`}>
+      <div className={`h-[90%] w-[100%] flex justify-center items-center absolute top-[12%] left-0 z-[2]`}>
         <div className={`h-[90%] w-[65%] sm:h-[90%] sm:w-[55%] lg:h-[90%] lg:w-[25%] p-4 bg-slate-300 rounded-xl flex justify-start items-center flex-col`}>
           <div className={`h-[10%] w-[90%] relative flex justify-center items-center`}>
             <h1 className={`font-semibold text-gray-400 text-2xl font-mono`}>ADDING CAMPUS</h1>
@@ -210,6 +210,12 @@ const Adminaddcampus = () => {
           <option key={city.name} value={city.name}>{city.name}</option>
         ))}
       </Select>
+         <select className={`h-[40px] w-[90%] p-2 rounded-xl`} name='campusId' value={formData.campusId} onChange={handleChange}>
+              <option value="" className='text-gray-500'>CAMPUS ID</option>
+              {campusOptions.map((option) => (
+                <option key={option.id} value={option.id}>{option.name}</option>
+              ))}
+            </select>
             <input type='number' placeholder='ESTD' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='estd' value={formData.estd} onChange={handleChange} />
             <input type='text' placeholder='STATE' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='state' value={formData.state} onChange={handleChange} />
             <input type='text' placeholder='ADDRESS' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='address' value={formData.address} onChange={handleChange} />

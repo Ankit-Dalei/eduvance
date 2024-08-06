@@ -145,12 +145,12 @@ const Adminaddmanag = () => {
             <input type='text' placeholder='MANAGEMENT NAME' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='managementName' value={formData.managementName} onChange={handleChange} />
             <input type='email' placeholder='MANAGEMENT EMAIL' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='managementEmail' value={formData.managementEmail} onChange={handleChange} />
             <input type='password' placeholder='PASSWORD' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='password' value={formData.password} onChange={handleChange} />
-            <select className={`h-[40px] w-[90%] p-2 rounded-xl`} name='campusId' value={formData.campusId} onChange={handleChange}>
+            {/* <select className={`h-[40px] w-[90%] p-2 rounded-xl`} name='campusId' value={formData.campusId} onChange={handleChange}>
               <option value="" className='text-gray-500'>CAMPUS ID</option>
               {campusOptions.map((option) => (
                 <option key={option.id} value={option.id}>{option.name}</option>
               ))}
-            </select>
+            </select> */}
             <select className={`h-[40px] w-[90%] p-2 rounded-xl`} name='gender' value={formData.gender} onChange={handleChange}>
               <option value="" className='text-gray-500'>Select Gender</option>
               <option value="male">Male</option>

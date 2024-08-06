@@ -42,8 +42,6 @@ const formSlice = createSlice({
     },
   },
 });
-
-
 export const {
   toggleFormback,
   toggleFormcampusback,
