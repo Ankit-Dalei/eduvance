@@ -8,15 +8,29 @@ import 'react-toastify/dist/ReactToastify.css';
 import { postCampusData } from '../../../Service/postCampusData';
 import { Select, TextInput, Button } from 'flowbite-react';
 import { Country, State, City } from 'country-state-city';
+import { universityfetch } from '../../../Service/universityfetch';
 
 const Adminaddcampus = () => {
   const dispatch = useDispatch();
-  const [campusOptions, setCampusOptions] = useState([]);
-  const data = [
-    { id: 'ytfd6543', natme: 'kjhhggf' },
-    { id: 'pofd6543', natme: 'hgfkjhgf' },
-    { id: 'kjhtfd6543', natme: 'fkjhgf' }
-  ];
+  const [universityOptions, setUniversityOptions] = useState([]);
+
+  useEffect(() => {
+    const universityfetchData = async () => {
+      try {
+        const data = await universityfetch();
+        if (data) {
+          setUniversityOptions(data);
+        }
+      } catch (error) {
+        console.error('Error fetching course data:', error);
+      }
+    };
+
+    universityfetchData();
+  }, []);
+
+
+  
 
   const [formData, setFormData] = useState({
     campusName: '',
@@ -35,7 +49,6 @@ const Adminaddcampus = () => {
 
 
   useEffect(() => {
-    setOptions(data);
     setCountries(Country.getAllCountries());
   }, []);
 
@@ -212,7 +225,7 @@ const Adminaddcampus = () => {
       </Select>
          <select className={`h-[40px] w-[90%] p-2 rounded-xl`} name='campusId' value={formData.campusId} onChange={handleChange}>
               <option value="" className='text-gray-500'>UNIVERSITY ID</option>
-              {campusOptions.map((option) => (
+              {universityOptions.map((option) => (
                 <option key={option.id} value={option.id}>{option.name}</option>
               ))}
             </select>
