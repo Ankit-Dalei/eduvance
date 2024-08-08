@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Select from 'react-select';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Papa from 'papaparse';
 import { addStudentM } from '../../../Service/Management/addStudentM';
 
 const genderOptions = [
@@ -61,6 +62,7 @@ const Managementaddstudent = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [csvData, setCsvData] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -82,6 +84,21 @@ const Managementaddstudent = () => {
       ...prevData,
       [name]: selectedOption ? selectedOption.value : null
     }));
+  };
+
+  const handleCsvFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      Papa.parse(file, {
+        header: true,
+        complete: (result) => {
+          setCsvData(result.data);
+        },
+        error: (error) => {
+          toast.error(`Error parsing CSV file: ${error.message}`);
+        }
+      });
+    }
   };
 
   const validateForm = () => {
@@ -179,6 +196,42 @@ const Managementaddstudent = () => {
       }
     } catch (error) {
       toast.error(`An error occurred while adding student: ${error.message}`);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleCsvSubmit = async () => {
+    if (csvData.length === 0) {
+      toast.error('No CSV data to upload.');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const results = await Promise.all(
+        csvData.map(async (row) => {
+          const formData = new FormData();
+          Object.keys(row).forEach((key) => {
+            formData.append(key, row[key]);
+          });
+
+          return addStudentM(formData);
+        })
+      );
+
+      // Check if all operations succeeded
+      const allSuccess = results.every((result) => result.success);
+      if (allSuccess) {
+        toast.success('All students added successfully!');
+        setCsvData([]);
+      } else {
+        const errorMessages = results.filter((result) => !result.success).map((result) => result.error);
+        toast.error(`Some errors occurred: ${errorMessages.join(', ')}`);
+      }
+    } catch (error) {
+      toast.error(`An error occurred while adding students from CSV: ${error.message}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -310,6 +363,16 @@ const Managementaddstudent = () => {
                 onChange={handleFileChange}
                 className="lg:w-full"
               />
+            </div>
+            <div className=" mt-2 lg:flex lg:justify-center lg:items-start lg:flex-col gap-2 lg:font-semibold lg:text-sm">
+              <label className="lg:w-full lg:text-lg">CSV Upload:</label>
+              <input
+                type="file"
+                accept=".csv"
+                onChange={handleCsvFileChange}
+                className="lg:w-full"
+              />
+          
             </div>
             <div className="lg:w-full lg:flex lg:justify-center lg:items-center lg:font-semibold lg:text-sm mt-9">
               <button
