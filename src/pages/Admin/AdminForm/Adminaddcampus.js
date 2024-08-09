@@ -148,7 +148,6 @@ const Adminaddcampus = () => {
     const campusData = { campusName, universityId, estd, state, address, phone, landline, dateOfJoin };
 
     try {
-      console.log(campusData)
       const response = await postCampusData(campusData);
       if (response.success === false) {
         toast.error("Network response was not ok");
