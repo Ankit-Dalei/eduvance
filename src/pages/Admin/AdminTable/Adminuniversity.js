@@ -5,6 +5,7 @@ import { EditOutlined, DeleteOutlined, PhoneOutlined, ContactsOutlined, PrinterO
 import { Button, Space, Modal, Form, Input, Upload, Image } from 'antd';
 import { TextInput } from 'flowbite-react';
 import { universityfetch } from '../../../Service/universityfetch';
+import { toast } from 'react-toastify';
 
 const Adminuniversity = () => {
   const [data, setData] = useState([]);
@@ -19,6 +20,7 @@ const Adminuniversity = () => {
     universityfetch()
     .then(data => {
       if (data) {
+        console.log("data is", data); 
         setData(data); 
         setFilteredData(data); 
       }
@@ -26,7 +28,7 @@ const Adminuniversity = () => {
     .catch(error => {
       console.error('Error fetching data:', error);
     });
-}, []);
+  }, []);
 
   const handleEdit = (record) => {
     setCurrentRecord(record);
@@ -40,21 +42,37 @@ const Adminuniversity = () => {
   };
 
   const handleEditOk = (values) => {
-    const newData = data.map(item => item.unName === currentRecord.unName ? { ...item, ...values, unPhoto: previewUrl } : item);
-    setData(newData);
-    setFilteredData(newData);
-    setIsEditModalVisible(false);
-    setCurrentRecord(null);
-    setFile(null);
-    setPreviewUrl('');
+    // Assume API endpoint is '/universities/{id}'
+    axios.put(`http://localhost:8181/eduvance/admin/university/${currentRecord.unId}`, { ...values, unPhoto: previewUrl })
+      .then(() => {
+        const newData = data.map(item => item.unId === currentRecord.unId ? { ...item, ...values, unPhoto: previewUrl } : item);
+        setData(newData);
+        setFilteredData(newData);
+        setIsEditModalVisible(false);
+        setCurrentRecord(null);
+        setFile(null);
+        setPreviewUrl('');
+      })
+      .catch(error => {
+        console.error('Error updating data:', error);
+      });
   };
 
   const handleDeleteOk = () => {
-    const newData = data.filter(item => item.unName !== currentRecord.unName);
-    setData(newData);
-    setFilteredData(newData);
-    setIsDeleteModalVisible(false);
-    setCurrentRecord(null);
+    console.log(currentRecord);
+    
+    axios.delete(`http://localhost:8181/eduvance/admin/university/${currentRecord.unId}`)
+      .then(() => {
+        const newData = data.filter(item => item.unId !== currentRecord.unId);
+        setData(newData);
+        setFilteredData(newData);
+        setIsDeleteModalVisible(false);
+        setCurrentRecord(null);
+        toast.success('deleted sucessfully');
+      })
+      .catch(error => {
+        console.error('Error deleting data:', error);
+      });
   };
 
   const handleSearch = (e) => {
