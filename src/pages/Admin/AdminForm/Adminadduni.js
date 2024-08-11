@@ -86,7 +86,7 @@ const Adminadduni = () => {
     } else if (Object.keys(errors).length > 0) {
       Object.values(errors).forEach(error => toast.error(error));
     } else {
-      const formNewData = new formNewData();
+      const formNewData = new FormData();
       formNewData.append('Name', formData.universityName);
       formNewData.append('ESTD', formData.estd);
       formNewData.append('Country', formData.countries);
