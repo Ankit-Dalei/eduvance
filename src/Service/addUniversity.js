@@ -2,7 +2,7 @@ import { BASE_URL } from "./Url";
 
 const addUniversity = async (formData) => {
   try {
-    const response = await fetch(`${BASE_URL}/universities`, {
+    const response = await fetch(`${BASE_URL}/eduvance/admin/university`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
