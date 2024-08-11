@@ -1,7 +1,7 @@
 import { BASE_URL } from "./Url";
 export const universityfetch = async () => {
     try {
-      const response = await fetch(`${BASE_URL}/eduvance/admin/university/ids`);
+      const response = await fetch(`${BASE_URL}/eduvance/admin/university`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
