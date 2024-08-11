@@ -1,16 +1,16 @@
 import { BASE_URL } from "./Url";
 
-const addUniversity = async (formData) => {
+const addUniversity = async (formNewData) => {
   try {
-    console.log("bfdata",formData)
+    console.log("bfdata",formNewData)
     const response = await fetch(`${BASE_URL}/eduvance/admin/university`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(formData)
+      body: JSON.stringify(formNewData)
     });
-    console.log("bfdatadata",formData)
+    console.log("bfdatadata",formNewData)
     console.log(response)
 
     if (!response.ok) {
