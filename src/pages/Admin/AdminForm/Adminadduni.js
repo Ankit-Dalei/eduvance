@@ -97,7 +97,7 @@ const Adminadduni = () => {
       formNewData.append('FaxNumber', formData.faxNumber);
       formNewData.append('DateOfJoin', formData.dateOfJoin);
       try {
-        console.log("form",formData)
+        console.log("form",formNewData)
         const response = await addUniversity(formNewData);
         if (response.success) {
           toast.success('University added successfully!');
