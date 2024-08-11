@@ -19,7 +19,6 @@ const Adminuniversity = () => {
     universityfetch()
     .then(data => {
       if (data) {
-        console.log("data is", data); 
         setData(data); 
         setFilteredData(data); 
       }

@@ -71,7 +71,7 @@ const Adminadduni = () => {
     if (!formData.universityName) tempErrors.universityName = 'University Name is required';
     if (!formData.estd || formData.estd.length !== 4) tempErrors.estd = 'Establishment Year is required and should be 4 digits';
     if (!formData.country) tempErrors.country = 'Country is required';
-    if (!formData.state) tempErrors.state = 'State is required';
+    if (!formData.states) tempErrors.state = 'State is required';
     if (!formData.address) tempErrors.address = 'Address is required';
     if (!formData.phone || formData.phone.length < 10) tempErrors.phone = 'Phone is required and should be at least 10 digits';
     if (!formData.landline || formData.landline.length < 10) tempErrors.landline = 'Landline is required and should be at least 10 digits';
