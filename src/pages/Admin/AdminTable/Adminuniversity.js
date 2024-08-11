@@ -4,7 +4,7 @@ import GlobalTable from './GlobalTable';
 import { EditOutlined, DeleteOutlined, PhoneOutlined, ContactsOutlined, PrinterOutlined } from '@ant-design/icons';
 import { Button, Space, Modal, Form, Input, Upload, Image } from 'antd';
 import { TextInput } from 'flowbite-react';
-import { UploadOutlined } from '@ant-design/icons';
+import { universityfetch } from '../../../Service/universityfetch';
 
 const Adminuniversity = () => {
   const [data, setData] = useState([]);
@@ -16,20 +16,23 @@ const Adminuniversity = () => {
   const [previewUrl, setPreviewUrl] = useState('');
 
   useEffect(() => {
-    axios.get('https://mocki.io/v1/3136c4b5-a5d8-491f-a9e0-4834531b423a')
-      .then(response => {
-        setData(response.data);
-        setFilteredData(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
+    universityfetch()
+    .then(data => {
+      if (data) {
+        console.log("data is", data); 
+        setData(data); 
+        setFilteredData(data); 
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+}, []);
 
   const handleEdit = (record) => {
     setCurrentRecord(record);
     setIsEditModalVisible(true);
-    setPreviewUrl(record.photoUrl || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXF3awjdy4fDiGzPF_J9fl8rjCwD6siKDOIhzqTRw6UKfnGlEY_DqNRL0kEVI_OZIey-w&usqp=CAU'); // Set preview URL if available
+    setPreviewUrl(record.unPhoto || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXF3awjdy4fDiGzPF_J9fl8rjCwD6siKDOIhzqTRw6UKfnGlEY_DqNRL0kEVI_OZIey-w&usqp=CAU'); // Set preview URL if available
   };
 
   const handleDelete = (record) => {
@@ -38,7 +41,7 @@ const Adminuniversity = () => {
   };
 
   const handleEditOk = (values) => {
-    const newData = data.map(item => item.key === currentRecord.key ? { ...item, ...values, photoUrl: previewUrl } : item);
+    const newData = data.map(item => item.unName === currentRecord.unName ? { ...item, ...values, unPhoto: previewUrl } : item);
     setData(newData);
     setFilteredData(newData);
     setIsEditModalVisible(false);
@@ -48,7 +51,7 @@ const Adminuniversity = () => {
   };
 
   const handleDeleteOk = () => {
-    const newData = data.filter(item => item.key !== currentRecord.key);
+    const newData = data.filter(item => item.unName !== currentRecord.unName);
     setData(newData);
     setFilteredData(newData);
     setIsDeleteModalVisible(false);
@@ -58,13 +61,14 @@ const Adminuniversity = () => {
   const handleSearch = (e) => {
     const value = e.target.value.toLowerCase();
     const filtered = data.filter(item => 
-      item.universityName.toLowerCase().includes(value) ||
-      item.estd.toLowerCase().includes(value) ||
-      item.address.toLowerCase().includes(value) ||
-      item.phone.toLowerCase().includes(value) ||
-      item.landline.toLowerCase().includes(value) ||
-      item.faxNumber.toLowerCase().includes(value) ||
-      item.dateOfJoin.toLowerCase().includes(value)
+      item.unName.toLowerCase().includes(value) ||
+      item.unCountry.toLowerCase().includes(value) ||
+      item.unState.toLowerCase().includes(value) ||
+      item.unAddress.toLowerCase().includes(value) ||
+      item.unPhone.toLowerCase().includes(value) ||
+      item.unLandlineNumber.toLowerCase().includes(value) ||
+      item.unFaxNumber.toLowerCase().includes(value) ||
+      item.unCreatedAt.toLowerCase().includes(value)
     );
     setFilteredData(filtered);
   };
@@ -82,13 +86,14 @@ const Adminuniversity = () => {
   };
 
   const columns = [
-    { title: 'University Name', dataIndex: 'universityName', key: 'universityName' },
-    { title: 'Established', dataIndex: 'estd', key: 'estd' },
-    { title: 'Address', dataIndex: 'address', key: 'address' },
-    { title: 'Phone', dataIndex: 'phone', key: 'phone' },
-    { title: 'Landline', dataIndex: 'landline', key: 'landline' },
-    { title: 'Fax Number', dataIndex: 'faxNumber', key: 'faxNumber' },
-    { title: 'Date of Join', dataIndex: 'dateOfJoin', key: 'dateOfJoin' },
+    { title: 'University Name', dataIndex: 'unName', key: 'unName' },
+    { title: 'Country', dataIndex: 'unCountry', key: 'unCountry' },
+    { title: 'State', dataIndex: 'unState', key: 'unState' },
+    { title: 'Address', dataIndex: 'unAddress', key: 'unAddress' },
+    { title: 'Phone', dataIndex: 'unPhone', key: 'unPhone' },
+    { title: 'Landline', dataIndex: 'unLandlineNumber', key: 'unLandlineNumber' },
+    { title: 'Fax Number', dataIndex: 'unFaxNumber', key: 'unFaxNumber' },
+    { title: 'Created At', dataIndex: 'unCreatedAt', key: 'unCreatedAt' },
     {
       title: 'Action',
       dataIndex: 'action',
@@ -123,7 +128,7 @@ const Adminuniversity = () => {
             initialValues={currentRecord}
             onFinish={handleEditOk}
           >
-            <Form.Item name="photoUrl" label="Photo">
+            <Form.Item name="unPhoto" label="Photo">
               <Input type="file" onChange={handleFileChange} />
               {previewUrl && (
                 <div className="my-2">
@@ -135,13 +140,13 @@ const Adminuniversity = () => {
                 </div>
               )}
             </Form.Item>
-            <Form.Item name="phone" label="Phone">
+            <Form.Item name="unPhone" label="Phone">
               <Input prefix={<PhoneOutlined />} />
             </Form.Item>
-            <Form.Item name="landline" label="Landline">
+            <Form.Item name="unLandlineNumber" label="Landline">
               <Input prefix={<ContactsOutlined />} />
             </Form.Item>
-            <Form.Item name="faxNumber" label="Fax Number">
+            <Form.Item name="unFaxNumber" label="Fax Number">
               <Input prefix={<PrinterOutlined />} />
             </Form.Item>
             <Form.Item>
@@ -159,7 +164,7 @@ const Adminuniversity = () => {
           okText="Delete"
           okButtonProps={{ danger: true }}
         >
-          <p>Are you sure you want to delete {currentRecord?.universityName}?</p>
+          <p>Are you sure you want to delete {currentRecord?.unName}?</p>
         </Modal>
       </div>
     </div>
