@@ -87,14 +87,14 @@ const Adminadduni = () => {
       Object.values(errors).forEach(error => toast.error(error));
     } else {
       const formNewData = {
-        Name: formData.universityName,
-        ESTD: formData.estd,
-        Country: formData.countries,
-        State: formData.states, 
-        Address: `${formData.address}, ${formData.cities}`,
-        Phone:  formData.phone,
-        LandlineNumber:  formData.landline,
-        FaxNumber: formData.faxNumber
+        unName: formData.universityName,
+        unESTD: formData.estd,
+        unCountry: formData.countries,
+        unState: formData.states, 
+        unAddress: `${formData.address}, ${formData.cities}`,
+        unPhone:  formData.phone,
+        unLandlineNumber:  formData.landline,
+        unFaxNumber: formData.faxNumber
       };
 
       try {
