@@ -42,16 +42,17 @@ const Adminuniversity = () => {
   };
 
   const handleEditOk = (values) => {
-    // Assume API endpoint is '/universities/{id}'
     axios.put(`http://localhost:8181/eduvance/admin/university/${currentRecord.unId}`, { ...values, unPhoto: previewUrl })
       .then(() => {
         const newData = data.map(item => item.unId === currentRecord.unId ? { ...item, ...values, unPhoto: previewUrl } : item);
+        toast.success('Edit Successfully')
         setData(newData);
         setFilteredData(newData);
         setIsEditModalVisible(false);
         setCurrentRecord(null);
         setFile(null);
         setPreviewUrl('');
+       
       })
       .catch(error => {
         console.error('Error updating data:', error);
@@ -64,11 +65,12 @@ const Adminuniversity = () => {
     axios.delete(`http://localhost:8181/eduvance/admin/university/${currentRecord.unId}`)
       .then(() => {
         const newData = data.filter(item => item.unId !== currentRecord.unId);
+        toast.success('deleted sucessfully');
         setData(newData);
         setFilteredData(newData);
         setIsDeleteModalVisible(false);
         setCurrentRecord(null);
-        toast.success('deleted sucessfully');
+       
       })
       .catch(error => {
         console.error('Error deleting data:', error);
