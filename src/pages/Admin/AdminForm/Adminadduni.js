@@ -86,16 +86,17 @@ const Adminadduni = () => {
     } else if (Object.keys(errors).length > 0) {
       Object.values(errors).forEach(error => toast.error(error));
     } else {
-      const formNewData = new FormData();
-      formNewData.append('Name', formData.universityName);
-      formNewData.append('ESTD', formData.estd);
-      formNewData.append('Country', formData.countries);
-      formNewData.append('State', formData.states);
-      formNewData.append('Address', formData.address+","+formData.cities);
-      formNewData.append('Phone', formData.phone);
-      formNewData.append('LandlineNumber', formData.landline);
-      formNewData.append('FaxNumber', formData.faxNumber);
-      formNewData.append('DateOfJoin', formData.dateOfJoin);
+      const formNewData = {
+        Name: formData.universityName,
+        ESTD: formData.estd,
+        Country: formData.countries,
+        State: formData.states, 
+        Address: `${formData.address}, ${formData.cities}`,
+        Phone:  formData.phone,
+        LandlineNumber:  formData.landline,
+        FaxNumber: formData.faxNumber
+      };
+
       try {
         console.log("form",formNewData)
         const response = await addUniversity(formNewData);
