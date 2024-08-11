@@ -86,9 +86,19 @@ const Adminadduni = () => {
     } else if (Object.keys(errors).length > 0) {
       Object.values(errors).forEach(error => toast.error(error));
     } else {
+      const formNewData = new formNewData();
+      formNewData.append('Name', formData.universityName);
+      formNewData.append('ESTD', formData.estd);
+      formNewData.append('Country', formData.countries);
+      formNewData.append('State', formData.states);
+      formNewData.append('Address', formData.address+","+formData.cities);
+      formNewData.append('Phone', formData.phone);
+      formNewData.append('LandlineNumber', formData.landline);
+      formNewData.append('FaxNumber', formData.faxNumber);
+      formNewData.append('DateOfJoin', formData.dateOfJoin);
       try {
         console.log("form",formData)
-        const response = await addUniversity(formData);
+        const response = await addUniversity(formNewData);
         if (response.success) {
           toast.success('University added successfully!');
           setFormData({
