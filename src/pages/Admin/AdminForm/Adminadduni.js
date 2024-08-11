@@ -87,6 +87,7 @@ const Adminadduni = () => {
       Object.values(errors).forEach(error => toast.error(error));
     } else {
       try {
+        console.log("form",formData)
         const response = await addUniversity(formData);
         if (response.success) {
           toast.success('University added successfully!');

@@ -2,6 +2,7 @@ import { BASE_URL } from "./Url";
 
 const addUniversity = async (formData) => {
   try {
+    console.log("bfdata",formData)
     const response = await fetch(`${BASE_URL}/eduvance/admin/university`, {
       method: 'POST',
       headers: {
@@ -9,7 +10,7 @@ const addUniversity = async (formData) => {
       },
       body: JSON.stringify(formData)
     });
-    console.log(formData)
+    console.log("bfdatadata",formData)
     console.log(response)
 
     if (!response.ok) {
