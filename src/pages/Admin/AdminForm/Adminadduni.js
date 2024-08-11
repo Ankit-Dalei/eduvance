@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
-import { toast, ToastContainer } from 'react-toastify';
+// import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Select, TextInput, Button } from 'flowbite-react';
 import { Country, State, City } from 'country-state-city';
 import { toggleFormback } from '../../../Redux/formSlice';
 import { addUniversity } from '../../../Service/addUniversity';
+import toast from 'react-hot-toast';
 
 const Adminadduni = () => {
   const dispatch = useDispatch();
@@ -253,7 +254,6 @@ const Adminadduni = () => {
           </button>
         </form>
       </div>
-      <ToastContainer />
     </div>
   );
 };
