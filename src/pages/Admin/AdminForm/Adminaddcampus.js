@@ -29,7 +29,7 @@ const Adminaddcampus = () => {
     universityfetchData();
   }, []);
 
-
+console.log(universityOptions)
   
 
   const [formData, setFormData] = useState({
@@ -223,9 +223,9 @@ const Adminaddcampus = () => {
         ))}
       </Select>
          <select className={`h-[40px] w-[90%] p-2 rounded-xl`} name='campusId' value={formData.campusId} onChange={handleChange}>
-              <option value="" className='text-gray-500'>UNIVERSITY ID</option>
+              <option value="" className='text-gray-500' selected>University</option>
               {universityOptions.map((option) => (
-                <option key={option.id} value={option.id}>{option.name}</option>
+                <option key={option.unId} value={option.unId}>{option.unName}</option>
               ))}
             </select>
             <input type='number' placeholder='ESTD' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='estd' value={formData.estd} onChange={handleChange} />
