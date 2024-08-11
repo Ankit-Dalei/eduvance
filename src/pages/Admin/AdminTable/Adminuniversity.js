@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GlobalTable from './GlobalTable';
 import { EditOutlined, DeleteOutlined, PhoneOutlined, ContactsOutlined, PrinterOutlined } from '@ant-design/icons';
-import { Button, Space, Modal, Form, Input, Upload, Image } from 'antd';
+import { Button, Space, Modal, Form, Input, Image } from 'antd';
 import { TextInput } from 'flowbite-react';
 import { universityfetch } from '../../../Service/universityfetch';
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 
 const Adminuniversity = () => {
   const [data, setData] = useState([]);
@@ -18,22 +18,22 @@ const Adminuniversity = () => {
 
   useEffect(() => {
     universityfetch()
-    .then(data => {
-      if (data) {
-        console.log("data is", data); 
-        setData(data); 
-        setFilteredData(data); 
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-    });
+      .then(data => {
+        if (data) {
+          console.log("data is", data); 
+          setData(data); 
+          setFilteredData(data); 
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
   }, []);
 
   const handleEdit = (record) => {
     setCurrentRecord(record);
+    setPreviewUrl(record.unPhoto || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXF3awjdy4fDiGzPF_J9fl8rjCwD6siKDOIhzqTRw6UKfnGlEY_DqNRL0kEVI_OZIey-w&usqp=CAU');
     setIsEditModalVisible(true);
-    setPreviewUrl(record.unPhoto || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXF3awjdy4fDiGzPF_J9fl8rjCwD6siKDOIhzqTRw6UKfnGlEY_DqNRL0kEVI_OZIey-w&usqp=CAU'); // Set preview URL if available
   };
 
   const handleDelete = (record) => {
@@ -42,38 +42,41 @@ const Adminuniversity = () => {
   };
 
   const handleEditOk = (values) => {
-    axios.put(`http://localhost:8181/eduvance/admin/university/${currentRecord.unId}`, { ...values, unPhoto: previewUrl })
-      .then(() => {
-        const newData = data.map(item => item.unId === currentRecord.unId ? { ...item, ...values, unPhoto: previewUrl } : item);
-        toast.success('Edit Successfully')
-        setData(newData);
-        setFilteredData(newData);
-        setIsEditModalVisible(false);
-        setCurrentRecord(null);
-        setFile(null);
-        setPreviewUrl('');
-       
-      })
-      .catch(error => {
-        console.error('Error updating data:', error);
-      });
+    // Include existing values with updated ones
+    axios.put(`http://localhost:8181/eduvance/admin/university/${currentRecord.unId}`, { 
+      ...currentRecord, // Preserve existing fields
+      ...values, // Update with new values
+      unPhoto: previewUrl // Set the photo URL if updated
+    })
+    .then(() => {
+      const newData = data.map(item => item.unId === currentRecord.unId ? { ...item, ...values, unPhoto: previewUrl } : item);
+      setData(newData);
+      setFilteredData(newData);
+      setIsEditModalVisible(false);
+      setCurrentRecord(null);
+      setFile(null);
+      setPreviewUrl('');
+      toast.success('University updated successfully');
+    })
+    .catch(error => {
+      console.error('Error updating data:', error);
+      toast.error('Failed to update university');
+    });
   };
 
   const handleDeleteOk = () => {
-    console.log(currentRecord);
-    
     axios.delete(`http://localhost:8181/eduvance/admin/university/${currentRecord.unId}`)
       .then(() => {
         const newData = data.filter(item => item.unId !== currentRecord.unId);
-        toast.success('deleted sucessfully');
         setData(newData);
         setFilteredData(newData);
         setIsDeleteModalVisible(false);
         setCurrentRecord(null);
-       
+        toast.success('University deleted successfully');
       })
       .catch(error => {
         console.error('Error deleting data:', error);
+        toast.error('Failed to delete university');
       });
   };
 

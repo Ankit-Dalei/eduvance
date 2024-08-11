@@ -9,11 +9,9 @@ export const postDegreeData = async (DegreeData) => {
       },
       body: JSON.stringify(DegreeData),
     });
-
     if (!response.ok) {
       return false;
     }
-
     await response.json();
     return true;
   } catch (error) {
