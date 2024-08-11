@@ -9,6 +9,8 @@ const addUniversity = async (formData) => {
       },
       body: JSON.stringify(formData)
     });
+    console.log(formData)
+    console.log(response)
 
     if (!response.ok) {
       throw new Error('Failed to add university');
