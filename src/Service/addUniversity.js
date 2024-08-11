@@ -1,6 +1,8 @@
 import { BASE_URL } from "./Url";
-
-const addUniversity = async (formNewData) => {
+export const addUniversity = async (formNewData) => {
+  
+console.log("hello")
+console.log("hello")
   try {
     console.log("bfdata",formNewData)
     const response = await fetch(`${BASE_URL}/eduvance/admin/university`, {
@@ -22,6 +24,4 @@ const addUniversity = async (formNewData) => {
     return { success: false, error: 'An error occurred while adding the university' };
   }
 };
-
-export default { addUniversity };
 

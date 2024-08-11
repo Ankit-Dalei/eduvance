@@ -6,8 +6,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Select, TextInput, Button } from 'flowbite-react';
 import { Country, State, City } from 'country-state-city';
-import addUniversity from '../../../Service/addUniversity';
 import { toggleFormback } from '../../../Redux/formSlice';
+import { addUniversity } from '../../../Service/addUniversity';
 
 const Adminadduni = () => {
   const dispatch = useDispatch();
@@ -89,6 +89,7 @@ const Adminadduni = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validate();
+    
     if (Object.values(formData).slice(0, -7).every(field => !field)) {
       toast.error('Please fill in all fields');
     } else if (Object.keys(errors).length > 0) {
@@ -104,9 +105,10 @@ const Adminadduni = () => {
         unLandlineNumber: formData.landline,
         unFaxNumber: formData.faxNumber
       };
-
+  
+      console.log("formNewData to be sent:", formNewData);
+  
       try {
-        console.log("form",formNewData)
         const response = await addUniversity(formNewData);
         if (response.success) {
           toast.success('University added successfully!');
@@ -134,6 +136,7 @@ const Adminadduni = () => {
       }
     }
   };
+  
 
   const handleCancel = () => {
     dispatch(toggleFormback());
@@ -176,7 +179,7 @@ const Adminadduni = () => {
           >
             <option value="">Select Country</option>
             {formData.countries.map((country) => (
-              <option key={country.isoCode} value={country.isoCode}>{country.name}</option>
+              <option key={country.isoCode} value={country.isoCode} name={country.name}>{country.name}</option>
             ))}
           </Select>
           <Select
@@ -189,7 +192,7 @@ const Adminadduni = () => {
           >
             <option value="">Select State</option>
             {formData.states.map((state) => (
-              <option key={state.isoCode} value={state.isoCode}>{state.name}</option>
+              <option key={state.isoCode} value={state.isoCode} name={state.name}>{state.name}</option>
             ))}
           </Select>
           <Select
