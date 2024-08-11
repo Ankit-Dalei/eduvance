@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GlobalTable from './GlobalTable';
 import { EditOutlined, DeleteOutlined, PhoneOutlined, ContactsOutlined, PrinterOutlined } from '@ant-design/icons';
-import { Button, Space, Modal, Form, Input } from 'antd';
+import { Button, Space, Modal, Form, Input, Upload, Image } from 'antd';
 import { TextInput } from 'flowbite-react';
+import { UploadOutlined } from '@ant-design/icons';
 
 const Adminuniversity = () => {
   const [data, setData] = useState([]);
@@ -11,6 +12,8 @@ const Adminuniversity = () => {
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [currentRecord, setCurrentRecord] = useState(null);
+  const [file, setFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState('');
 
   useEffect(() => {
     axios.get('https://mocki.io/v1/3136c4b5-a5d8-491f-a9e0-4834531b423a')
@@ -26,6 +29,7 @@ const Adminuniversity = () => {
   const handleEdit = (record) => {
     setCurrentRecord(record);
     setIsEditModalVisible(true);
+    setPreviewUrl(record.photoUrl || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXF3awjdy4fDiGzPF_J9fl8rjCwD6siKDOIhzqTRw6UKfnGlEY_DqNRL0kEVI_OZIey-w&usqp=CAU'); // Set preview URL if available
   };
 
   const handleDelete = (record) => {
@@ -34,11 +38,13 @@ const Adminuniversity = () => {
   };
 
   const handleEditOk = (values) => {
-    const newData = data.map(item => item.key === currentRecord.key ? { ...item, ...values } : item);
+    const newData = data.map(item => item.key === currentRecord.key ? { ...item, ...values, photoUrl: previewUrl } : item);
     setData(newData);
     setFilteredData(newData);
     setIsEditModalVisible(false);
     setCurrentRecord(null);
+    setFile(null);
+    setPreviewUrl('');
   };
 
   const handleDeleteOk = () => {
@@ -61,6 +67,18 @@ const Adminuniversity = () => {
       item.dateOfJoin.toLowerCase().includes(value)
     );
     setFilteredData(filtered);
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result);
+      };
+      reader.readAsDataURL(file);
+      setFile(file);
+    }
   };
 
   const columns = [
@@ -105,6 +123,18 @@ const Adminuniversity = () => {
             initialValues={currentRecord}
             onFinish={handleEditOk}
           >
+            <Form.Item name="photoUrl" label="Photo">
+              <Input type="file" onChange={handleFileChange} />
+              {previewUrl && (
+                <div className="my-2">
+                  <Image
+                    width={200}
+                    src={previewUrl}
+                    alt="Preview"
+                  />
+                </div>
+              )}
+            </Form.Item>
             <Form.Item name="phone" label="Phone">
               <Input prefix={<PhoneOutlined />} />
             </Form.Item>

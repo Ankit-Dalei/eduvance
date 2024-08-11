@@ -229,8 +229,6 @@ const Adminaddcampus = () => {
               ))}
             </select>
             <input type='number' placeholder='ESTD' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='estd' value={formData.estd} onChange={handleChange} />
-            <input type='text' placeholder='STATE' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='state' value={formData.state} onChange={handleChange} />
-            <input type='text' placeholder='ADDRESS' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='address' value={formData.address} onChange={handleChange} />
             <input type='number' placeholder='PHONE' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='phone' value={formData.phone} onChange={handleChange} />
             <input type='number' placeholder='LANDLINE' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='landline' value={formData.landline} onChange={handleChange} />
             <input type='date' placeholder='DATE OF JOIN' className={`h-[40px] w-[90%] p-2 rounded-xl`} hidden name='dateOfJoin' value={formData.dateOfJoin} />
