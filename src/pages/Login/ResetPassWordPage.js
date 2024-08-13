@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import './Rstpass.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import updatePassword from '../../Service/UpdatePassword';
-import { useLocation } from 'react-router-dom';
+import axios from 'axios'; 
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const ResetPassWordPage = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const location = useLocation();
-  const email = location.state?.email || ''; // Get email from navigation state
-
+  const email = location.state?.email || '';
+  const navigate=useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -42,21 +42,45 @@ const ResetPassWordPage = () => {
       return;
     }
 
-    const response = await updatePassword(email, password);
+    try {
+      const response = await axios.post(
+        'http://localhost:8181/eduvance/user/update',
+        null, // No request body
+        {
+          params: {
+            email,
+            password,
+          },
+        }
+      );
 
-    if (response.success) {
-      toast.success('Password updated successfully!', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-    } else {
-      toast.error('Failed to update password.', {
+      if (response.data.success) {
+
+        toast.success('Password updated successfully!', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+     navigate('/')
+      } else {
+        toast.error('Failed to update password.', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
+    } catch (error) {
+      toast.error('An unexpected error occurred.', {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,

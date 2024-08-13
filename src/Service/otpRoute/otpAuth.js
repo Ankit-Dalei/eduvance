@@ -19,3 +19,19 @@ export const verifyOtp = async (email, otp) => {
       throw error.response.data;
     }
   };
+
+
+const updatePassword = async (email, password) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/eduvance/user/update`, {
+      email,
+      password,
+    });
+    return response;
+  } catch (error) {
+    console.error('Error updating password:', error);
+    return { success: false };
+  }
+};
+
+export default updatePassword;
