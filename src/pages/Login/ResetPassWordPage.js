@@ -66,7 +66,9 @@ const ResetPassWordPage = () => {
           progress: undefined,
           theme: "dark",
         });
-     navigate('/')
+        setTimeout(() => {
+          navigate('/');
+        }, 1500);
       } else {
         toast.error('Failed to update password.', {
           position: "top-right",
