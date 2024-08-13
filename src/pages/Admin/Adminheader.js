@@ -7,11 +7,13 @@ import { Link } from 'react-router-dom';
 import Adminprofile from './Adminprofile';
 import Adminformchoice from './AdminForm/Adminformchoice';
 import { toggleFormon } from '../../Redux/formSlice';
+import { getSessionStorageItem } from '../../Service/SessionStorage';
 
 const Adminheader = () => {
   const [profileDisplay,SetprofileDisplay]=useState(true)
   const count = useSelector((state) => state.forms.sidebar)
   const formDisplay = useSelector((state) => state.forms.formon)
+  
   const dispatch = useDispatch()
   const handelclick=()=>{
     dispatch(toggleSidebar())
@@ -26,6 +28,9 @@ const Adminheader = () => {
   const handelFormclick=()=>{
     dispatch(toggleFormon())
   }
+  const data=getSessionStorageItem('user');
+
+  
   return (
     <>
       <div className={`h-full w-full p-2 text-black flex justify-between items-center flex-row relative `}>
@@ -38,7 +43,7 @@ const Adminheader = () => {
           <div className={`bg-green-200 text-green-400 sm:p-2 sm:w-9 sm:h-9 sm:flex sm:justify-center sm:items-center sm:border-2 sm:rounded-lg sm:font-light sm:text-xl hover:bg-green-300 hover:text-green-100 cursor-pointer hidden`} onClick={handelFormclick}><FontAwesomeIcon icon={faPlus} /></div>
           <Link to='Notification'><div className={`bg-green-200 text-green-400 p-2 w-9 h-9 flex justify-center items-center border-2 rounded-lg font-light text-xl hover:bg-green-300 hover:text-green-100 cursor-pointer`}><FontAwesomeIcon icon={faBell} /></div></Link>
           <div className={`sm:flex sm:justify-center justify-end items-center sm:flex-row sm:gap-4 md:h-[50px] sm:h-[35px] md:w-[190px] sm:w-[140px] sm:font-semibold hidden`} style={{boxShadow: '-1px 0px 0px gray'}}>
-            <div className={`sm:flex sm:justify-around sm:items-center hidden`}><p className={`text-gray-400`}>Hello,</p>Ankit</div>
+            <div className={`sm:flex sm:justify-around sm:items-center hidden`}><p className={`text-gray-400`}>Hello,</p>{data.user.userName}</div>
             <div className={`bg-slate-400 md:h-[45px] md:w-[45px] rounded-full cursor-pointer sm:h-[30px] sm:w-[30px] h-[30px] w-[30px]`} onMouseEnter={handelprofileclick} onMouseLeave={handelprofileclick}>
               <img src='' alt=''/>
             </div>
