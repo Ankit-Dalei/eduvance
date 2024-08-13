@@ -3,11 +3,13 @@ import './Rstpass.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import updatePassword from '../../Service/UpdatePassword';
-
+import { useLocation } from 'react-router-dom';
 
 const ResetPassWordPage = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const location = useLocation();
+  const email = location.state?.email || ''; // Get email from navigation state
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,9 +41,6 @@ const ResetPassWordPage = () => {
       });
       return;
     }
-
-    // Replace with the actual email
-    const email = 'bikashmalu1@gmail.com';
 
     const response = await updatePassword(email, password);
 
@@ -82,7 +81,7 @@ const ResetPassWordPage = () => {
               <h2>Forgot Password</h2>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa animi architecto tenetur doloremque magnam.</p>
               <label>Email address</label>
-              <input type="email" placeholder="Email address" value="bikashmalu1@gmail.com" readOnly />
+              <input type="email" placeholder="Email address" value={email} readOnly />
               <label>Reset Password</label>
               <input 
                 type="password" 

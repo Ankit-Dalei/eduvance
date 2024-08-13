@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import GlobalTable from './GlobalTable';
-import { EditOutlined, DeleteOutlined, UserOutlined, MailOutlined, KeyOutlined, PhoneOutlined, UploadOutlined } from '@ant-design/icons';
+import React, { useState, useEffect } from 'react';
 import { Button, Space, Modal, Form, Input, Select, Image } from 'antd';
+import { EditOutlined, DeleteOutlined, UserOutlined, MailOutlined, KeyOutlined, PhoneOutlined } from '@ant-design/icons';
+import GlobalTable from './GlobalTable';
 import { TextInput } from 'flowbite-react';
+import { fetchCampusData } from '../../../Service/postCampusData';
 
 const { Option } = Select;
 
@@ -15,16 +16,8 @@ const Admincampus = () => {
     "Global University"
   ];
 
-  const initialData = [
-    { key: 1, "CAMPUS NAME": "Main Campus", "UNIVERSITY NAME": "State University", "ADDRESS": "123 Main St", "PHONE NUMBER": "123-456-7890", photoUrl: '' },
-    { key: 2, "CAMPUS NAME": "North Campus", "UNIVERSITY NAME": "City College", "ADDRESS": "456 North St", "PHONE NUMBER": "987-654-3210", photoUrl: '' },
-    { key: 3, "CAMPUS NAME": "West Campus", "UNIVERSITY NAME": "Tech Institute", "ADDRESS": "789 West St", "PHONE NUMBER": "555-123-4567", photoUrl: '' },
-    { key: 4, "CAMPUS NAME": "South Campus", "UNIVERSITY NAME": "National University", "ADDRESS": "101 South St", "PHONE NUMBER": "555-987-6543", photoUrl: '' },
-    { key: 5, "CAMPUS NAME": "East Campus", "UNIVERSITY NAME": "Global University", "ADDRESS": "202 East St", "PHONE NUMBER": "555-555-5555", photoUrl: '' },
-  ];
-
-  const [data, setData] = useState(initialData);
-  const [filteredData, setFilteredData] = useState(initialData);
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [isConfirmationVisible, setIsConfirmationVisible] = useState(false);
@@ -32,6 +25,22 @@ const Admincampus = () => {
   const [editValues, setEditValues] = useState({});
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState('');
+
+  useEffect(() => {
+    const loadCampusData = async () => {
+      try {
+        const campusData = await fetchCampusData();
+        console.log(campusData);
+        
+        setData(campusData);
+        setFilteredData(campusData);
+      } catch (error) {
+        console.error("Failed to fetch campus data");
+      }
+    };
+
+    loadCampusData();
+  }, []);
 
   const handleEdit = (record) => {
     setCurrentRecord(record);
@@ -51,7 +60,7 @@ const Admincampus = () => {
   };
 
   const handleConfirmationOk = () => {
-    const newData = data.map(item => item.key === currentRecord.key ? { ...item, ...editValues, photoUrl: previewUrl } : item);
+    const newData = data.map(item => item.csId === currentRecord.csId ? { ...item, ...editValues, photoUrl: previewUrl } : item);
     setData(newData);
     setFilteredData(newData);
     setIsEditModalVisible(false);
@@ -66,7 +75,7 @@ const Admincampus = () => {
   };
 
   const handleDeleteOk = () => {
-    const newData = data.filter(item => item.key !== currentRecord.key);
+    const newData = data.filter(item => item.csId !== currentRecord.csId);
     setData(newData);
     setFilteredData(newData);
     setIsDeleteModalVisible(false);
@@ -76,10 +85,10 @@ const Admincampus = () => {
   const handleSearch = (e) => {
     const value = e.target.value.toLowerCase();
     const filtered = data.filter(item => 
-      item['CAMPUS NAME'].toLowerCase().includes(value) ||
-      item['UNIVERSITY NAME'].toLowerCase().includes(value) ||
-      item['ADDRESS'].toLowerCase().includes(value) ||
-      item['PHONE NUMBER'].toLowerCase().includes(value)
+      item.csName.toLowerCase().includes(value) ||
+      item.unId.toLowerCase().includes(value) ||
+      item.csAddress.toLowerCase().includes(value) ||
+      item.csPhone.toLowerCase().includes(value)
     );
     setFilteredData(filtered);
   };
@@ -97,10 +106,13 @@ const Admincampus = () => {
   };
 
   const columns = [
-    { title: 'CAMPUS NAME', dataIndex: 'CAMPUS NAME', key: 'CAMPUS NAME' },
-    { title: 'UNIVERSITY NAME', dataIndex: 'UNIVERSITY NAME', key: 'UNIVERSITY NAME' },
-    { title: 'ADDRESS', dataIndex: 'ADDRESS', key: 'ADDRESS' },
-    { title: 'PHONE NUMBER', dataIndex: 'PHONE NUMBER', key: 'PHONE NUMBER' },
+    { title: 'Campus Name', dataIndex: 'csName', key: 'csName' },
+    { title: 'University Name', dataIndex: 'unId', key: 'unId' },
+    { title: 'Address', dataIndex: 'csAddress', key: 'csAddress' },
+    { title: 'Phone Number', dataIndex: 'csPhone', key: 'csPhone' },
+    { title: 'State', dataIndex: 'csState', key: 'csState' },
+    { title: 'Landline Number', dataIndex: 'csLandlineNumber', key: 'csLandlineNumber' },
+    { title: 'Established Year', dataIndex: 'csESTD', key: 'csESTD' },
     {
       title: 'Action',
       dataIndex: 'action',
@@ -147,25 +159,34 @@ const Admincampus = () => {
                 </div>
               )}
             </Form.Item>
-            <Form.Item name="CAMPUS NAME" label="Campus Name">
+            <Form.Item name="csName" label="Campus Name">
               <Input prefix={<UserOutlined />} />
             </Form.Item>
-            <Form.Item name="UNIVERSITY NAME" label="University Name">
+            <Form.Item name="unId" label="University Name">
               <Select
                 prefix={<MailOutlined />}
-                defaultValue={currentRecord?.['UNIVERSITY NAME']}
-                onChange={(value) => setEditValues(prev => ({ ...prev, 'UNIVERSITY NAME': value }))}
+                defaultValue={currentRecord?.unId}
+                onChange={(value) => setEditValues(prev => ({ ...prev, unId: value }))}
               >
                 {universities.map((uni) => (
                   <Option key={uni} value={uni}>{uni}</Option>
                 ))}
               </Select>
             </Form.Item>
-            <Form.Item name="ADDRESS" label="Address">
+            <Form.Item name="csAddress" label="Address">
               <Input prefix={<KeyOutlined />} />
             </Form.Item>
-            <Form.Item name="PHONE NUMBER" label="Phone Number">
+            <Form.Item name="csPhone" label="Phone Number">
               <Input prefix={<PhoneOutlined />} />
+            </Form.Item>
+            <Form.Item name="csState" label="State">
+              <Input />
+            </Form.Item>
+            <Form.Item name="csLandlineNumber" label="Landline Number">
+              <Input />
+            </Form.Item>
+            <Form.Item name="csESTD" label="Established Year">
+              <Input type="number" />
             </Form.Item>
             <Form.Item>
               <Button type="dashed" htmlType="submit">
@@ -182,7 +203,7 @@ const Admincampus = () => {
           okText="Delete"
           okButtonProps={{ danger: true }}
         >
-          <p>Are you sure you want to delete {currentRecord?.['CAMPUS NAME']}?</p>
+          <p>Are you sure you want to delete {currentRecord?.csName}?</p>
         </Modal>
         <Modal
           title="Confirm Update"

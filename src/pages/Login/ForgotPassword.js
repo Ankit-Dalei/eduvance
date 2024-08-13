@@ -41,7 +41,7 @@ const ForgotPassword = () => {
     try {
       const result = await verifyOtp(email, otpCode);
       toast.success(result.message || "OTP verified successfully");
-      navigate('/ResetPassWord');
+      navigate('/ResetPassWord', { state: { email } }); // Pass email in navigation state
     } catch (error) {
       toast.error(error.message || "Invalid OTP");
     } finally {
@@ -51,7 +51,7 @@ const ForgotPassword = () => {
 
   return (
     <div className='flex items-center justify-center min-h-screen bg-gray-100'>
-      <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
+      <div className="w-full max-w-xl bg-white p-6 rounded-lg shadow-lg">
         <div className="flex justify-center mb-4">
           <img src="./Images/forgot_password.svg" alt="Illustration" className="w-1/2" />
         </div>
