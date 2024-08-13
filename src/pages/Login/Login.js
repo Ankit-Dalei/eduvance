@@ -17,12 +17,10 @@ const Login = () => {
         setInputInitial({ ...inputInitial, [name]: value });
 
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { Username, Password } = inputInitial;
-        // navigate('/home')
-
+    
         if (!Username) {
             toast('Email cannot be empty', {
                 position: "top-right",
@@ -36,8 +34,8 @@ const Login = () => {
             });
             return;
         }
-
-        if (Password.trim()==="") {
+    
+        if (Password.trim() === "") {
             toast("Password cannot be null", {
                 position: "top-right",
                 autoClose: 3000,
@@ -50,7 +48,7 @@ const Login = () => {
             });
             return;
         }
-
+    
         if (Password.length < 6) {
             toast("Password must be at least 6 characters long", {
                 position: "top-right",
@@ -64,45 +62,58 @@ const Login = () => {
             });
             return;
         }
-        const response = await login(Username, Password);
-
-        if (response.success) {
-            const userInfo = await response.userData;
-            console.log("data is:-",userInfo.user.userId)
-            const userid=userInfo.user.userId;
-
-            const trimmed = userid.trim();
-            const firstTwo = trimmed.substring(0, 2);
-            console.log("id is",firstTwo);
-
-            if (rememberMe && 'credentials' in navigator && window.PasswordCredential) {
-                const cred = new window.PasswordCredential({
-                    id: Username,
-                    password: Password,
-                    name: 'Eduvance'
-                });
-                try {
-                    await navigator.credentials.store(cred);
-                } catch (error) {
-                    console.error('Failed to store credentials:', error);
+    
+        try {
+            const response = await login(Username, Password);
+    
+            if (response.success) {
+                const userInfo = response.userData;
+                const userid = userInfo.user.userId;
+                const trimmed = userid.trim();
+                const firstTwo = trimmed.substring(0, 2);
+    
+                if (rememberMe && 'credentials' in navigator && window.PasswordCredential) {
+                    const cred = new window.PasswordCredential({
+                        id: Username,
+                        password: Password,
+                        name: 'Eduvance'
+                    });
+                    try {
+                        await navigator.credentials.store(cred);
+                    } catch (error) {
+                        console.error('Failed to store credentials:', error);
+                    }
                 }
-            }
-
-            if (firstTwo === 'AD') {
-                navigate('/admin');
-            } else if (firstTwo === 'MT') {
-                navigate('/management');
-            } else if (firstTwo === 'Hod') {
-                navigate('/Hod');
-            } else if (firstTwo === 'Teacher') {
-                navigate('/teacher');
-            } else if (firstTwo === 'Student') {
-                navigate('/stdash');
+    
+                if (firstTwo === 'AD') {
+                    navigate('/admin');
+                } else if (firstTwo === 'MT') {
+                    navigate('/management');
+                } else if (firstTwo === 'Hod') {
+                    navigate('/Hod');
+                } else if (firstTwo === 'Teacher') {
+                    navigate('/teacher');
+                } else if (firstTwo === 'Student') {
+                    navigate('/stdash');
+                } else {
+                    navigate('/');
+                }
             } else {
-                navigate('/');
+                toast('Incorrect email or password', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+                // Clear localStorage if login fails
+                localStorage.removeItem('user');
             }
-        } else {
-            toast(`Login failed: ${response.error}`, {
+        } catch (error) {
+            toast('An error occurred. Please try again later.', {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -112,9 +123,13 @@ const Login = () => {
                 progress: undefined,
                 theme: "dark",
             });
+            console.error('Login error:', error);
         }
+    
         setInputInitial({ Username: '', Password: '' });
     };
+    
+    
 
     const handleRememberMeChange = (e) => {
         setRememberMe(e.target.checked);

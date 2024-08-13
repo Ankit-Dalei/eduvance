@@ -50,7 +50,7 @@ const Adminheader = () => {
           </div>
         </div>
       </div>
-      {profileDisplay?'':<Adminprofile/>}
+      {profileDisplay?'':<Adminprofile name={data.user.userName} email={data.user.userEmail}/>}
       {formDisplay?<Adminformchoice/>:''}
     </>
   )
