@@ -54,11 +54,10 @@ import CustomCheaker from './pages/Teacher/ExamSession/questionsection/CustomChe
 import Orm from './pages/Teacher/ExamSession/questionsection/Orm';
 import CountryCity from './pages/Teacher/ExamSession/common/CountryCity';
 import PrivateRoute from './Service/otpRoute/PrivateRoute';
-import { Toaster } from 'react-hot-toast';
+
 function App() {
   return (
     <div>
- 
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Login />} />
@@ -66,7 +65,7 @@ function App() {
           <Route path='/ResetPassWord' element={<ResetPassWordPage />} />
 
           {/* Admin Routes */}
-          <Route path='/Admin' element={<PrivateRoute element={Adminlayout} />}>
+          <Route path='/Admin' element={<PrivateRoute element={Adminlayout} requiredRole="AD" />}>
             <Route index element={<Adminhome />} />
             <Route path='University' element={<Adminuniversity />} />
             <Route path='Campus' element={<Admincampus />} />
@@ -77,7 +76,7 @@ function App() {
           </Route>
 
           {/* Management Routes */}
-          <Route path='/Management' element={<PrivateRoute element={Managementlayout} />}>
+          <Route path='/Management' element={<PrivateRoute element={Managementlayout}requiredRole="MT" />}>
             <Route index element={<Managementhome />} />
             <Route path='School' element={<Managementschool />} />
             <Route path='Branch' element={<Managementbranch />} />
