@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes  } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login/Login';
 import ForgotPassword from './pages/Login/ForgotPassword';
@@ -13,7 +13,6 @@ import Managementteacher from './pages/Management/ManagementNavigation/Managemen
 import Managementstudent from './pages/Management/ManagementNavigation/Managementstudent';
 import Managementsection from './pages/Management/ManagementNavigation/Managementsection';
 import Managementnotify from './pages/Management/Managementnotify';
-import Tquestion from './pages/Teacher/ExamSession/common/Layout';
 import AddContest from './pages/Teacher/ExamSession/contestsection/AddContest';
 import QuestionLayout from './pages/Teacher/ExamSession/common/Layout';
 import AddQuestion from './pages/Teacher/ExamSession/questionsection/AddQuestion';
@@ -31,9 +30,7 @@ import BaseLayout from './pages/Teacher/ExamSession/contestsection/BaseLayoutCon
 import Details from './pages/Teacher/ExamSession/contestsection/Details';
 import Challenge from './pages/Teacher/ExamSession/contestsection/Challenge';
 import Advance from './pages/Teacher/ExamSession/contestsection/Advance';
-import { ToastContainer } from 'react-toastify';
 import Moderate from './pages/Teacher/ExamSession/contestsection/Moderate';
-import { Toaster } from 'react-hot-toast';
 import Notification from './pages/Teacher/ExamSession/contestsection/Notification';
 import Statistics from './pages/Teacher/ExamSession/contestsection/Statistics';
 import Adminlayout from './pages/Admin/Adminlayout';
@@ -55,94 +52,84 @@ import Setting from './pages/Teacher/ExamSession/questionsection/Setting';
 import Editoral from './pages/Teacher/ExamSession/questionsection/Editoral';
 import CustomCheaker from './pages/Teacher/ExamSession/questionsection/CustomCheaker';
 import Orm from './pages/Teacher/ExamSession/questionsection/Orm';
-import { useContext, useEffect } from 'react';
-import { Context } from '.';
-import { getUser } from './Service/LogAuth';
 import CountryCity from './pages/Teacher/ExamSession/common/CountryCity';
-
+import PrivateRoute from './Service/otpRoute/PrivateRoute';
+import { Toaster } from 'react-hot-toast';
 function App() {
-
   return (
     <div>
-      
+ 
       <BrowserRouter>
-      <Toaster 
-        position="top-right" // Change the position here
-        reverseOrder={false} // Optionally reverse the order of toasts
-      />
         <Routes>
-          <Route path='/' element={<Login/>}/>
-          <Route path='/ForgotPassword' element={<ForgotPassword/>}/>
-          <Route path='/ResetPassWord' element={<ResetPassWordPage/>}/>
-          {/* admin */}
-          <Route path='/Admin' element={<Adminlayout/>}>
-            <Route index element={<Adminhome/>}/>
-            <Route path='University' element={<Adminuniversity/>}/>
-            <Route path='Campus' element={<Admincampus/>}/>
-            <Route path='Management' element={<Adminmanagement/>}/>
-            <Route path='Notification' element={<Adminnotify/>}/>
-            <Route path='notificationDisplay' element={<Adminnotifyshow/>}/>
-            <Route path='message' element={<Adminnotifycreate/>}/>
+          <Route path='/' element={<Login />} />
+          <Route path='/ForgotPassword' element={<ForgotPassword />} />
+          <Route path='/ResetPassWord' element={<ResetPassWordPage />} />
+
+          {/* Admin Routes */}
+          <Route path='/Admin' element={<PrivateRoute element={Adminlayout} />}>
+            <Route index element={<Adminhome />} />
+            <Route path='University' element={<Adminuniversity />} />
+            <Route path='Campus' element={<Admincampus />} />
+            <Route path='Management' element={<Adminmanagement />} />
+            <Route path='Notification' element={<Adminnotify />} />
+            <Route path='notificationDisplay' element={<Adminnotifyshow />} />
+            <Route path='message' element={<Adminnotifycreate />} />
           </Route>
-          {/* management */}
-          <Route path='/Management' element={<Managementlayout/>}>
-            <Route index element={<Managementhome/>}/>
-            <Route path='School' element={<Managementschool/>}/>
-            <Route path='Branch' element={<Managementbranch/>}/>
-            <Route path='Course' element={<Managementcourse/>}/>
-            <Route path='Teacher' element={<Managementteacher/>}/>
-            <Route path='Student' element={<Managementstudent/>}/>
-            <Route path='Section' element={<Managementsection/>}/>
-            <Route path='notification' element={<Managementnotify/>}/>
-            <Route path='notificationDisplay' element={<Managementnotifyshow/>}/>
-            <Route path='message' element={<Managementnotifycreate/>}/>
-            <Route path='ChooseRoll' element={<Managemententrypanal/>}>
-              <Route index element={<Managementaddschool/>}/>
-              <Route path='addBranch' element={<Managementaddbranch/>}/>
-              <Route path='addCourse' element={<Managementaddcourse/>}/>
-              <Route path='addTeacher' element={<Managementaddteacher/>}/>
-              <Route path='addStudent' element={<Managementaddstudent/>}/>
+
+          {/* Management Routes */}
+          <Route path='/Management' element={<PrivateRoute element={Managementlayout} />}>
+            <Route index element={<Managementhome />} />
+            <Route path='School' element={<Managementschool />} />
+            <Route path='Branch' element={<Managementbranch />} />
+            <Route path='Course' element={<Managementcourse />} />
+            <Route path='Teacher' element={<Managementteacher />} />
+            <Route path='Student' element={<Managementstudent />} />
+            <Route path='Section' element={<Managementsection />} />
+            <Route path='notification' element={<Managementnotify />} />
+            <Route path='notificationDisplay' element={<Managementnotifyshow />} />
+            <Route path='message' element={<Managementnotifycreate />} />
+            <Route path='ChooseRoll' element={<Managemententrypanal />} >
+              <Route index element={<Managementaddschool />} />
+              <Route path='addBranch' element={<Managementaddbranch />} />
+              <Route path='addCourse' element={<Managementaddcourse />} />
+              <Route path='addTeacher' element={<Managementaddteacher />} />
+              <Route path='addStudent' element={<Managementaddstudent />} />
             </Route>
           </Route>
-          {/* teacher */}
-          {/* <Route path='/teacher' element={<Layout/>}/> */}
-          <Route path='/teacher' element={<Dashboard/>}/>
-          <Route path='/' element={<QuestionLayout/>}>
-        <Route path="teacher/add-contest" element={<AddContest />} />
-        
-        <Route path="teacher/add-question" element={<AddQuestion />} />
-        <Route path="/"element={<AddQuestion />} exact />
-     
-        </Route>
-        <Route path="/questionform" element={<AddQuestionform/>} />
-        <Route path="/contestform" element={<AddContestform/>} />
 
-        {/* baselayout for contest */}
+          {/* Teacher Routes */}
+          <Route path='/teacher' element={<PrivateRoute element={Dashboard} />} />
+          <Route path='/teacher/*' element={<PrivateRoute element={QuestionLayout} />}>
+            <Route path="add-contest" element={<AddContest />} />
+            <Route path="add-question" element={<AddQuestion />} />
+          </Route>
+          <Route path="/questionform" element={<PrivateRoute element={AddQuestionform} />} />
+          <Route path="/contestform" element={<PrivateRoute element={AddContestform} />} />
 
-        <Route path="/baselayout" element={<BaseLayout/>} >
-        <Route path="details" element={<Details/>} />
-        <Route path="challenge" element={<Challenge/>} />
-        <Route path="advanced" element={<Advance/>} />
-        <Route path="moderate" element={<Moderate/>} />
-        <Route path="notification" element={<Notification/>} />
-        <Route path="statistic" element={<Statistics/>} />
-        </Route>
-  {/* baselayout for question */}
-        <Route path="/questionbaselayout" element={<BaseLayoutQuestion/>} >
-        <Route path="details" element={<QDetails/>} />
-        <Route path="moderate" element={<QModerate/>} />
-        <Route path="testcase" element={<TestCase/>} />
-        <Route path="code" element={<CodeSube/>} />
-        <Route path="language" element={<Language/>} />
-        <Route path="setting" element={<Setting/>} />
-        <Route path="editorial" element={<Editoral/>} />
-        <Route path="custom" element={<CustomCheaker/>} />
-        <Route path="orm" element={<Orm/>} />
-        
+          {/* Base Layout for Contest */}
+          <Route path="/baselayout" element={<PrivateRoute element={BaseLayout} />}>
+            <Route path="details" element={<Details />} />
+            <Route path="challenge" element={<Challenge />} />
+            <Route path="advanced" element={<Advance />} />
+            <Route path="moderate" element={<Moderate />} />
+            <Route path="notification" element={<Notification />} />
+            <Route path="statistic" element={<Statistics />} />
+          </Route>
 
-        </Route>
-        <Route path='/testing' element={<CountryCity/>}/>
-       
+          {/* Base Layout for Question */}
+          <Route path="/questionbaselayout" element={<PrivateRoute element={BaseLayoutQuestion} />}>
+            <Route path="details" element={<QDetails />} />
+            <Route path="moderate" element={<QModerate />} />
+            <Route path="testcase" element={<TestCase />} />
+            <Route path="code" element={<CodeSube />} />
+            <Route path="language" element={<Language />} />
+            <Route path="setting" element={<Setting />} />
+            <Route path="editorial" element={<Editoral />} />
+            <Route path="custom" element={<CustomCheaker />} />
+            <Route path="orm" element={<Orm />} />
+          </Route>
+
+          <Route path='/testing' element={<PrivateRoute element={CountryCity} />} />
         </Routes>
       </BrowserRouter>
     </div>
