@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { toggleFormcampusback } from '../../../Redux/formSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { postCampusData } from '../../../Service/postCampusData';
+import { postCampusData } from '../../../Service/CampusRoute';
 import { Select, TextInput, Button } from 'flowbite-react';
 import { Country, State, City } from 'country-state-city';
 import { universityfetch } from '../../../Service/universityfetch';

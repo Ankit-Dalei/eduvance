@@ -68,7 +68,7 @@ function App() {
           <Route path='/Admin' element={<PrivateRoute element={Adminlayout} requiredRole="AD" />}>
             <Route index element={<Adminhome />} />
             <Route path='University' element={<Adminuniversity />} />
-            <Route path='Campus' element={<Admincampus />} />
+            <Route path='Campus' element={<Admincampus />} /> 
             <Route path='Management' element={<Adminmanagement />} />
             <Route path='Notification' element={<Adminnotify />} />
             <Route path='notificationDisplay' element={<Adminnotifyshow />} />
@@ -76,7 +76,7 @@ function App() {
           </Route>
 
           {/* Management Routes */}
-          <Route path='/Management' element={<PrivateRoute element={Managementlayout}requiredRole="MT" />}>
+          <Route path='/Management' element={<PrivateRoute element={Managementlayout} requiredRole="MT" />}>
             <Route index element={<Managementhome />} />
             <Route path='School' element={<Managementschool />} />
             <Route path='Branch' element={<Managementbranch />} />

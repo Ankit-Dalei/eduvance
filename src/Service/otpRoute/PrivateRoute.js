@@ -9,10 +9,8 @@ const getUser = () => {
 const PrivateRoute = ({ element: Element, requiredRole, ...rest }) => {
   const user = getUser();
   const location = useLocation(); 
-
-
   const isAuthenticated = !!user;
-  const id=user?.user?.userId;
+  const id=user.user.userId;
   const trimmed = id.trim();
   const firstTwo = trimmed.substring(0, 2);  
   const hasAccess = requiredRole ? firstTwo === requiredRole : true;

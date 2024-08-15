@@ -31,3 +31,21 @@ export const fetchCampusData = async () => {
     throw error;
   }
 };
+export const deleteCampusData = async (campusId) => {
+  try {
+    await axios.delete(`${BASE_URL}/eduvance/admin/campus/${campusId}`);
+    return { success: true };
+  } catch (error) {
+    console.error("Error deleting campus data:", error);
+    return { success: false, error: error.message };
+  }
+};
+export const editCampusData = async (campusId, updatedData) => {
+  try {
+    const response = await axios.put(`${BASE_URL}/eduvance/admin/campus/${campusId}`, updatedData);
+    return { success: true, data: response.data };
+  } catch (error) {
+    console.error("Error updating campus data:", error);
+    return { success: false, error: error.message };
+  }
+};

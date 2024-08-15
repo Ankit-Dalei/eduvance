@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Space, Modal, Form, Input, Select, Image } from 'antd';
-import { EditOutlined, DeleteOutlined, UserOutlined, MailOutlined, KeyOutlined, PhoneOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined, UserOutlined, MailOutlined, KeyOutlined, PhoneOutlined, CalendarOutlined } from '@ant-design/icons';
 import GlobalTable from './GlobalTable';
 import { TextInput } from 'flowbite-react';
-import { fetchCampusData } from '../../../Service/postCampusData';
+import { fetchCampusData, deleteCampusData, editCampusData } from '../../../Service/CampusRoute';
+import toast from 'react-hot-toast';
+
 
 const { Option } = Select;
 
@@ -30,8 +32,6 @@ const Admincampus = () => {
     const loadCampusData = async () => {
       try {
         const campusData = await fetchCampusData();
-        console.log(campusData);
-        
         setData(campusData);
         setFilteredData(campusData);
       } catch (error) {
@@ -59,27 +59,50 @@ const Admincampus = () => {
     setIsConfirmationVisible(true);
   };
 
-  const handleConfirmationOk = () => {
-    const newData = data.map(item => item.csId === currentRecord.csId ? { ...item, ...editValues, photoUrl: previewUrl } : item);
-    setData(newData);
-    setFilteredData(newData);
-    setIsEditModalVisible(false);
-    setIsConfirmationVisible(false);
-    setCurrentRecord(null);
-    setFile(null);
-    setPreviewUrl('');
+  const handleConfirmationOk = async () => {
+    const response = await editCampusData(currentRecord.csId, {
+      ...editValues,
+      photoUrl: previewUrl
+    });
+
+    if (response.success) {
+      const newData = data.map(item => item.csId === currentRecord.csId ? { ...item, ...editValues, photoUrl: previewUrl } : item);
+      setData(newData);
+      setFilteredData(newData);
+      setIsEditModalVisible(false);
+      setIsConfirmationVisible(false);
+      setCurrentRecord(null);
+      setFile(null);
+      setPreviewUrl('');
+      toast.success('Campus updated successfully');
+    } else {
+      console.error("Failed to update campus record:", response.error);
+      toast.error('Failed to update campus');
+    }
   };
 
   const handleConfirmationCancel = () => {
     setIsConfirmationVisible(false);
   };
 
-  const handleDeleteOk = () => {
-    const newData = data.filter(item => item.csId !== currentRecord.csId);
-    setData(newData);
-    setFilteredData(newData);
+  const handleDeleteOk = async () => {
+    const response = await deleteCampusData(currentRecord.csId);
+    
+    if (response.success) {
+      const newData = data.filter(item => item.csId !== currentRecord.csId);
+      setData(newData);
+      setFilteredData(newData);
+      setIsDeleteModalVisible(false);
+      setCurrentRecord(null);
+      toast.success('Campus deleted successfully');
+    } else {
+      console.error("Failed to delete campus record:", response.error);
+      toast.error('Failed to delete campus');
+    }
+  };
+
+  const handleDeleteCancel = () => {
     setIsDeleteModalVisible(false);
-    setCurrentRecord(null);
   };
 
   const handleSearch = (e) => {
@@ -128,6 +151,8 @@ const Admincampus = () => {
 
   return (
     <div className="lg:h-full lg:w-full lg:flex lg:flex-col lg:justify-center lg:items-center">
+      <header className="lg:w-full lg:flex lg:justify-center lg:my-4 lg:items-center">
+      </header>
       <div className="lg:w-full lg:flex lg:justify-center lg:my-4">
         <TextInput
           placeholder="Search..."
@@ -147,7 +172,7 @@ const Admincampus = () => {
             initialValues={editValues}
             onFinish={handleEditOk}
           >
-            <Form.Item name="photoUrl" label="Campus Photo">
+            <Form.Item label="Campus Photo">
               <Input type="file" onChange={handleFileChange} />
               {previewUrl && (
                 <div className="my-2">
@@ -164,7 +189,6 @@ const Admincampus = () => {
             </Form.Item>
             <Form.Item name="unId" label="University Name">
               <Select
-                prefix={<MailOutlined />}
                 defaultValue={currentRecord?.unId}
                 onChange={(value) => setEditValues(prev => ({ ...prev, unId: value }))}
               >
@@ -180,13 +204,13 @@ const Admincampus = () => {
               <Input prefix={<PhoneOutlined />} />
             </Form.Item>
             <Form.Item name="csState" label="State">
-              <Input />
+              <Input prefix={<KeyOutlined/>} />
             </Form.Item>
             <Form.Item name="csLandlineNumber" label="Landline Number">
-              <Input />
+              <Input prefix={<PhoneOutlined/>} />
             </Form.Item>
             <Form.Item name="csESTD" label="Established Year">
-              <Input type="number" />
+              <Input type="number" prefix={<CalendarOutlined />} />
             </Form.Item>
             <Form.Item>
               <Button type="dashed" htmlType="submit">
@@ -199,7 +223,17 @@ const Admincampus = () => {
           title="Delete Campus"
           visible={isDeleteModalVisible}
           onOk={handleDeleteOk}
-          onCancel={() => setIsDeleteModalVisible(false)}
+          onCancel={handleDeleteCancel}
+          okText="Delete"
+          okButtonProps={{ danger: true }}
+        >
+          <p>Are you sure you want to delete {currentRecord?.csName}?</p>
+        </Modal>
+        <Modal
+          title="Delete Campus"
+          visible={isDeleteModalVisible}
+          onOk={handleDeleteOk}
+          onCancel={handleDeleteCancel}
           okText="Delete"
           okButtonProps={{ danger: true }}
         >
