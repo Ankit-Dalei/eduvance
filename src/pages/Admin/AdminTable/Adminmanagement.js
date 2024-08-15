@@ -15,9 +15,9 @@ import {
   Modal,
   Form,
   Input,
-  Select,
   Radio,
   Upload,
+  Select,
   Image,
 } from "antd";
 import { TextInput } from "flowbite-react";
@@ -26,6 +26,7 @@ import {
   deleteManagementRecord,
   updateManagementRecord,
 } from "../../../Service/ManagementRoute";
+import { toast } from 'react-hot-toast';
 
 const { Option } = Select;
 
@@ -74,18 +75,25 @@ const Adminmanagement = () => {
   const handleEditOk = async (values) => {
     try {
       if (currentRecord) {
-        await updateManagementRecord(currentRecord.mtId, { ...values, mtPhoto: editValues.mtPhoto });
+        const updatedValues = { ...values, mtPhoto: editValues.mtPhoto };
+
+        // Remove password field if it exists
+        delete updatedValues.mtPassword;
+
+        await updateManagementRecord(currentRecord.mtId, updatedValues);
         const updatedData = data.map((item) =>
           item.mtId === currentRecord.mtId ? { ...item, ...values, mtPhoto: editValues.mtPhoto } : item
         );
         setData(updatedData);
         setFilteredData(updatedData);
+        toast.success('Edit successfully');
       }
       setIsEditModalVisible(false);
       setIsConfirmationVisible(false);
       setCurrentRecord(null);
     } catch (error) {
       console.error("Error updating record:", error);
+      toast.error('Error editing record');
     }
   };
 
@@ -103,10 +111,12 @@ const Adminmanagement = () => {
       const newData = data.filter((item) => item.mtId !== currentRecord.mtId);
       setData(newData);
       setFilteredData(newData);
+      toast.success('Deleted successfully');
       setIsDeleteModalVisible(false);
       setCurrentRecord(null);
     } catch (error) {
       console.error("Error deleting record:", error);
+      toast.error('Error deleting record');
     }
   };
 
@@ -118,7 +128,8 @@ const Adminmanagement = () => {
         item.mtEmail.toLowerCase().includes(value) ||
         item.mtPhone.toLowerCase().includes(value) ||
         item.mtGender.toLowerCase().includes(value) ||
-        item.mtBloodGrup.toLowerCase().includes(value)
+        item.mtBloodGrup.toLowerCase().includes(value) ||
+        item.mtCampus.toLowerCase().includes(value) // Added filtering by campus
     );
     setFilteredData(filtered);
   };
@@ -143,6 +154,7 @@ const Adminmanagement = () => {
     { title: "Phone", dataIndex: "mtPhone", key: "mtPhone" },
     { title: "Gender", dataIndex: "mtGender", key: "mtGender" },
     { title: "Blood Group", dataIndex: "mtBloodGrup", key: "mtBloodGrup" },
+    { title: "Campus", dataIndex: "mtCampus", key: "mtCampus" }, // Added campus column
     {
       title: "Action",
       dataIndex: "action",
@@ -195,9 +207,7 @@ const Adminmanagement = () => {
             <Form.Item name="mtName" label="Name">
               <Input prefix={<UserOutlined />} />
             </Form.Item>
-            <Form.Item name="mtEmail" label="Email">
-              <Input prefix={<MailOutlined />} />
-            </Form.Item>
+          
             <Form.Item name="mtPhone" label="Phone">
               <Input prefix={<PhoneOutlined />} />
             </Form.Item>
@@ -220,6 +230,23 @@ const Adminmanagement = () => {
             </Form.Item>
             <Form.Item name="mtBloodGrup" label="Blood Group">
               <Input prefix={<SearchOutlined />} />
+            </Form.Item>
+            <Form.Item name="mtCampus" label="Campus">
+              <Select
+                defaultValue={currentRecord?.mtCampus}
+                onChange={(value) =>
+                  setEditValues((prev) => ({
+                    ...prev,
+                    mtCampus: value,
+                  }))
+                }
+              >
+                {campuses.map((campus) => (
+                  <Option key={campus} value={campus}>
+                    {campus}
+                  </Option>
+                ))}
+              </Select>
             </Form.Item>
             <Form.Item>
               <Button type="dashed" htmlType="submit">
@@ -255,5 +282,4 @@ const Adminmanagement = () => {
     </div>
   );
 };
-
 export default Adminmanagement;

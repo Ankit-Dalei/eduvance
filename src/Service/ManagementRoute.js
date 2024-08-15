@@ -46,7 +46,7 @@ export const deleteManagementRecord = async (id) => {
 
 export const updateManagementRecord = async (id, updatedData) => {
   try {
-    const response = await axios.put(`${BASE_URL}/${id}`, updatedData);
+    const response = await axios.put(`${BASE_URL}/eduvance/admin/management/${id}`, updatedData);
     return response.data;
   } catch (error) {
     console.error(`Error updating management record with ID ${id}:`, error);
