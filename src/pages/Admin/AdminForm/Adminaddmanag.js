@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { toggleFormmanaback } from '../../../Redux/formSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { postManagementData } from '../../../Service/postManagementData';
+import { postManagementData } from '../../../Service/ManagementRoute';
 
 const Adminaddmanag = () => {
   const dispatch = useDispatch();
