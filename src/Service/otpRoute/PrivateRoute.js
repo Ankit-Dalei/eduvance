@@ -10,7 +10,13 @@ const PrivateRoute = ({ element: Element, requiredRole, ...rest }) => {
   const user = getUser();
   const location = useLocation(); 
   const isAuthenticated = !!user;
-  const id=user.user.userId;
+
+  if (!isAuthenticated) {
+    // If the user is not authenticated, redirect to the login page
+    return <Navigate to="/" state={{ from: location }} replace />;
+  }
+
+  const id = user.user.userId;
   const trimmed = id.trim();
   const firstTwo = trimmed.substring(0, 2);  
   const hasAccess = requiredRole ? firstTwo === requiredRole : true;
