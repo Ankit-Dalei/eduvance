@@ -145,10 +145,19 @@ console.log(universityOptions)
       return;
     }
 
-    const campusData = { campusName, universityId, estd, state, address, phone, landline, dateOfJoin };
+    // const campusData = { campusName, universityId, estd, state, address, phone, landline, dateOfJoin };
+    const formNewData = {
+      cmName: campusName,
+      cmUniversityId: universityId,
+      cmESTD: estd,
+      cmState: state, 
+      cmAddress: address,
+      cmPhone: phone,
+      cmLandline: landline
+    };
 
     try {
-      const response = await postCampusData(campusData);
+      const response = await postCampusData(formNewData);
       if (response.success === false) {
         toast.error("Network response was not ok");
       } else if (response instanceof Error) {

@@ -101,11 +101,20 @@ const Adminaddmanag = () => {
       return;
     }
 
-    const managementData = { managementName, managementEmail, password, campusId, gender, bloodGroup, universityId, dateOfJoin, image };
-
+    // const managementData = { managementName, managementEmail, password, campusId, gender, bloodGroup, universityId, dateOfJoin, image };
+      const formNewData = {
+        mnName: managementName,
+        mnEmail: managementEmail,
+        mnPassword: password,
+        mnCampusId: campusId, 
+        mnGender: gender,
+        unBloodGroup: bloodGroup,
+        unUniversityId: universityId,
+        unImage: image
+      };
     try {
-      console.log(managementData)
-      const response = await postManagementData(managementData);
+      console.log(formNewData)
+      const response = await postManagementData(formNewData);
       if (response.success === false) {
         toast.error("Network response was not ok");
       } else if (response instanceof Error) {
