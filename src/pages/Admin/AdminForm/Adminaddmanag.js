@@ -103,14 +103,12 @@ const Adminaddmanag = () => {
 
     // const managementData = { managementName, managementEmail, password, campusId, gender, bloodGroup, universityId, dateOfJoin, image };
       const formNewData = {
-        mnName: managementName,
-        mnEmail: managementEmail,
-        mnPassword: password,
-        mnCampusId: campusId, 
-        mnGender: gender,
-        unBloodGroup: bloodGroup,
-        unUniversityId: universityId,
-        unImage: image
+        mtName: managementName,
+        mtEmail: managementEmail,
+        mtPassword: password,
+        mncampusId: campusId, 
+        mtGender: gender,
+        mtBloodGrup: bloodGroup
       };
     try {
       console.log(formNewData)
@@ -178,8 +176,6 @@ const Adminaddmanag = () => {
               <option value="O+">O+</option>
               <option value="O-">O-</option>
             </select>
-          
-            <input type='date' placeholder='DATE OF JOIN' className={`h-[40px] w-[90%] p-2 rounded-xl`} hidden name='dateOfJoin' value={formData.dateOfJoin} />
             <input type='file' accept='image/*' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='image' onChange={handleChange} />
             <button className={`h-[40px] w-[90%] p-2 bg-blue-500 rounded-xl`}>Submit</button>
           </form>
