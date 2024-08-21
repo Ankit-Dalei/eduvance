@@ -12,7 +12,6 @@ const PrivateRoute = ({ element: Element, requiredRole, ...rest }) => {
   const isAuthenticated = !!user;
 
   if (!isAuthenticated) {
-    // If the user is not authenticated, redirect to the login page
     return <Navigate to="/" state={{ from: location }} replace />;
   }
 

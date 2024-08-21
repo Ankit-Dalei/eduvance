@@ -6,7 +6,7 @@ import { TextInput } from 'flowbite-react';
 import { universityfetch } from '../../../Service/universityfetch';
 
 import toast from 'react-hot-toast';
-import { deleteUniversity, editUniversity } from '../../../Service/addUniversity';
+import { deleteUniversity, editUniversity, uploadUniversityImage } from '../../../Service/addUniversity';
 
 const Adminuniversity = () => {
   const [data, setData] = useState([]);
@@ -16,6 +16,7 @@ const Adminuniversity = () => {
   const [currentRecord, setCurrentRecord] = useState(null);
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState('');
+  const [loading, setLoading] = useState(false); // New loading state
 
   useEffect(() => {
     universityfetch()
@@ -42,16 +43,36 @@ const Adminuniversity = () => {
     setIsDeleteModalVisible(true);
   };
 
-  const handleEditOk = (values) => {
+  const handleEditOk = async(values) => {
+    setLoading(true); // Set loading to true
+    let imageUrl = previewUrl;
+    if (file) {
+      try {
+        imageUrl = await uploadUniversityImage(currentRecord.unId, file);
+        toast.success('Image uploaded successfully');
+      } catch (error) {
+        // toast.error('Image upload failed');
+        setLoading(false); // Reset loading
+        return;
+      }
+      finally{
+        toast.success('Image uploaded successfully');
+        setLoading(false);
+
+      }
+    }
+
     const updatedData = {
       ...currentRecord,
       ...values,
-      unPhoto: previewUrl
+      unPhoto: imageUrl
     };
+
     editUniversity(currentRecord.unId, updatedData, data, setData, setFilteredData, setIsEditModalVisible, () => {
       setCurrentRecord(null);
       setFile(null);
       setPreviewUrl('');
+      setLoading(false); // Reset loading after success
     });
   };
 
@@ -151,7 +172,7 @@ const Adminuniversity = () => {
               <Input prefix={<PrinterOutlined />} />
             </Form.Item>
             <Form.Item>
-              <Button type="dashed" htmlType="submit">
+              <Button type="dashed" htmlType="submit" loading={loading}>
                 Save
               </Button>
             </Form.Item>

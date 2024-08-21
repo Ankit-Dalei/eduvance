@@ -50,4 +50,19 @@ export const addUniversity = async (formNewData) => {
     return { success: false, error: 'An error occurred while adding the university' };
   }
 };
+export const uploadUniversityImage = async (unId, file) => {
+  const formData = new FormData();
+  formData.append('image', file);
 
+  try {
+    const response = await axios.post(`${BASE_URL}/cloudinary/upload/${unId}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error uploading image:', error);
+    throw error;
+  }
+};
