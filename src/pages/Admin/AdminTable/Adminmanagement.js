@@ -151,10 +151,10 @@ const Adminmanagement = () => {
     { title: "ID", dataIndex: "mtId", key: "mtId" },
     { title: "Name", dataIndex: "mtName", key: "mtName" },
     { title: "Email", dataIndex: "mtEmail", key: "mtEmail" },
-    { title: "Phone", dataIndex: "mtPhone", key: "mtPhone" },
+    // { title: "Phone", dataIndex: "mtPhone", key: "mtPhone" },
     { title: "Gender", dataIndex: "mtGender", key: "mtGender" },
     { title: "Blood Group", dataIndex: "mtBloodGrup", key: "mtBloodGrup" },
-    { title: "Campus", dataIndex: "mtCampus", key: "mtCampus" }, // Added campus column
+    { title: "Campus", dataIndex: "campusName", key: "mtCampus" }, // Added campus column
     {
       title: "Action",
       dataIndex: "action",

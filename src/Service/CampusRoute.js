@@ -2,7 +2,7 @@ import { BASE_URL } from "./Url";
 import axios from 'axios';
 export const postCampusData = async (campusData) => {
   try {
-    const response = await fetch(`${BASE_URL}/campus`, {
+    const response = await fetch(`${BASE_URL}/eduvance/admin/campus`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

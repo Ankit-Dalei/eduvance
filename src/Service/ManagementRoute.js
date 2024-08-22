@@ -25,7 +25,7 @@ export const postManagementData = async (managementData) => {
 };
 export const fetchManagementRecords = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/eduvance/admin/management/all`);
+    const response = await axios.get(`${BASE_URL}/eduvance/admin/management`);
     console.log("good",response.data)
     return response.data;
   } catch (error) {

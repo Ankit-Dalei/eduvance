@@ -130,7 +130,7 @@ const Admincampus = () => {
 
   const columns = [
     { title: 'Campus Name', dataIndex: 'csName', key: 'csName' },
-    { title: 'University Name', dataIndex: 'unId', key: 'unId' },
+    { title: 'University Name', dataIndex: 'universityName', key: 'unId' },
     { title: 'Address', dataIndex: 'csAddress', key: 'csAddress' },
     { title: 'Phone Number', dataIndex: 'csPhone', key: 'csPhone' },
     { title: 'State', dataIndex: 'csState', key: 'csState' },
