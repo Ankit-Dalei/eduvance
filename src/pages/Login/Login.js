@@ -91,9 +91,9 @@ const Login = () => {
                     navigate('/management');
                 } else if (firstTwo === 'Hod') {
                     navigate('/Hod');
-                } else if (firstTwo === 'Teacher') {
+                } else if (firstTwo === 'FT') {
                     navigate('/teacher');
-                } else if (firstTwo === 'Student') {
+                } else if (firstTwo === 'ST') {
                     navigate('/stdash');
                 } else {
                     navigate('/');

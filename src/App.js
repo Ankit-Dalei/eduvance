@@ -97,16 +97,16 @@ function App() {
           </Route>
 
           {/* Teacher Routes */}
-          <Route path='/teacher' element={<PrivateRoute element={Dashboard} />} />
-          <Route path='/teacher/*' element={<PrivateRoute element={QuestionLayout} />}>
+          <Route path='/teacher' element={<PrivateRoute element={Dashboard} requiredRole="FT" />} />
+          <Route path='/teacher/*' element={<PrivateRoute element={QuestionLayout} requiredRole="FT"/>}>
             <Route path="add-contest" element={<AddContest />} />
             <Route path="add-question" element={<AddQuestion />} />
           </Route>
-          <Route path="/questionform" element={<PrivateRoute element={AddQuestionform} />} />
-          <Route path="/contestform" element={<PrivateRoute element={AddContestform} />} />
+          <Route path="/questionform" element={<PrivateRoute element={AddQuestionform} requiredRole="FT"/>} />
+          <Route path="/contestform" element={<PrivateRoute element={AddContestform} requiredRole="FT"/>} />
 
           {/* Base Layout for Contest */}
-          <Route path="/baselayout" element={<PrivateRoute element={BaseLayout} />}>
+          <Route path="/baselayout" element={<PrivateRoute element={BaseLayout} requiredRole="FT"/>}>
             <Route path="details" element={<Details />} />
             <Route path="challenge" element={<Challenge />} />
             <Route path="advanced" element={<Advance />} />
@@ -116,7 +116,7 @@ function App() {
           </Route>
 
           {/* Base Layout for Question */}
-          <Route path="/questionbaselayout" element={<PrivateRoute element={BaseLayoutQuestion} />}>
+          <Route path="/questionbaselayout" element={<PrivateRoute element={BaseLayoutQuestion} requiredRole="FT"/>}>
             <Route path="details" element={<QDetails />} />
             <Route path="moderate" element={<QModerate />} />
             <Route path="testcase" element={<TestCase />} />
