@@ -54,6 +54,8 @@ import CustomCheaker from './pages/Teacher/ExamSession/questionsection/CustomChe
 import Orm from './pages/Teacher/ExamSession/questionsection/Orm';
 import CountryCity from './pages/Teacher/ExamSession/common/CountryCity';
 import PrivateRoute from './Service/otpRoute/PrivateRoute';
+import OrmQuestionLayout from './pages/Teacher/ExamSession/omrsection/OrmQuestionLayout';
+import OrmQuestion from './pages/Teacher/ExamSession/omrsection/OrmQuestion';
 
 function App() {
   return (
@@ -127,7 +129,9 @@ function App() {
             <Route path="custom" element={<CustomCheaker />} />
             <Route path="orm" element={<Orm />} />
           </Route>
-
+          <Route path="/ormqustionlayout" element={<PrivateRoute element={OrmQuestionLayout} requiredRole="FT"/>}>
+          <Route path="ormquestion" element={<OrmQuestion />} />
+</Route>
           <Route path='/testing' element={<PrivateRoute element={CountryCity} />} />
         </Routes>
       </BrowserRouter>

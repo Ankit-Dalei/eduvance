@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoLogOutOutline, IoSettingsOutline } from "react-icons/io5";
-import { MdDashboard, MdOutlineAddToQueue } from "react-icons/md";
+import { MdDashboard, MdOutlineAddModerator, MdOutlineAddToQueue } from "react-icons/md";
 import { GoRepoPush } from "react-icons/go";
 import { SiConfluence } from "react-icons/si";
 import { useDispatch, useSelector } from "react-redux";
@@ -38,6 +38,7 @@ const Sidebar = () => {
   const Menus = [
     { title: "Dashboard", icon: <MdDashboard size={20} />, path: "/teacher" },
     { title: "Add Exam", icon: <MdOutlineAddToQueue size={20} />, path: "/teacher/add-question" },
+    { title: "Add Omr Exam", icon: <MdOutlineAddModerator size={20} />, path: "/ormqustionlayout/ormquestion"},
     {
       title: "Reports",
       icon: <GoRepoPush size={20} />,
