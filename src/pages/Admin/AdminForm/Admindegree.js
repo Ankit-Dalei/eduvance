@@ -13,7 +13,7 @@ const Admindegree = () => {
     const [formData, setFormData] = useState({
       degreeName: '',
       degreeSnAme: '',
-      dateOfJoin: new Date().getFullYear().toString(),
+      dateOfJoin: '',
     });
 
     const handleChange = (e) => {
@@ -46,15 +46,18 @@ const Admindegree = () => {
         return;
       }
 
-      if (!/^\d{4}$/.test(dateOfJoin)) {
-        toast.error("Date of Join must be a valid year (e.g., 2024)");
+      if (!dateOfJoin) {
+        toast.error("duration is required");
         return;
       }
   
-      const DegreeData = { degreeName, degreeSnAme, dateOfJoin };
+      const DegreeData ={
+        name: degreeName,
+        duration: dateOfJoin,
+        description: degreeSnAme,
+      };
       console.log(DegreeData)
       try {
-        console.log(DegreeData)
         const response = await postDegreeData(DegreeData);
         if (response.success === false) {
           toast.error("Network response was not ok");
@@ -87,7 +90,7 @@ const Admindegree = () => {
           <form className={`h-[80%] w-full flex justify-around items-center flex-col font-serif`} onSubmit={handleSubmit}>
             <input type='text' placeholder='DEGREE FULL NAME' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='degreeName' value={formData.degreeName} onChange={handleChange} />
             <textarea rows={4} cols={10}  placeholder='DEGREE SHORT DESC' className={` w-[90%] p-2 rounded-xl resize-none`} name='degreeSnAme' value={formData.degreeSnAme} onChange={handleChange} />
-            <input type='text' placeholder='YEAR OF JOIN (e.g., 2024)' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='dateOfJoin' value={formData.dateOfJoin} onChange={handleChange} />
+            <input type='text' placeholder='duration in year' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='dateOfJoin' value={formData.dateOfJoin} onChange={handleChange} />
             <button className={`h-[40px] w-[90%] p-2 bg-blue-500 rounded-xl`}>Submit</button>
           </form>
         </div>

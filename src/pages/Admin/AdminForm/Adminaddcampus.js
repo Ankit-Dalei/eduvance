@@ -29,14 +29,14 @@ const Adminaddcampus = () => {
     universityfetchData();
   }, []);
 
-console.log(universityOptions)
-  
 
   const [formData, setFormData] = useState({
     campusName: '',
-    universityId: '',
+    campusId: '',
+    country:'',
     estd: '',
     state: '',
+    city:'',
     address: '',
     phone: '',
     landline: '',
@@ -97,9 +97,8 @@ console.log(universityOptions)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { campusName, universityId, estd, state, address, phone, landline, dateOfJoin } = formData;
-
-    if (!campusName && !universityId && !estd && !state && !address && !phone && !landline) {
+    const { campusName, campusId, estd, state, city, phone, landline, dateOfJoin } = formData;
+    if (!campusName && !campusId && !estd && !state && !city && !phone && !landline) {
       toast.error("Please fill all fields");
       return;
     }
@@ -108,7 +107,7 @@ console.log(universityOptions)
       toast.error("Campus Name is required");
       return;
     }
-    else if (!universityId) {
+    else if (!campusId) {
       toast.error("University ID is required");
       return;
     }
@@ -124,15 +123,15 @@ console.log(universityOptions)
       toast.error("State is required");
       return;
     }
-    else if (!address) {
-      toast.error("Address is required");
-      return;
-    }
     else if (!phone) {
       toast.error("Phone is required");
       return;
     }
-    else if (phone.length > 10 || phone.length < 10 || phone.length !== 4) {
+    else if (!city) {
+      toast.error("city is required");
+      return;
+    }
+    else if (phone.length > 10 || phone.length < 10) {
       toast.error("Phone number only 10 number");
       return;
     }
@@ -140,7 +139,7 @@ console.log(universityOptions)
       toast.error("Landline is required");
       return;
     }
-    else if (landline.length > 10 || landline.length < 10 || landline.length !== 4) {
+    else if (landline.length > 10 || landline.length < 10) {
       toast.error("Landline number only 10 number");
       return;
     }
@@ -148,10 +147,10 @@ console.log(universityOptions)
     // const campusData = { campusName, universityId, estd, state, address, phone, landline, dateOfJoin };
     const formNewData = {
       cmName: campusName,
-      cmUniversityId: universityId,
+      cmUniversityId: campusId,
       cmESTD: estd,
       cmState: state, 
-      cmAddress: address,
+      cmAddress: city,
       cmPhone: phone,
       cmLandline: landline
     };
@@ -167,7 +166,8 @@ console.log(universityOptions)
 
         setFormData({
           campusName: '',
-          universityId: '',
+          campusId: '',
+          country:'',
           estd: '',
           state: '',
           address: '',

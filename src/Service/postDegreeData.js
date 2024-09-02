@@ -2,7 +2,7 @@ import { BASE_URL } from "./Url";
 
 export const postDegreeData = async (DegreeData) => {
   try {
-    const response = await fetch(`${BASE_URL}/campus`, {
+    const response = await fetch(`${BASE_URL}/admin/degree/create`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
