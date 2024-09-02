@@ -146,14 +146,16 @@ const Adminaddcampus = () => {
 
     // const campusData = { campusName, universityId, estd, state, address, phone, landline, dateOfJoin };
     const formNewData = {
-      cmName: campusName,
-      cmUniversityId: campusId,
-      cmESTD: estd,
-      cmState: state, 
-      cmAddress: city,
-      cmPhone: phone,
-      cmLandline: landline
+      csName: campusName,
+      unId: campusId,
+      csESTD: estd,
+      csState: state, 
+      csAddress: city,
+      csPhone: phone,
+      csLandline: landline,
     };
+
+    console.log(formNewData)
 
     try {
       const response = await postCampusData(formNewData);

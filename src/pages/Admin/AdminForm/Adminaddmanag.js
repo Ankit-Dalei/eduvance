@@ -106,7 +106,7 @@ const Adminaddmanag = () => {
         mtName: managementName,
         mtEmail: managementEmail,
         mtPassword: password,
-        mncampusId: campusId, 
+        campusId: campusId, 
         mtGender: gender,
         mtBloodGrup: bloodGroup
       };

@@ -3,7 +3,7 @@ import { BASE_URL } from "./Url";
 
 export const postManagementData = async (managementData) => {
   try {
-    const response = await fetch(`${BASE_URL}/management`, {
+    const response = await fetch(`${BASE_URL}/eduvance/admin/management`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
