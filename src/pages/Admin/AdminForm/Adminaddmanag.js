@@ -60,10 +60,10 @@ const Adminaddmanag = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { managementName, managementEmail, password, campusId, gender, bloodGroup, universityId, dateOfJoin, image, phone } = formData;
+    const { managementName, managementEmail, password, campusId, gender, bloodGroup, universityId, dateOfJoin, phone } = formData;
 
     // Validate form fields
-    if (!managementName && !managementEmail && !password && !campusId && !gender && !bloodGroup  && !image && !phone) {
+    if (!managementName && !managementEmail && !password && !campusId && !gender && !bloodGroup && !phone) {
       toast.error("Please fill all fields");
       return;
     }
@@ -104,21 +104,16 @@ const Adminaddmanag = () => {
       toast.error("Blood Group is required");
       return;
     }
-    if (!image) {
-      toast.error("Image is required");
-      return;
-    }
 
     // const managementData = { managementName, managementEmail, password, campusId, gender, bloodGroup, universityId, dateOfJoin, image };
       const formNewData = {
         mtName: managementName,
         mtEmail: managementEmail,
-        mtPassword: password,
+        mtPasswd: password,
         mtPhone: phone,
         campusId: campusId, 
         mtGender: gender,
         mtBloodGrup: bloodGroup,
-        mtPhoto: image,
       };
     try {
       console.log(formNewData)
