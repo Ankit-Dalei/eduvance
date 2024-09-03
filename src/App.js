@@ -56,6 +56,7 @@ import CountryCity from './pages/Teacher/ExamSession/common/CountryCity';
 import PrivateRoute from './Service/otpRoute/PrivateRoute';
 import OrmQuestionLayout from './pages/Teacher/ExamSession/omrsection/OrmQuestionLayout';
 import OrmQuestion from './pages/Teacher/ExamSession/omrsection/OrmQuestion';
+import Admindegree from './pages/Admin/AdminTable/Admindegree';
 
 function App() {
   return (
@@ -72,6 +73,7 @@ function App() {
             <Route path='University' element={<Adminuniversity />} />
             <Route path='Campus' element={<Admincampus />} /> 
             <Route path='Management' element={<Adminmanagement />} />
+            <Route path='degree' element={<Admindegree />} />
             <Route path='Notification' element={<Adminnotify />} />
             <Route path='notificationDisplay' element={<Adminnotifyshow />} />
             <Route path='message' element={<Adminnotifycreate />} />

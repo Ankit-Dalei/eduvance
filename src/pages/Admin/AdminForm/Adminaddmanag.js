@@ -6,26 +6,33 @@ import { toggleFormmanaback } from '../../../Redux/formSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { postManagementData } from '../../../Service/ManagementRoute';
+import { campusfetch } from '../../../Service/universityfetch';
 
 const Adminaddmanag = () => {
   const dispatch = useDispatch();
 
-  const campusData = [
-    { id: 'campus1', name: 'Campus 1' },
-    { id: 'campus2', name: 'Campus 2' },
-    { id: 'campus3', name: 'Campus 3' }
-  ];
+  const [campusOptions, setcampusoption] = useState([]);
 
-  const universityData = [
-    { id: 'univ1', name: 'University 1' },
-    { id: 'univ2', name: 'University 2' },
-    { id: 'univ3', name: 'University 3' }
-  ];
+  useEffect(() => {
+    const campusfetchData = async () => {
+      try {
+        const data = await campusfetch();
+        if (data) {
+          setcampusoption(data);
+        }
+      } catch (error) {
+        console.error('Error fetching course data:', error);
+      }
+    };
+
+    campusfetchData();
+  }, []);
 
   const [formData, setFormData] = useState({
     managementName: '',
     managementEmail: '',
     password: '',
+    phone:'',
     campusId: '',
     gender: '',
     bloodGroup: '',
@@ -34,13 +41,10 @@ const Adminaddmanag = () => {
     image: null
   });
 
-  const [campusOptions, setCampusOptions] = useState([]);
-  const [universityOptions, setUniversityOptions] = useState([]);
+  // const [campusOptions, setCampusOptions] = useState([]);
+  // const [universityOptions, setUniversityOptions] = useState([]);
 
-  useEffect(() => {
-    setCampusOptions(campusData);
-    setUniversityOptions(universityData);
-  }, []);
+
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -56,10 +60,10 @@ const Adminaddmanag = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { managementName, managementEmail, password, campusId, gender, bloodGroup, universityId, dateOfJoin, image } = formData;
+    const { managementName, managementEmail, password, campusId, gender, bloodGroup, universityId, dateOfJoin, image, phone } = formData;
 
     // Validate form fields
-    if (!managementName && !managementEmail && !password && !campusId && !gender && !bloodGroup && !universityId && !image) {
+    if (!managementName && !managementEmail && !password && !campusId && !gender && !bloodGroup  && !image && !phone) {
       toast.error("Please fill all fields");
       return;
     }
@@ -80,6 +84,14 @@ const Adminaddmanag = () => {
       toast.error("Password length atleast 8 character");
       return;
     }
+    if (!phone) {
+      toast.error("phone number required");
+      return;
+    }
+    if (phone.length < 10) {
+      toast.error("phone no length atleast 10");
+      return;
+    }
     if (!campusId) {
       toast.error("Campus ID is required");
       return;
@@ -92,10 +104,6 @@ const Adminaddmanag = () => {
       toast.error("Blood Group is required");
       return;
     }
-    if (!universityId) {
-      toast.error("University ID is required");
-      return;
-    }
     if (!image) {
       toast.error("Image is required");
       return;
@@ -106,14 +114,16 @@ const Adminaddmanag = () => {
         mtName: managementName,
         mtEmail: managementEmail,
         mtPassword: password,
+        mtPhone: phone,
         campusId: campusId, 
         mtGender: gender,
-        mtBloodGrup: bloodGroup
+        mtBloodGrup: bloodGroup,
+        mtPhoto: image,
       };
     try {
       console.log(formNewData)
       const response = await postManagementData(formNewData);
-      if (response.success === false) {
+      if (response === false) {
         toast.error("Network response was not ok");
       } else if (response instanceof Error) {
         toast.error(`Error: ${response.message}`);
@@ -125,6 +135,7 @@ const Adminaddmanag = () => {
           managementName: '',
           managementEmail: '',
           password: '',
+          phone:'',
           campusId: '',
           gender: '',
           bloodGroup: '',
@@ -152,10 +163,11 @@ const Adminaddmanag = () => {
             <input type='text' placeholder='MANAGEMENT NAME' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='managementName' value={formData.managementName} onChange={handleChange} />
             <input type='email' placeholder='MANAGEMENT EMAIL' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='managementEmail' value={formData.managementEmail} onChange={handleChange} />
             <input type='password' placeholder='PASSWORD' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='password' value={formData.password} onChange={handleChange} />
+            <input type='number' placeholder='Phone' className={`h-[40px] w-[90%] p-2 rounded-xl`} name='phone' value={formData.phone} onChange={handleChange} />
             <select className={`h-[40px] w-[90%] p-2 rounded-xl`} name='campusId' value={formData.campusId} onChange={handleChange}>
               <option value="" className='text-gray-500'>CAMPUS ID</option>
               {campusOptions.map((option) => (
-                <option key={option.id} value={option.id}>{option.name}</option>
+                <option key={option.csId} value={option.csId}>{option.csName}</option>
               ))}
             </select>
             <select className={`h-[40px] w-[90%] p-2 rounded-xl`} name='gender' value={formData.gender} onChange={handleChange}>

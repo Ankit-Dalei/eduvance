@@ -155,8 +155,6 @@ const Adminaddcampus = () => {
       csLandline: landline,
     };
 
-    console.log(formNewData)
-
     try {
       const response = await postCampusData(formNewData);
       if (response.success === false) {
@@ -187,7 +185,7 @@ const Adminaddcampus = () => {
 
   return (
     <>
-      <div className={`h-[90%] w-[100%] flex justify-center items-center absolute top-[12%] left-0 z-[2]`}>
+      <div className={`h-[85%] w-[100%] flex justify-center items-center absolute top-[12%] left-0 z-[2]`}>
         <div className={`h-[90%] w-[65%] sm:h-[90%] sm:w-[55%] lg:h-[90%] lg:w-[25%] p-4 bg-slate-300 rounded-xl flex justify-start items-center flex-col`}>
           <div className={`h-[10%] w-[90%] relative flex justify-center items-center`}>
             <h1 className={`font-semibold text-gray-400 text-2xl font-mono`}>ADDING CAMPUS</h1>
