@@ -42,7 +42,7 @@ const Adminheader = () => {
         <div className={`p-3 flex sm:justify-between justify-end items-center sm:gap-4 w-[15%] sm:w-auto`}>
           <div className={`bg-green-200 text-green-400 sm:p-2 sm:w-9 sm:h-9 sm:flex sm:justify-center sm:items-center sm:border-2 sm:rounded-lg sm:font-light sm:text-xl hover:bg-green-300 hover:text-green-100 cursor-pointer hidden`} onClick={handelFormclick}><FontAwesomeIcon icon={faPlus} /></div>
           <Link to='Notification'><div className={`bg-green-200 text-green-400 p-2 w-9 h-9 flex justify-center items-center border-2 rounded-lg font-light text-xl hover:bg-green-300 hover:text-green-100 cursor-pointer`}><FontAwesomeIcon icon={faBell} /></div></Link>
-          <div className={`sm:flex sm:justify-center justify-end items-center sm:flex-row sm:gap-4 md:h-[50px] sm:h-[35px] md:w-[190px] sm:w-[140px] sm:font-semibold hidden`} style={{boxShadow: '-1px 0px 0px gray'}}>
+          <div className={`sm:flex sm:justify-center justify-end items-center sm:flex-row sm:gap-4 md:h-[50px] sm:h-[35px] md:w-auto sm:w-auto sm:font-semibold hidden`} style={{boxShadow: '-1px 0px 0px gray'}}>
             <div className={`sm:flex sm:justify-around sm:items-center hidden`}><p className={`text-gray-400`}>Hello,</p>{data.user.userName}</div>
             <div className={`bg-slate-400 md:h-[45px] md:w-[45px] rounded-full cursor-pointer sm:h-[30px] sm:w-[30px] h-[30px] w-[30px]`} onMouseEnter={handelprofileclick} onMouseLeave={handelprofileclick}>
               <img src='' alt=''/>
