@@ -3,23 +3,32 @@ import Select from 'react-select';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addBranchM } from '../../../Service/Management/addBranchM';
+import { SchoolFetch } from '../../../Service/Management/getAllSchool';
 
 const Managementaddbranch = () => {
   const [formData, setFormData] = useState({
     branchName: '',
     school: '',
     description: '',
-    duration: '',
     campus: '',
     university: '',
     date: '',         
   });
 
-  const [schools, setSchools] = useState([
-    { value: 'SOET', label: 'SOET' },
-    { value: 'SOT', label: 'SOT' },
-    { value: 'SOM', label: 'SOM' }
-  ]);
+  const [schools, setSchools] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await SchoolFetch();
+        // console.log(response);
+        setSchools(response)
+      } catch (error) {
+        console.error("Error fetching degree options:", error);
+      }
+    };
+  
+    fetchData();
+  }, []);
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,13 +51,10 @@ const Managementaddbranch = () => {
     if (!formData.branchName) newErrors.branchName = 'Branch Name is required';
     if (!formData.school) newErrors.school = 'School selection is required';
     if (!formData.description) newErrors.description = 'Description is required';
-    if (!formData.duration || isNaN(formData.duration) || formData.duration < 1 || formData.duration > 9) {
-      newErrors.duration = 'Duration must be a number between 1 and 9';
-    }
     
     setErrors(newErrors);
   
-    const allFieldsBlank = !formData.branchName && !formData.school && !formData.description && !formData.duration;
+    const allFieldsBlank = !formData.branchName && !formData.school && !formData.description ;
   
     return {
       errors: Object.values(newErrors),
@@ -87,16 +93,19 @@ const Managementaddbranch = () => {
     }
   
     setIsSubmitting(true);
-  
+    const formNewData = {
+      name: formData.branchName,
+      desc: formData.description,
+      schoolId: formData.school,
+    };
     try {
-      const result = await addBranchM(formData);
+      const result = await addBranchM(formNewData);
       if (result.success) {
         toast.success('Data successfully submitted!');
         setFormData({
           branchName: '',
           school: '',
           description: '',
-          duration: '',
           campus: formData.campus,
           university: formData.university,
           date: new Date().toLocaleDateString(),
@@ -131,16 +140,21 @@ const Managementaddbranch = () => {
           </div>
           <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
             <label className='w-full text-lg'>School:</label>
-            <Select
+            <select
+              className="w-full h-[40px] p-2"
               name="school"
-              options={schools}
-              className="w-full"
-              onChange={handleSelectChange}
-              value={schools.find(option => option.value === formData.school) || null}
-              placeholder="Select One"
-            />
+              value={formData.school}
+              onChange={handleChange}
+            >
+              <option value="" className="text-gray-500" selected>Select One</option>
+              {schools.map((option) => (
+                <option key={option.id} value={option.id}>
+                  {option.schoolName}
+                </option>
+              ))}
+            </select>
           </div>
-          <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
+          {/* <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
             <label className='w-full text-lg'>Duration:</label>
             <input
               type='number'
@@ -152,7 +166,7 @@ const Managementaddbranch = () => {
               min="1"
               max="9"
             />
-          </div>
+          </div> */}
           <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
             <label className='w-full text-lg'>Description:</label>
             <textarea

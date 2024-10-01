@@ -2,7 +2,7 @@ import { BASE_URL } from "../Url";
 
 export const addBranchM = async (branchData) => {
   try {
-    const response = await fetch(`${BASE_URL}/branches`, {
+    const response = await fetch(`${BASE_URL}/eduvance/branch`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

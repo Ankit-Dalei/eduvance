@@ -52,9 +52,9 @@ const Admindegree = () => {
       }
   
       const DegreeData ={
-        name: degreeName,
+        degreeName: degreeName,
         duration: dateOfJoin,
-        description: degreeSnAme,
+        degreeShortName: degreeSnAme,
       };
       console.log(DegreeData)
       try {
@@ -69,7 +69,7 @@ const Admindegree = () => {
           setFormData({
             degreeName: '',
             degreeSnAme: '',
-            dateOfJoin: new Date().getFullYear().toString()
+            dateOfJoin: '',
           });
   
           toast.success("Form submitted successfully");

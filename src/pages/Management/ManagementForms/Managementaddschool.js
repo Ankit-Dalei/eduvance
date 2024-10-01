@@ -3,6 +3,7 @@ import Select from 'react-select';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addSchoolM } from '../../../Service/Management/addSchoolM';
+import { DegreeFatch } from '../../../Service/Management/getAllDegree';
 
 const ManagementAddSchool = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +14,6 @@ const ManagementAddSchool = () => {
     university: '',
     date: '',
   });
-
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -31,7 +31,6 @@ const ManagementAddSchool = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    
     if (!formData.schoolName) newErrors.schoolName = 'School Name is required';
     if (!formData.degree) newErrors.degree = 'Degree selection is required';
     if (!formData.description) newErrors.description = 'Description is required';
@@ -76,9 +75,13 @@ const ManagementAddSchool = () => {
     }
   
     setIsSubmitting(true);
-  
+
+    const formNewData = {
+      schoolName: formData.schoolName,
+      schoolDescription: formData.description,
+    };
     try {
-      const result = await addSchoolM(formData);
+      const result = await addSchoolM(formNewData,formData.degree);
       if (result.success) {
         toast.success('Data successfully submitted!');
         setFormData({
@@ -101,11 +104,22 @@ const ManagementAddSchool = () => {
   };
   
 
-  const degreeOptions = [
-    { value: 'Master', label: 'Master' },
-    { value: 'Bachelor', label: 'Bachelor' },
-    { value: 'Ph.D', label: 'Ph.D' },
-  ];
+  const [degreeOptions, SetDegreeoption] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await DegreeFatch();
+        // console.log(response);
+        SetDegreeoption(response)
+      } catch (error) {
+        console.error("Error fetching degree options:", error);
+      }
+    };
+  
+    fetchData();
+  }, [degreeOptions]);
+  
 
   return (
     <div className={`h-full w-full flex justify-center items-center`}>
@@ -147,13 +161,19 @@ const ManagementAddSchool = () => {
         <div className={`p-2 w-[50%] h-full`}>
           <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
             <label className='w-full text-lg'>Degree:</label>
-            <Select
-              options={degreeOptions}
-              className="w-full"
-              onChange={handleSelectChange}
-              value={degreeOptions.find(option => option.value === formData.degree) || null} // Show "Select One" if no option is selected
-              placeholder="Select One"
-            />
+            <select
+              className="w-full h-[40px] p-2 rounded-xl"
+              name="degree"
+              value={formData.degree}
+              onChange={handleChange}
+            >
+              <option value="" className="text-gray-500" selected>Select One</option>
+              {degreeOptions.map((option) => (
+                <option key={option.id} value={option.id}>
+                  {option.degreeName}
+                </option>
+              ))}
+            </select>
           </div>
           <div className={`flex justify-center items-start flex-col gap-2 font-semibold text-sm`}>
             <label className='w-full text-lg'>University:</label>

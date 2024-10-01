@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGraduationCap,faBook,faChalkboardUser,faCodeBranch,faPersonChalkboard,faPersonPraying, faHouse, faRightFromBracket, faUserTie, faChevronRight, faChevronLeft  } from '@fortawesome/free-solid-svg-icons';
+import { faUser,faGraduationCap,faBook,faChalkboardUser,faCodeBranch,faPersonChalkboard,faPersonPraying, faHouse, faRightFromBracket, faChevronRight, faChevronLeft  } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux'
 import { toggleSidebar } from '../../Redux/formSlice';
 import toast from 'react-hot-toast';
 
 const Managementsidebar = () => {
+  const [data,setFormData]=useState("")
   const dispatch = useDispatch()
   const count = useSelector((state) => state.forms.sidebar)
   const location = useLocation();
@@ -23,6 +24,12 @@ const Managementsidebar = () => {
     navigate('/');
     toast.success('Logout successfully');
   };
+  useEffect(() => {
+    const storedData = sessionStorage.getItem('user');
+    const parsedData = storedData ? JSON.parse(storedData) : {};
+console.log(parsedData)
+    setFormData(parsedData.user.userId);
+  }, []);
   
   return (
     <>
@@ -32,16 +39,18 @@ const Managementsidebar = () => {
             {count?
           <div className={`flex flex-row lg:justify-center lg:items-center lg:h-full w-[80%]`}>
           <div className={`w-[30%] flex flex-end justify-center items-end`}>
-            <img src={`./Images/management.png`} alt='' className='h-[40px] rounded-full '/>
+          <FontAwesomeIcon icon={faUser} className='h-[25px] rounded-full'/>
+            {/* <img src={`./Images/management.png`} alt='' className='h-[40px] rounded-full '/> */}
           </div>
           <div className={`w-[70%]`}>
-            <h1 className={`"font-semibold text-lg text-black font-serif`}>Jony Bhau</h1>
+            <h1 className={`"font-semibold text-lg text-black font-serif`}>{data}</h1>
           </div>
           <div className={`absolute right-0 hover:text-gray-300 text-gray-500 text-xl md:hidden`} onClick={handelclick}>
                 {count?<FontAwesomeIcon icon={faChevronLeft}  />:<FontAwesomeIcon icon={faChevronRight} />}
           </div>
           </div>:<div className={`w-[100%] flex flex-end justify-center items-end`}>
-            <img src={`./Images/management.png`} alt='' className='h-[40px] rounded-full '/>
+          <FontAwesomeIcon icon={faUser} className='h-[25px] rounded-full'/>
+            {/* <img src={`./Images/management.png`} alt='' className='h-[40px] rounded-full '/> */}
           </div>
           }
           </div>
